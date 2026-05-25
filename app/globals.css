@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  --saga-bg: #f8fafc;
+  --saga-surface: #ffffff;
+  --saga-dark: #0f172a;
+  --saga-accent: #6366f1;
+  --saga-accent-hover: #4f46e5;
+  --saga-border: #e2e8f0;
+  --saga-muted: #64748b;
+  --saga-green: #059669;
+  --saga-amber: #d97706;
+  --saga-orange: #ea580c;
+  --saga-red: #dc2626;
+}
+
+@theme inline {
+  --color-saga-bg: var(--saga-bg);
+  --color-saga-dark: var(--saga-dark);
+  --color-saga-accent: var(--saga-accent);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
+}
+
+body {
+  background: var(--saga-bg);
+  color: var(--saga-dark);
+}
