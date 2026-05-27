@@ -151,26 +151,26 @@ export async function POST(request: NextRequest) {
           contact: "info@mockbyggfirma.se"
         },
         quote: {
-          total_amount: isText ? 150000 : 85000,
+          total_amount: 85000,
           includes_vat: true,
           includes_rot: true,
-          rot_eligible_labor: isText ? 45000 : 25000,
-          rot_deduction: isText ? 13500 : 7500,
-          total_after_rot: isText ? 136500 : 77500,
+          rot_eligible_labor: 25000,
+          rot_deduction: 7500,
+          total_after_rot: 77500,
           category: "badrum",
           region_guess: "stockholm",
           validity_days: 30,
-          estimated_area_sqm: isText ? 8 : 5,
+          estimated_area_sqm: 5,
           estimated_rooms: 1,
-          timeline_weeks: isText ? 3 : 2
+          timeline_weeks: 2
         },
         verdict: "FAIR",
         verdict_text: "Priset ligger inom normal marknadsrange för denna typ av projekt i Stockholm.",
-        market_range: { low: isText ? 120000 : 70000, high: isText ? 180000 : 100000 },
+        market_range: { low: 70000, high: 100000 },
         line_items: [
           {
             description: "Rivning och förberedelse",
-            amount: isText ? 25000 : 15000,
+            amount: 15000,
             is_labor: true,
             assessment: "FAIR",
             market_range: "20-30k",
@@ -178,7 +178,7 @@ export async function POST(request: NextRequest) {
           },
           {
             description: "VVS-installation",
-            amount: isText ? 35000 : 20000,
+            amount: 20000,
             is_labor: true,
             assessment: "FAIR",
             market_range: "25-40k",
@@ -186,7 +186,7 @@ export async function POST(request: NextRequest) {
           },
           {
             description: "Kakel och material",
-            amount: isText ? 45000 : 25000,
+            amount: 25000,
             is_labor: false,
             assessment: "FAIR",
             market_range: "35-55k",
