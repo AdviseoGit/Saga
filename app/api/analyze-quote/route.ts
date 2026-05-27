@@ -279,7 +279,7 @@ export async function POST(request: NextRequest) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": apiKey,
+        "x-api-key": apiKey!,
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
