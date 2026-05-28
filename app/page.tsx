@@ -457,6 +457,81 @@ export default function SagaLandingPage() {
         </div>
       </section>
 
+
+      {/* Hur det fungerar */}
+      <section className="border-t border-[#e2e8f0] bg-[#f8fafc] px-4 py-14 sm:px-6">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-center text-xs font-bold uppercase tracking-[0.25em] text-[#64748b]">Tre enkla steg</p>
+          <h2 className="mt-3 text-center text-xl font-bold text-[#0f172a] sm:text-2xl">Hur Fråga Saga fungerar</h2>
+          <div className="mt-10 grid gap-8 sm:grid-cols-3">
+            <div className="text-center">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#6366f1]/10 text-2xl font-black text-[#6366f1]">1</div>
+              <h3 className="mt-4 text-base font-bold text-[#0f172a]">Ladda upp din offert</h3>
+              <p className="mt-2 text-sm font-medium text-[#64748b]">Fota eller välj en bild (JPG/PNG) eller PDF av din offert. Inga specialprogram krävs – bara ett foto räcker.</p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#6366f1]/10 text-2xl font-black text-[#6366f1]">2</div>
+              <h3 className="mt-4 text-base font-bold text-[#0f172a]">Saga analyserar</h3>
+              <p className="mt-2 text-sm font-medium text-[#64748b]">AI läser offerten och jämför mot svenska marknadsdata. Företagets F-skatt och bolagsstatus kontrolleras automatiskt mot myndighetsregister.</p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#6366f1]/10 text-2xl font-black text-[#6366f1]">3</div>
+              <h3 className="mt-4 text-base font-bold text-[#0f172a]">Få hela sanningen</h3>
+              <p className="mt-2 text-sm font-medium text-[#64748b]">Du får ett tydligt prisverdict (Bra pris / Rimligt / I överkant / Högt pris), röda och gula flaggor, och konkreta förhandlingstips.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vanliga frågor */}
+      <section className="border-t border-[#e2e8f0] bg-white px-4 py-14 sm:px-6">
+        <div className="mx-auto max-w-3xl">
+          <p className="text-center text-xs font-bold uppercase tracking-[0.25em] text-[#64748b]">Vanliga frågor</p>
+          <h2 className="mt-3 text-center text-xl font-bold text-[#0f172a] sm:text-2xl">Allt du behöver veta om Fråga Saga</h2>
+          <dl className="mt-10 space-y-4">
+            {[
+              {
+                q: "Vad är Fråga Saga?",
+                a: "Fråga Saga är ett gratis verktyg som analyserar offerter och fakturor med hjälp av AI och svenska myndighetsdata. Du laddar upp en bild eller PDF och får direkt svar på om priset är rimligt, om företaget är seriöst och vad du bör förhandla om.",
+              },
+              {
+                q: "Är Fråga Saga gratis?",
+                a: "Ja, helt gratis. Ingen registrering eller inloggning krävs och din fil sparas aldrig.",
+              },
+              {
+                q: "Hur lång tid tar analysen?",
+                a: "Normalt 10–20 sekunder. Saga läser offerten, jämför mot marknadsdata och kontrollerar företaget mot Skatteverket och Bolagsverket parallellt.",
+              },
+              {
+                q: "Vilka typer av offerter kan Saga analysera?",
+                a: "Saga analyserar offerter från hantverkare, byggföretag, VVS-firmor, elektriker, takläggare, målare och andra servicebranscher. Du laddar upp som foto (JPG/PNG) eller PDF.",
+              },
+              {
+                q: "Vad är F-skatt och varför är det viktigt?",
+                a: "F-skatt innebär att ett företag ansvarar för sin egen skatteinbetalning. Om du anlitar en hantverkare utan F-skatt kan du bli ansvarig för arbetsgivaravgifter. Saga kontrollerar alltid F-skattstatus.",
+              },
+              {
+                q: "Kan jag jämföra två offerter mot varandra?",
+                a: 'Ja! Med läget "Jämför offerter" laddar du upp två offerter och Saga analyserar båda – pris, flaggor och trovärdighet – och rekommenderar vilken du bör välja.',
+              },
+              {
+                q: "Kan Saga avslöja falska fakturor?",
+                a: "Ja. I fakturakontrollläget analyserar Saga om fakturan ser äkta ut, kontrollerar avsändaren mot Bolagsverket och letar efter bedrägerimarkörer som felaktiga kontonummer.",
+              },
+              {
+                q: "Är mina filer säkra?",
+                a: "Ja. Din fil används bara för att genomföra analysen och sparas aldrig permanent. Inga personuppgifter krävs.",
+              },
+            ].map(({ q, a }) => (
+              <div key={q} className="rounded-[20px] border border-[#e2e8f0] bg-[#f8fafc] p-5">
+                <dt className="text-sm font-bold text-[#0f172a]">{q}</dt>
+                <dd className="mt-2 text-sm font-medium leading-relaxed text-[#64748b]">{a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* CTA repeat */}
       <section className="border-t border-[#e2e8f0] bg-[#f8fafc] px-4 py-14 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
