@@ -324,10 +324,28 @@ export async function POST(request: NextRequest) {
     if (!anthropicRes.ok) {
       const errText = await anthropicRes.text();
       console.error('Claude API error:', errText);
+
+      // Map known API errors to user-friendly Swedish messages
+      let userMessage = "Analysservicen är tillfälligt otillgänglig. Försök igen om en stund.";
+      try {
+        const errJson = JSON.parse(errText);
+        const msg = errJson?.error?.message ?? "";
+        if (msg.includes("credit balance") || msg.includes("billing")) {
+          // Credit issue — log for ops, hide from user
+          console.error("BILLING ALERT: Anthropic credits exhausted");
+          userMessage = "Analysservicen är tillfälligt otillgänglig. Försök igen om en stund.";
+        } else if (msg.includes("overloaded") || msg.includes("rate_limit")) {
+          userMessage = "Saga är just nu överbelastad. Vänta 30 sekunder och försök igen.";
+        } else if (msg.includes("invalid_api_key")) {
+          console.error("ALERT: Invalid Anthropic API key");
+          userMessage = "Konfigurationsfel. Kontakta support.";
+        }
+      } catch { /* keep generic message */ }
+
       return NextResponse.json(
-        { error: "Claude API error", details: errText },
+        { error: userMessage },
         {
-          status: 502,
+          status: 503,
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
