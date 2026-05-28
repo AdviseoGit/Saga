@@ -1,5 +1,29 @@
 // Next.js API Route: Analys av offerter med Claude + ML hybrid approach
 import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+
+// Fire-and-forget: log anonymised analysis data for market baseline training
+function logAnalysis(result: Record<string, any>): void {
+  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!sbUrl || !sbKey || !result?.quote?.category) return;
+
+  const sb = createClient(sbUrl, sbKey);
+  sb.from("analyses")
+    .insert([{
+      category: String(result.quote.category ?? "unknown").toLowerCase(),
+      region: String(result.quote.region_guess ?? "unknown").toLowerCase(),
+      total_amount: Number(result.quote.total_amount ?? 0),
+      verdict: String(result.verdict ?? "FAIR"),
+      market_low: result.market_range?.low ?? null,
+      market_high: result.market_range?.high ?? null,
+      includes_rot: result.quote.includes_rot ?? false,
+      line_items_count: result.line_items?.length ?? 0,
+      red_flags_count: result.red_flags?.length ?? 0,
+    }])
+    .then(() => {})
+    .catch((e: Error) => console.error("[logAnalysis]", e.message));
+}
 
 // Rate limiting för API
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
@@ -316,6 +340,9 @@ export async function POST(request: NextRequest) {
     const data = await anthropicRes.json();
     const textBlock = data.content?.find((b: { type: string }) => b.type === "text");
     const result = JSON.parse(textBlock?.text ?? "{}");
+
+    // Auto-log for ML training (fire and forget — does not delay response)
+    logAnalysis(result);
 
     return NextResponse.json({ analysis: result }, {
       headers: {
