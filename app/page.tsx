@@ -768,6 +768,77 @@ function CompanyBlock(props: { verification: CompanyVerification | null; verific
   );
 }
 
+
+// ─── EmailCapture ─────────────────────────────────────────────────────────────
+
+function EmailCapture({ analysis }: { analysis: SagaAnalysis }) {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+
+  async function submit() {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+    setStatus("loading");
+    try {
+      const r = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          quoteCategory: analysis.quote?.category,
+          quoteRegion: analysis.quote?.region_guess,
+          analysisVerdict: analysis.verdict,
+          analysisSummary: {
+            company: analysis.company?.name,
+            total: analysis.quote?.total_amount,
+            verdict: analysis.verdict_text,
+          },
+        }),
+      });
+      setStatus(r.ok ? "done" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "done") {
+    return (
+      <div className="mt-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-300">
+        ✓ Tack! Vi har tagit emot din e-post.
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-3 rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+      <p className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">
+        Spara rapporten via e-post
+      </p>
+      <div className="flex gap-2">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && submit()}
+          placeholder="din@epost.se"
+          className="min-w-0 flex-1 rounded-xl bg-white/10 px-3 py-2 text-sm text-white placeholder:text-slate-600 outline-none focus:ring-1 focus:ring-[#6366f1]"
+        />
+        <button
+          type="button"
+          onClick={submit}
+          disabled={status === "loading"}
+          className="shrink-0 rounded-xl bg-[#6366f1] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#4f46e5] disabled:opacity-50"
+        >
+          {status === "loading" ? "..." : "Skicka →"}
+        </button>
+      </div>
+      {status === "error" && (
+        <p className="mt-1.5 text-xs text-red-400">Något gick fel. Prova igen.</p>
+      )}
+      <p className="mt-1.5 text-[11px] text-slate-600">Vi delar aldrig din e-post med tredje part.</p>
+    </div>
+  );
+}
+
 // ─── ResultBlock (quote) ──────────────────────────────────────────────────────
 
 function ResultBlock(props: { analysis: SagaAnalysis; verification: CompanyVerification | null; verificationError: string | null; onClose: () => void }) {
@@ -939,6 +1010,8 @@ function ResultBlock(props: { analysis: SagaAnalysis; verification: CompanyVerif
           </div>
         )}
       </div>
+
+      <EmailCapture analysis={a} />
 
       {/* Visa detaljer toggle */}
       <button
