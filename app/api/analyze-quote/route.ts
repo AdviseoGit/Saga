@@ -21,8 +21,10 @@ function logAnalysis(result: Record<string, any>): void {
       line_items_count: result.line_items?.length ?? 0,
       red_flags_count: result.red_flags?.length ?? 0,
     }])
-    .then(() => {})
-    .catch((e: Error) => console.error("[logAnalysis]", e.message));
+    .then(
+      ({ error }) => { if (error) console.error("[logAnalysis]", error.message); },
+      (e: unknown) => console.error("[logAnalysis]", String(e))
+    );
 }
 
 // Rate limiting för API
