@@ -172,6 +172,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6XYW8WNY9"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-M6XYW8WNY9');`,
+          }}
+        />
       </head>
       <body
         className={`${dmSans.variable} ${dmMono.variable} font-sans antialiased`}
