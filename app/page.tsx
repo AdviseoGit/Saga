@@ -554,6 +554,8 @@ export default function SagaLandingPage() {
           <p>Saga – Offertanalys, offertjämförelse och fakturakontroll. Prisanalys och företagskoll. Ingen garanti för fullständighet; använd som stöd, inte som enda beslutsunderlag.</p>
           <p className="mt-2">
             <Link href="/granska-offert-hantverkare" className="underline hover:text-[#0f172a]">Guide: Granska offert från hantverkare</Link>
+            <span className="mx-2">·</span>
+            <Link href="/kolla-faktura" className="underline hover:text-[#0f172a]">Guide: Kolla faktura från hantverkare</Link>
           </p>
         </div>
       </footer>
