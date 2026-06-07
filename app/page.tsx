@@ -558,6 +558,8 @@ export default function SagaLandingPage() {
             <Link href="/kolla-faktura" className="underline hover:text-[#0f172a]">Guide: Kolla faktura från hantverkare</Link>
             <span className="mx-2">·</span>
             <Link href="/rot-avdrag" className="underline hover:text-[#0f172a]">Guide: ROT-avdrag</Link>
+            <span className="mx-2">·</span>
+            <Link href="/f-skatt" className="underline hover:text-[#0f172a]">Guide: F-skatt</Link>
           </p>
         </div>
       </footer>
