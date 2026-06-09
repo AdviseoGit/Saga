@@ -560,6 +560,8 @@ export default function SagaLandingPage() {
             <Link href="/rot-avdrag" className="underline hover:text-[#0f172a]">Guide: ROT-avdrag</Link>
             <span className="mx-2">·</span>
             <Link href="/f-skatt" className="underline hover:text-[#0f172a]">Guide: F-skatt</Link>
+            <span className="mx-2">·</span>
+            <Link href="/ar-offerten-rimlig" className="underline hover:text-[#0f172a]">Är offerten rimlig?</Link>
           </p>
         </div>
       </footer>

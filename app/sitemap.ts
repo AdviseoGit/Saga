@@ -32,5 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: "https://fragasaga.se/ar-offerten-rimlig",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
 }
