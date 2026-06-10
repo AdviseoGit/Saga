@@ -562,6 +562,8 @@ export default function SagaLandingPage() {
             <Link href="/f-skatt" className="underline hover:text-[#0f172a]">Guide: F-skatt</Link>
             <span className="mx-2">·</span>
             <Link href="/ar-offerten-rimlig" className="underline hover:text-[#0f172a]">Är offerten rimlig?</Link>
+            <span className="mx-2">·</span>
+            <Link href="/granska-offert-hantverkare" className="underline hover:text-[#0f172a]">Granska Offert Hantverkare</Link>
           </p>
         </div>
       </footer>
