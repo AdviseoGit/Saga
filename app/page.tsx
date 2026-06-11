@@ -563,7 +563,9 @@ export default function SagaLandingPage() {
             <span className="mx-2">·</span>
             <Link href="/ar-offerten-rimlig" className="underline hover:text-[#0f172a]">Är offerten rimlig?</Link>
             <span className="mx-2">·</span>
-            <Link href="/granska-offert-hantverkare" className="underline hover:text-[#0f172a]">Granska Offert Hantverkare</Link>
+            <Link href="/om-oss" className="underline hover:text-[#0f172a]">Om Saga</Link>
+            <span className="mx-2">·</span>
+            <Link href="/kontakt" className="underline hover:text-[#0f172a]">Kontakt</Link>
           </p>
         </div>
       </footer>
