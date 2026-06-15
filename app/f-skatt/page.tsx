@@ -18,6 +18,9 @@ export default function FSkattPage() {
             <span className="text-xl font-black tracking-tight text-gray-900 sm:text-2xl">Saga</span>
             <span className="hidden text-[10px] font-bold uppercase tracking-[0.25em] text-indigo-600 sm:inline">Fråga Saga</span>
           </Link>
+          <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+            <Link href="/verktyg/badrumsrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-gray-900 transition-colors">Badrumskalkylator</Link>
+          </nav>
           <Link href="/" className="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-indigo-700">
             Testa Offertanalys
           </Link>

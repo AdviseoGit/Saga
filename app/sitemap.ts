@@ -39,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: "https://fragasaga.se/verktyg/badrumsrenovering-kalkylator",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: "https://fragasaga.se/om-oss",
       lastModified: new Date(),
       changeFrequency: "yearly",

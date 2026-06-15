@@ -22,21 +22,21 @@ Our long-term competitive advantage (our "moat") is the data we collect. Every a
 
 ## Milestones
 
-[ ] **Milstolpe 1: GRUNDLÄGGANDE FÖRTROENDE (Baseline Trust)**
-    - [ ] Ensure every existing page has a professional and consistent design (header, footer, styling).
-    - [ ] Implement a clear and simple lead-capture form on the homepage and all tool pages.
-    - [ ] Verify that the lead flow (form submission to email/database) works flawlessly.
-    - [ ] Create an "Om Oss" (About Us) page that clearly explains who "Saga" is and what the service does.
-    - [ ] Create a "Kontakt" (Contact) page.
+[x] **Milstolpe 1: GRUNDLÄGGANDE FÖRTROENDE (Baseline Trust)**
+    - [x] Ensure every existing page has a professional and consistent design (header, footer, styling).
+    - [x] Implement a clear and simple lead-capture form on the homepage and all tool pages.
+    - [x] Verify that the lead flow (form submission to email/database) works flawlessly.
+    - [x] Create an "Om Oss" (About Us) page that clearly explains who "Saga" is and what the service does.
+    - [x] Create a "Kontakt" (Contact) page.
 
 [ ] **Milstolpe 2: INNEHÅLLSFUNDAMENT (Content Foundation)**
-    - [ ] Publish cornerstone articles for our primary keywords: "granska offert hantverkare", "kolla faktura", "ROT-avdrag", "F-skatt".
-    - [ ] Establish a clear internal linking structure between these cornerstone articles and the tool pages.
-    - [ ] Implement proper Schema.org markup for all articles (Article, FAQPage).
+    - [x] Publish cornerstone articles for our primary keywords: "granska offert hantverkare", "kolla faktura", "ROT-avdrag", "F-skatt".
+    - [x] Establish a clear internal linking structure between these cornerstone articles and the tool pages.
+    - [x] Implement proper Schema.org markup for all articles (Article, FAQPage).
 
 [ ] **Milstolpe 3: VERKTYGSFÖRBÄTTRING & DATA-CAPTURE (Tool Enhancement & Data Capture)**
     - [ ] Enhance the analysis tool to provide more detailed feedback (e.g., breaking down costs).
-    - [ ] Implement a robust backend to store all anonymous analysis data securely.
+    - [x] Implement a robust backend to store all anonymous analysis data securely.
     - [ ] Create a simple dashboard (internal) to view basic statistics from the collected data.
 
 [ ] **Milstolpe 4: AUKTORITET & RÄCKVIDD (Authority & Reach)**
