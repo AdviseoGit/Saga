@@ -6,36 +6,61 @@ export default function LeadForm({ resultData }: { resultData: any }) {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
     setLoading(true);
-    // Since we don't have a specific API endpoint configured for this yet,
-    // we'll simulate a successful submission for now and log the data capture intent.
-    // In a real scenario, this would POST to our Supabase or an API route.
-    setTimeout(() => {
-      console.log("Captured lead data:", { email, resultData });
+    setError('');
+
+    try {
+      const payload = {
+        email,
+        quoteCategory: "badrumsrenovering",
+        quoteRegion: resultData.region,
+        analysisVerdict: "KALKYL",
+        analysisSummary: {
+          company: "Kalkylator",
+          total: resultData.costs?.afterRot?.low || resultData.costs?.beforeRot?.low || 0,
+          verdict: `Beräknat pris (ca): ${new Intl.NumberFormat('sv-SE').format(resultData.costs?.afterRot?.low || 0)} - ${new Intl.NumberFormat('sv-SE').format(resultData.costs?.afterRot?.high || 0)} kr`
+        }
+      };
+
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error("Kunde inte skicka rapporten");
+      }
+
       setSubmitted(true);
+    } catch (err) {
+      setError('Ett fel uppstod. Försök igen.');
+      console.error(err);
+    } finally {
       setLoading(false);
-    }, 800);
+    }
   };
 
   if (submitted) {
     return (
-      <div className="bg-green-50 p-6 rounded-xl border border-green-200 mt-8 text-center">
+      <div className="bg-green-50 p-6 rounded-xl border border-green-200 mt-8 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
         <h3 className="text-xl font-bold text-green-800 mb-2">Rapporten är skickad!</h3>
-        <p className="text-green-700">Kolla din inkorg för den fullständiga sammanställningen och nästa steg.</p>
+        <p className="text-green-700">Kolla din inkorg för den fullständiga sammanställningen och våra bästa tips för att undvika fuskbyggare.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mt-8">
-      <h3 className="text-xl font-bold text-slate-800 mb-2">Få hela beräkningen som PDF</h3>
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <h3 className="text-xl font-bold text-slate-800 mb-2">Spara kalkylen & få tips</h3>
       <p className="text-slate-600 mb-4 text-sm">
-        Ange din e-postadress för att få en detaljerad PDF-rapport av beräkningen, plus våra 5 bästa tips för att undvika fuskbyggare när du begär in offerter.
+        Ange din e-postadress för att få en sammanställning av beräkningen, plus våra 5 bästa tips för att undvika fuskbyggare när du begär in offerter för badrumsrenoveringen.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
         <input
@@ -44,18 +69,19 @@ export default function LeadForm({ resultData }: { resultData: any }) {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Din e-postadress"
           required
-          className="flex-grow px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="flex-grow px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#0f766e] focus:border-transparent"
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors whitespace-nowrap disabled:opacity-50"
+          className="bg-[#0f766e] hover:bg-[#0d645e] text-white font-bold py-3 px-6 rounded-lg transition-colors whitespace-nowrap disabled:opacity-50"
         >
-          {loading ? 'Skickar...' : 'Skicka rapport'}
+          {loading ? 'Skickar...' : 'Skicka till mig'}
         </button>
       </form>
+      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       <p className="text-xs text-slate-400 mt-3">
-        Vi delar aldrig din e-postadress med någon annan. Helt gratis.
+        Vi delar aldrig din e-postadress. Helt gratis. Genom att klicka godkänner du att vi sparar din e-post för att skicka analysen.
       </p>
     </div>
   );
