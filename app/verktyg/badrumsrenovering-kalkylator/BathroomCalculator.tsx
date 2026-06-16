@@ -27,6 +27,8 @@ const EXTRAS = {
   movingPipes: 15000, // fixed add-on
 };
 
+import LeadForm from "./components/LeadForm";
+
 export default function BathroomCalculator() {
   const [sqm, setSqm] = useState<number>(5);
   const [standard, setStandard] = useState<'budget' | 'standard' | 'premium'>('standard');
@@ -220,6 +222,8 @@ export default function BathroomCalculator() {
             </p>
           </div>
           
+          <LeadForm resultData={{ sqm, standard, region, floorHeating, spotlights, movingPipes, costs }} />
+
           <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <p className="text-sm font-bold text-slate-600">Har du redan fått en offert?</p>
             <a 
