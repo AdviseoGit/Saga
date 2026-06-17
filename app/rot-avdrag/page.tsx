@@ -2,11 +2,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Allt om ROT-avdrag 2024: Regler, Villkor och Ansökan | Fråga Saga',
-  description: 'Maximera ditt ROT-avdrag! Vår guide för 2024 går igenom regler, vilka arbeten som godkänns, och hur du enkelt ansöker. Få koll på allt du behöver veta.',
+  title: 'Allt om ROT-avdrag 2026: Regler, Villkor och Ansökan | Fråga Saga',
+  description: 'Maximera ditt ROT-avdrag! Vår guide för 2026 går igenom regler, vilka arbeten som godkänns, och hur du enkelt ansöker. Få koll på allt du behöver veta.',
   openGraph: {
-    title: 'Allt om ROT-avdrag 2024: Regler, Villkor och Ansökan | Fråga Saga',
-    description: 'Maximera ditt ROT-avdrag! Vår guide för 2024 går igenom regler, vilka arbeten som godkänns, och hur du enkelt ansöker. Få koll på allt du behöver veta.',
+    title: 'Allt om ROT-avdrag 2026: Regler, Villkor och Ansökan | Fråga Saga',
+    description: 'Maximera ditt ROT-avdrag! Vår guide för 2026 går igenom regler, vilka arbeten som godkänns, och hur du enkelt ansöker. Få koll på allt du behöver veta.',
     url: 'https://fragasaga.se/rot-avdrag',
   },
   alternates: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function RotAvdragPage() {
   return (
     <div className="prose lg:prose-xl mx-auto px-4 py-8">
-      <h1>ROT-avdraget 2024: En Komplett Guide</h1>
+      <h1>ROT-avdraget 2026: En Komplett Guide</h1>
       <p className="lead">
         ROT-avdraget är en fantastisk möjlighet för dig som privatperson att få skattereduktion för arbetskostnaden när du anlitar en hantverkare för reparation, underhåll, eller om- och tillbyggnad. Men reglerna kan kännas krångliga. Vi reder ut allt du behöver veta för att maximera ditt avdrag och undvika vanliga misstag.
       </p>
@@ -67,12 +67,15 @@ export default function RotAvdragPage() {
         Du behöver alltså inte själv skicka in någon ansökan. Allt kommer förtryckt i din inkomstdeklaration.
       </p>
 
-      <h2>Taket för ROT-avdrag 2024</h2>
+      <h2>Taket för ROT-avdrag 2026</h2>
       <p>
-        Det totala ROT-avdraget är max 50 000 kronor per person och år. Detta är det totala beloppet du kan få i skattereduktion. Det innebär att du kan få avdrag för arbetskostnader upp till cirka 167 000 kronor (eftersom 30% av 167 000 är ca 50 000).
+        För perioden 1 juli–31 december 2024 höjdes taket tillfälligt till 75 000 kronor för rotavdrag, men från och med 2025 (och framåt till 2026) gäller de permanenta reglerna igen om inget annat beslutas. 
       </p>
       <p>
-        Kom ihåg att ROT- och RUT-avdraget räknas ihop. Det totala avdraget för båda får inte överstiga 75 000 kronor per person och år.
+        Detta innebär att ROT-avdraget är max <strong>50 000 kronor</strong> per person och år. Detta är det totala beloppet du kan få i skattereduktion för rotarbete. Det innebär att du kan få avdrag för arbetskostnader upp till cirka 167 000 kronor (eftersom 30 % av 167 000 är cirka 50 000 kr).
+      </p>
+      <p>
+        Kom ihåg att ROT- och RUT-avdraget räknas ihop. Det totala avdraget för båda får inte överstiga <strong>75 000 kronor</strong> per person och år.
       </p>
 
       <h2>Vanliga frågor och svar</h2>
