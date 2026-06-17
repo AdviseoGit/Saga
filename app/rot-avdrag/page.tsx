@@ -78,6 +78,26 @@ export default function RotAvdragPage() {
         Kom ihåg att ROT- och RUT-avdraget räknas ihop. Det totala avdraget för båda får inte överstiga <strong>75 000 kronor</strong> per person och år.
       </p>
 
+      <h2>Vad gäller för fristående garage och tillbyggnader?</h2>
+      <p>
+        Du kan få ROT-avdrag för att bygga om, bygga till eller reparera ett <strong>vidbyggt garage</strong> (ett garage som är hopbyggt med bostadshuset). För ett <strong>fristående garage</strong> får du däremot <strong>inte</strong> ROT-avdrag för nybyggnation, men du kan få avdrag för reparation och underhåll av ett befintligt fristående garage (förutsatt att det tillhör ett småhus du äger). Samma princip gäller andra fristående komplementbyggnader på tomten.
+      </p>
+
+      <h2>Hur gammalt måste huset vara?</h2>
+      <p>
+        För att få ROT-avdrag för <strong>om- och tillbyggnad</strong> måste småhuset vara äldre än fem år. Skatteverket räknar från det år huset byggdes (värdeåret). För <strong>reparation och underhåll</strong> (till exempel målning eller byte av tak) finns det ingen åldersgräns, utan du kan få avdrag oavsett husets ålder så länge det inte handlar om att återställa huset till nyskick i direkt anslutning till byggnationen.
+      </p>
+
+      <h2>Kan man få ROT-avdrag för kamin och grävarbeten?</h2>
+      <p>
+        Ja, du kan få ROT-avdrag för arbetskostnaden att installera en <strong>kamin</strong>, kassett eller kakelugn i befintligt småhus. Du får inte avdrag för själva kaminen eller skorstenen (materialet). <strong>Grävarbeten</strong> ger ofta rätt till ROT-avdrag om det handlar om till exempel dränering kring husgrunden, nedgrävning av ledningar för vatten och avlopp till huset, eller för att installera bergvärme.
+      </p>
+
+      <h2>Vad är en ROT-klausul i offerten?</h2>
+      <p>
+        När du anlitar en hantverkare är det viktigt att det finns en så kallad <strong>ROT-klausul</strong> i avtalet eller offerten. Det är ett villkor som reglerar vad som händer om Skatteverket av någon anledning avslår hantverkarens begäran om utbetalning av ROT-avdraget (till exempel om du redan utnyttjat ditt maxbelopp för året). ROT-klausulen skyddar hantverkaren och innebär oftast att du som beställare då blir betalningsskyldig för den resterande delen av arbetskostnaden. Det är därför viktigt att du själv har koll på hur mycket avdrag du har kvar innan du anlitar någon.
+      </p>
+
       <h2>Vanliga frågor och svar</h2>
       <h3>Kan jag få ROT-avdrag för arbete i sommarstugan?</h3>
       <p>Ja, så länge du äger den och den klassas som småhus.</p>
