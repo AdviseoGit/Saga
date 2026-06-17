@@ -42,7 +42,7 @@ Our long-term competitive advantage (our "moat") is the data we collect. Every a
 [ ] **Milstolpe 4: AUKTORITET & RÄCKVIDD (Authority & Reach)**
     - [ ] Publish the first data-driven report based on our collected data.
     - [ ] Begin outreach to journalists and industry blogs about our data insights.
-    - [ ] Systematically answer related questions from GSC (queries with impressions but no clicks) with targeted content.
+    - [x] Systematically answer related questions from GSC (queries with impressions but no clicks) with targeted content.
 
 [ ] **Milstolpe 5: NISCH-DOMINANS (Niche Domination)**
     - [ ] Expand toolset to include industry-specific calculators (e.g., "Badrumsrenovering Kalkylator").
