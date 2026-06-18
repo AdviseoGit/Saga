@@ -2,11 +2,16 @@
 
 import React, { useState } from 'react';
 
-export default function LeadForm({ resultData }: { resultData: any }) {
+export default function LeadForm({ resultData, toolName, calculationData }: { resultData?: any, toolName?: string, calculationData?: any }) {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const category = toolName ? toolName : "badrumsrenovering";
+  const lowValue = calculationData ? calculationData.estimated_price_min : (resultData?.costs?.afterRot?.low || resultData?.costs?.beforeRot?.low || 0);
+  const highValue = calculationData ? calculationData.estimated_price_max : (resultData?.costs?.afterRot?.high || resultData?.costs?.beforeRot?.high || 0);
+  const region = calculationData ? calculationData.region || "Sverige" : resultData?.region;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,13 +23,13 @@ export default function LeadForm({ resultData }: { resultData: any }) {
     try {
       const payload = {
         email,
-        quoteCategory: "badrumsrenovering",
-        quoteRegion: resultData.region,
+        quoteCategory: category,
+        quoteRegion: region,
         analysisVerdict: "KALKYL",
         analysisSummary: {
           company: "Kalkylator",
-          total: resultData.costs?.afterRot?.low || resultData.costs?.beforeRot?.low || 0,
-          verdict: `Beräknat pris (ca): ${new Intl.NumberFormat('sv-SE').format(resultData.costs?.afterRot?.low || 0)} - ${new Intl.NumberFormat('sv-SE').format(resultData.costs?.afterRot?.high || 0)} kr`
+          total: lowValue,
+          verdict: `Beräknat pris (ca): ${new Intl.NumberFormat('sv-SE').format(lowValue)} - ${new Intl.NumberFormat('sv-SE').format(highValue)} kr`
         }
       };
 
@@ -60,7 +65,7 @@ export default function LeadForm({ resultData }: { resultData: any }) {
     <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <h3 className="text-xl font-bold text-slate-800 mb-2">Spara kalkylen & få tips</h3>
       <p className="text-slate-600 mb-4 text-sm">
-        Ange din e-postadress för att få en sammanställning av beräkningen, plus våra 5 bästa tips för att undvika fuskbyggare när du begär in offerter för badrumsrenoveringen.
+        Ange din e-postadress för att få en sammanställning av beräkningen, plus våra 5 bästa tips för att undvika fuskbyggare när du begär in offerter.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
         <input

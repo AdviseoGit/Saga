@@ -20,6 +20,8 @@ export default function FSkattPage() {
           </Link>
           <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
             <Link href="/verktyg/badrumsrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-gray-900 transition-colors">Badrumskalkylator</Link>
+            <Link href="/verktyg/takbyte-kalkylator" className="text-sm font-bold text-slate-600 hover:text-gray-900 transition-colors">Takbyte</Link>
+            <Link href="/verktyg/takbyte-kalkylator" className="text-sm font-bold text-slate-600 hover:text-gray-900 transition-colors">Takbyte</Link>
           </nav>
           <Link href="/" className="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-indigo-700">
             Testa Offertanalys
