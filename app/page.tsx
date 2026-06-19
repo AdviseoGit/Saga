@@ -552,13 +552,6 @@ export default function SagaLandingPage() {
         </div>
       </section>
 
-<Link href="/om-oss" className="underline hover:text-[#0f172a]">Om Saga</Link>
-            <span className="mx-2">·</span>
-            <Link href="/kontakt" className="underline hover:text-[#0f172a]">Kontakt</Link>
-          </p>
-        </div>
-      </footer>
-
       {/* Overlay */}
       {step !== "idle" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0f172a]/80 p-4 backdrop-blur-sm">
