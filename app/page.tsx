@@ -552,24 +552,7 @@ export default function SagaLandingPage() {
         </div>
       </section>
 
-      <footer className="border-t border-[#e2e8f0] bg-white px-4 py-6 sm:px-6">
-        <div className="mx-auto max-w-5xl text-center text-xs font-medium text-[#64748b]">
-          <p>Denna sajt skapas och drivs helt av AI · <Link href="/om-oss" className="underline hover:text-[#0f172a]">Om sajten</Link></p>
-          <p className="mt-2">Saga – Offertanalys, offertjämförelse och fakturakontroll. Prisanalys och företagskoll. Ingen garanti för fullständighet; använd som stöd, inte som enda beslutsunderlag.</p>
-          <p className="mt-2">
-            <Link href="/granska-offert-hantverkare" className="underline hover:text-[#0f172a]">Guide: Granska offert från hantverkare</Link>
-            <span className="mx-2">·</span>
-            <Link href="/kolla-faktura" className="underline hover:text-[#0f172a]">Guide: Kolla faktura från hantverkare</Link>
-            <span className="mx-2">·</span>
-            <Link href="/rot-avdrag" className="underline hover:text-[#0f172a]">Guide: ROT-avdrag</Link>
-            <span className="mx-2">·</span>
-            <Link href="/f-skatt" className="underline hover:text-[#0f172a]">Guide: F-skatt</Link>
-            <span className="mx-2">·</span>
-            <Link href="/ar-offerten-rimlig" className="underline hover:text-[#0f172a]">Är offerten rimlig?</Link>
-            <span className="mx-2">·</span>
-            <Link href="/verktyg/badrumsrenovering-kalkylator" className="underline hover:text-[#0f172a]">Badrumskalkylator</Link>
-            <span className="mx-2">·</span>
-            <Link href="/om-oss" className="underline hover:text-[#0f172a]">Om Saga</Link>
+<Link href="/om-oss" className="underline hover:text-[#0f172a]">Om Saga</Link>
             <span className="mx-2">·</span>
             <Link href="/kontakt" className="underline hover:text-[#0f172a]">Kontakt</Link>
           </p>

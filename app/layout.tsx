@@ -181,9 +181,34 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${dmSans.variable} ${dmMono.variable} font-sans antialiased`}
+        className={`${dmSans.variable} ${dmMono.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
+        <footer className="border-t border-[#e2e8f0] bg-white px-4 py-6 sm:px-6">
+          <div className="mx-auto max-w-5xl text-center text-xs font-medium text-[#64748b]">
+            <p>Denna sajt skapas och drivs helt av AI · <a href="/om-oss" className="underline hover:text-[#0f172a]">Om sajten</a></p>
+            <p className="mt-2">Saga – Offertanalys, offertjämförelse och fakturakontroll. Prisanalys och företagskoll. Ingen garanti för fullständighet; använd som stöd, inte som enda beslutsunderlag.</p>
+            <p className="mt-2">
+              <a href="/granska-offert-hantverkare" className="underline hover:text-[#0f172a]">Guide: Granska offert från hantverkare</a>
+              <span className="mx-2">·</span>
+              <a href="/kolla-faktura" className="underline hover:text-[#0f172a]">Guide: Kolla faktura från hantverkare</a>
+              <span className="mx-2">·</span>
+              <a href="/rot-avdrag" className="underline hover:text-[#0f172a]">Guide: ROT-avdrag</a>
+              <span className="mx-2">·</span>
+              <a href="/f-skatt" className="underline hover:text-[#0f172a]">Guide: F-skatt</a>
+              <span className="mx-2">·</span>
+              <a href="/ar-offerten-rimlig" className="underline hover:text-[#0f172a]">Är offerten rimlig?</a>
+              <span className="mx-2">·</span>
+              <a href="/verktyg/badrumsrenovering-kalkylator" className="underline hover:text-[#0f172a]">Badrumskalkylator</a>
+              <span className="mx-2">·</span>
+              <a href="/om-oss" className="underline hover:text-[#0f172a]">Om Saga</a>
+              <span className="mx-2">·</span>
+              <a href="/kontakt" className="underline hover:text-[#0f172a]">Kontakt</a>
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );
