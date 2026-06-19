@@ -1,14 +1,14 @@
 import { type Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Om Fråga Saga – Vår Mission och Teknologi',
+  title: 'Om Fråga Saga – Ett AI-drivet experiment',
   description:
-    'Lär dig mer om Fråga Saga, den AI-drivna tjänsten som hjälper dig granska offerter och fakturor. Vår mission är att skapa transparens och trygghet för konsumenter.',
+    'Lär dig mer om Fråga Saga. Tjänsten skapas och drivs helt av AI-agenter för att hjälpa konsumenter bedöma offerter.',
   keywords: ['om fråga saga', 'om oss', 'vår mission', 'AI offertanalys', 'konsumentskydd'],
   robots: 'index, follow',
   openGraph: {
-    title: 'Om Fråga Saga – Vår Mission och Teknologi',
-    description: 'Lär dig mer om Fråga Saga, den AI-drivna tjänsten som hjälper dig granska offerter och fakturor.',
+    title: 'Om Fråga Saga – Ett AI-drivet experiment',
+    description: 'Lär dig mer om Fråga Saga. Tjänsten skapas och drivs helt av AI-agenter.',
     url: 'https://fragasaga.se/om-oss',
     siteName: 'Fråga Saga',
     locale: 'sv_SE',
@@ -22,26 +22,22 @@ export default function AboutPage() {
       <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
         <div className="text-center">
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#6366f1]">
-            Vår Mission
+            Ett AI-drivet experiment
           </p>
           <h1 className="mt-4 text-4xl font-black tracking-tight text-[#0f172a] sm:text-5xl">
-            Vi skapar trygghet i en osäker marknad
+            Skapad och underhållen av AI
           </h1>
           <p className="mt-5 max-w-2xl mx-auto text-lg font-medium text-slate-600">
-            Fråga Saga föddes ur en enkel insikt: att anlita hantverkare och
-            andra serviceföretag är för många en källa till oro och osäkerhet.
-            Hur vet man om ett pris är rimligt? Kan man lita på företaget? Vi
-            finns för att ge dig svaren.
+            Denna sajt skapas och drivs helt av AI-agenter. Vår mission är att skapa transparens och trygghet för konsumenter genom att erbjuda automatiserad analys av offerter.
           </p>
         </div>
 
         <div className="mt-20 text-base font-medium text-slate-700 space-y-8">
           <p>
-            Vårt mål är att ge vanliga konsumenter och småföretagare samma
-            verktyg som stora inköpsavdelningar har. Genom att kombinera
-            avancerad AI med offentliga data från svenska myndigheter som
-            Skatteverket och Bolagsverket, kan vi omedelbart ge dig en bild av
-            både priset och leverantörens seriositet.
+            Viktigt att veta: <strong>Det finns inga mänskliga experter, hantverkare eller jurister bakom denna tjänst.</strong> Innehållet, verktygen och designen skapas och underhålls autonomt av AI inom förutbestämda mänskliga ramar.
+          </p>
+          <p>
+            Vi tror på transparens och kunskap, men informationen här ska <strong>inte</strong> ses som ekonomisk eller juridisk rådgivning. Våra verktyg är tänkta som ett första stöd för dig att få en uppfattning om en offerts rimlighet. Fatta alltid viktiga beslut tillsammans med en kvalificerad expert eller fackman.
           </p>
           <p>
             <strong>Det här är vad Saga gör för dig:</strong>
@@ -63,13 +59,6 @@ export default function AboutPage() {
               personuppgifter. Vår analys är helt datadriven.
             </li>
           </ul>
-          <p>
-            Vi tror på transparens och kunskap. Genom att göra information
-            lättillgänglig och begriplig, vill vi jämna ut maktbalansen mellan
-            konsument och företag. Med Fråga Saga behöver du aldrig mer känna
-            dig osäker på en offert.
-          </p>
-          <p>Tack för att du använder vår tjänst!</p>
         </div>
       </div>
     </main>
