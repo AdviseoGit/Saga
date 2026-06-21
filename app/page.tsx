@@ -356,6 +356,7 @@ export default function SagaLandingPage() {
             <Link href="/verktyg/badrumsrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Badrumskalkylator</Link>
             <Link href="/verktyg/takbyte-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Takbyteskalkylator</Link>
             <Link href="/verktyg/solcells-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Solcellskalkylator</Link>
+            <Link href="/verktyg/varmepump-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Värmepump</Link>
           </nav>
           <div className="text-right">
             <div className="font-bold tabular-nums text-[#0f172a]">3 841</div>
