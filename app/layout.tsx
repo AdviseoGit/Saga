@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
+import Link from 'next/link';
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -204,6 +205,8 @@ export default function RootLayout({
               <a href="/verktyg/badrumsrenovering-kalkylator" className="underline hover:text-[#0f172a]">Badrum</a>
               <span className="mx-2">·</span>
               <a href="/verktyg/varmepump-kalkylator" className="underline hover:text-[#0f172a]">Värmepump</a>
+              <span className="mx-2">·</span>
+              <a href="/verktyg/solcells-kalkylator" className="underline hover:text-[#0f172a]">Solceller</a>
               <span className="mx-2">·</span>
               <a href="/om-oss" className="underline hover:text-[#0f172a]">Om Saga</a>
               <span className="mx-2">·</span>
