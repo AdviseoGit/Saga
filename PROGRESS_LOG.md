@@ -1,3 +1,4 @@
+2026-06-23 | TEKNIK | Bytt modell till claude-3-5-haiku-20241022 | Löser API fel & sänker kostnad | nästa: Original-data rapport
 2026-06-22 | TILLVÄXT | Byggt vvs-kalkylator | +1 verktyg för lead-capture i VVS nisch | nästa: Bygg "Saga Index" eller Original-data rapport
 2026-06-21 | TILLVÄXT | Byggt varmepump-kalkylator | +1 verktyg för lead-capture i lead-genererande nisch | nästa: Original-data rapport
 2026-06-20 | TILLVÄXT | Byggt solcells-kalkylator | +1 verktyg för lead-capture i solcellsnisch | nästa: Fler verktyg / Original-data rapport

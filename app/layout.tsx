@@ -204,9 +204,13 @@ export default function RootLayout({
               <span className="mx-2">·</span>
               <a href="/verktyg/badrumsrenovering-kalkylator" className="underline hover:text-[#0f172a]">Badrum</a>
               <span className="mx-2">·</span>
+              <a href="/verktyg/takbyte-kalkylator" className="underline hover:text-[#0f172a]">Takbyte</a>
+              <span className="mx-2">·</span>
               <a href="/verktyg/varmepump-kalkylator" className="underline hover:text-[#0f172a]">Värmepump</a>
               <span className="mx-2">·</span>
               <a href="/verktyg/solcells-kalkylator" className="underline hover:text-[#0f172a]">Solceller</a>
+              <span className="mx-2">·</span>
+              <a href="/verktyg/vvs-kalkylator" className="underline hover:text-[#0f172a]">VVS</a>
               <span className="mx-2">·</span>
               <a href="/om-oss" className="underline hover:text-[#0f172a]">Om Saga</a>
               <span className="mx-2">·</span>
