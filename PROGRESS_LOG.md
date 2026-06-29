@@ -1,3 +1,4 @@
+2026-06-29 | DATA | Byggt Saga Index datamoat-rapport | Auktoritet/Länkar | nästa: Förbättra analys av linjeposter
 2026-06-28 | DATA | Integrerat LeadForm i solcell/takbyte/renovering | Data-Capture | nästa: Original-data rapport
 2026-06-27 | DATA | Verifierat datainsamling i kalkylatorer (leads-API) | Datamoat | nästa: Original-data rapport
 2026-06-25 | TILLVÄXT | Byggt renoverings-kalkylator | +1 verktyg för lead-capture | nästa: Fixa lead-endpoint i sol/takbyte
