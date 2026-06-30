@@ -5,15 +5,15 @@ import LeadForm from "./components/LeadForm";
 
 interface FormData {
   area: number;
-  roomType: string;
-  material: string;
+  facadeType: string;
+  action: string;
 }
 
-export default function RenovationCalculator() {
+export default function FacadeCalculator() {
   const [formData, setFormData] = useState<FormData>({
-    area: 20,
-    roomType: "vardagsrum",
-    material: "standard",
+    area: 120,
+    facadeType: "tra",
+    action: "mala",
   });
   
   const [result, setResult] = useState<{
@@ -26,31 +26,63 @@ export default function RenovationCalculator() {
   const calculatePrice = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Priser per kvm för olika rumstyper
-    const roomPrices: Record<string, { min: number, max: number }> = {
-      vardagsrum: { min: 2000, max: 4000 },
-      sovrum: { min: 1500, max: 3500 },
-      kok: { min: 8000, max: 15000 },
-      hall: { min: 2500, max: 5000 },
-      kallare: { min: 4000, max: 8000 },
-    };
+    // Priser per kvm beroende på kombination av fasadtyp och åtgärd
+    let basePriceMin = 0;
+    let basePriceMax = 0;
+    let laborShare = 0.5; // Hur stor del som är arbetskostnad (för ROT)
 
-    const materialMultiplier: Record<string, number> = {
-      budget: 0.8,
-      standard: 1.0,
-      premium: 1.5,
-    };
+    if (formData.facadeType === "tra") {
+      if (formData.action === "mala") {
+        basePriceMin = 250;
+        basePriceMax = 450;
+        laborShare = 0.8; // Mycket arbete, lite material
+      } else if (formData.action === "byta") {
+        basePriceMin = 1200;
+        basePriceMax = 1800;
+        laborShare = 0.5;
+      } else if (formData.action === "tillaggsisolera") {
+        basePriceMin = 1800;
+        basePriceMax = 2500;
+        laborShare = 0.5;
+      }
+    } else if (formData.facadeType === "puts") {
+      if (formData.action === "mala") {
+        basePriceMin = 300;
+        basePriceMax = 500;
+        laborShare = 0.8;
+      } else if (formData.action === "byta") {
+        // Puts om - knacka ner och putsa nytt
+        basePriceMin = 1500;
+        basePriceMax = 2500;
+        laborShare = 0.6;
+      } else if (formData.action === "tillaggsisolera") {
+        basePriceMin = 2200;
+        basePriceMax = 3200;
+        laborShare = 0.5;
+      }
+    } else if (formData.facadeType === "tegel") {
+      if (formData.action === "mala") {
+        basePriceMin = 300;
+        basePriceMax = 550;
+        laborShare = 0.8;
+      } else if (formData.action === "byta") {
+        // Omfogning
+        basePriceMin = 1000;
+        basePriceMax = 1500;
+        laborShare = 0.8;
+      } else if (formData.action === "tillaggsisolera") {
+        // Ofta innebär det ny fasadbeklädnad över teglet
+        basePriceMin = 2500;
+        basePriceMax = 3500;
+        laborShare = 0.5;
+      }
+    }
     
-    const basePrice = roomPrices[formData.roomType];
-    const multiplier = materialMultiplier[formData.material];
+    const minBeforeRot = formData.area * basePriceMin;
+    const maxBeforeRot = formData.area * basePriceMax;
     
-    const minBeforeRot = formData.area * basePrice.min * multiplier;
-    const maxBeforeRot = formData.area * basePrice.max * multiplier;
-    
-    // ROT avdrag (30% på arbetskostnaden). 
-    // Schablon för inre renovering: Arbetskostnaden är ofta runt 50%.
-    const rotDeductionMin = (minBeforeRot * 0.5) * 0.3;
-    const rotDeductionMax = (maxBeforeRot * 0.5) * 0.3;
+    const rotDeductionMin = (minBeforeRot * laborShare) * 0.3;
+    const rotDeductionMax = (maxBeforeRot * laborShare) * 0.3;
     
     const minAfterRot = minBeforeRot - rotDeductionMin;
     const maxAfterRot = maxBeforeRot - rotDeductionMax;
@@ -63,6 +95,26 @@ export default function RenovationCalculator() {
     });
   };
 
+  // Logik för att visa relevanta åtgärder baserat på fasadtyp
+  const getActionOptions = () => {
+    if (formData.facadeType === "tegel") {
+      return (
+        <>
+          <option value="mala">Tvätta och måla</option>
+          <option value="byta">Omfogning (kratsa ur och foga om)</option>
+          <option value="tillaggsisolera">Tilläggsisolera (med ny panel/puts utanpå)</option>
+        </>
+      );
+    }
+    return (
+      <>
+        <option value="mala">Tvätta, skrapa och måla om</option>
+        <option value="byta">Byta fasad / Putsa om helt</option>
+        <option value="tillaggsisolera">Byta fasad + Tilläggsisolera</option>
+      </>
+    );
+  };
+
   return (
     <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
       <div className="p-6 sm:p-10">
@@ -70,11 +122,12 @@ export default function RenovationCalculator() {
           
           <div className="space-y-4">
             <label className="block">
-              <span className="text-sm font-bold text-slate-700">Rummets yta (m²)</span>
+              <span className="text-sm font-bold text-slate-700">Fasadens yta (m²)</span>
+              <p className="text-xs text-slate-500 mb-1">Räkna bort stora fönster och dörrar</p>
               <div className="mt-1 flex items-center">
                 <input
                   type="number"
-                  min="1"
+                  min="10"
                   step="1"
                   value={formData.area}
                   onChange={(e) => setFormData({ ...formData, area: Number(e.target.value) })}
@@ -84,30 +137,28 @@ export default function RenovationCalculator() {
             </label>
 
             <label className="block">
-              <span className="text-sm font-bold text-slate-700">Typ av rum</span>
+              <span className="text-sm font-bold text-slate-700">Nuvarande Fasadtyp</span>
               <select
-                value={formData.roomType}
-                onChange={(e) => setFormData({ ...formData, roomType: e.target.value })}
+                value={formData.facadeType}
+                onChange={(e) => {
+                  setFormData({ ...formData, facadeType: e.target.value, action: "mala" });
+                }}
                 className="mt-1 block w-full rounded-xl border-slate-300 bg-slate-50 border py-3 px-4 text-slate-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm font-medium"
               >
-                <option value="vardagsrum">Vardagsrum / Allrum</option>
-                <option value="sovrum">Sovrum</option>
-                <option value="kok">Kök (helrenovering)</option>
-                <option value="hall">Hall</option>
-                <option value="kallare">Källare (inredning)</option>
+                <option value="tra">Träpanel</option>
+                <option value="puts">Puts</option>
+                <option value="tegel">Tegel</option>
               </select>
             </label>
 
             <label className="block">
-              <span className="text-sm font-bold text-slate-700">Materialstandard</span>
+              <span className="text-sm font-bold text-slate-700">Vilken åtgärd vill du göra?</span>
               <select
-                value={formData.material}
-                onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                value={formData.action}
+                onChange={(e) => setFormData({ ...formData, action: e.target.value })}
                 className="mt-1 block w-full rounded-xl border-slate-300 bg-slate-50 border py-3 px-4 text-slate-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm font-medium"
               >
-                <option value="budget">Budget (Enkla material, laminat/plastmatta)</option>
-                <option value="standard">Standard (Mellanklass, parkett, målat)</option>
-                <option value="premium">Premium (Massiva golv, exklusiva ytskikt)</option>
+                {getActionOptions()}
               </select>
             </label>
           </div>
@@ -116,14 +167,14 @@ export default function RenovationCalculator() {
             type="submit"
             className="w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-base font-extrabold text-white bg-[#0f172a] hover:bg-[#1e293b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0f172a] transition-all"
           >
-            Beräkna renoveringskostnad
+            Beräkna fasadkostnad
           </button>
         </form>
       </div>
 
       {result && (
         <div className="bg-slate-50 border-t border-slate-200 p-6 sm:p-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h3 className="text-xl font-black text-slate-900 mb-6 text-center">Prisuppskattning för din renovering</h3>
+          <h3 className="text-xl font-black text-slate-900 mb-6 text-center">Prisuppskattning för din fasad</h3>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
             <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
@@ -144,11 +195,11 @@ export default function RenovationCalculator() {
 
           <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm text-blue-800 mb-8">
             <p className="font-semibold mb-1">Vad ingår i priset?</p>
-            <p>I kalkylen ingår normal förarbetning, ytskikt (golv, väggar, tak) och listverk. För kök ingår skåp, bänkskivor och vitvaror i motsvarande klass. El och VVS-dragningar är schablonberäknade.</p>
+            <p>I kalkylen ingår normala arbetskostnader för din angivna åtgärd, material (färg/puts/panel), samt uppskattad kostnad för ställningshyra och etablering (vilket är standard vid fasadarbeten).</p>
           </div>
 
           <LeadForm 
-            toolName="renoverings-kalkylator"
+            toolName="fasadrenovering-kalkylator"
             calculationData={{
               estimated_price_min: Math.round(result.minAfterRot),
               estimated_price_max: Math.round(result.maxAfterRot),
