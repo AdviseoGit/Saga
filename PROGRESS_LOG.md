@@ -1,3 +1,4 @@
+2026-07-02 | TEKNIK | Använder gemensam LeadForm-komponent för alla kalkylatorer | Data-tillgång/Enhetlighet | nästa: Optimera SEO för kalkylatorer
 2026-07-01 | LEADFLOW | Lagt till LeadForm i fasadrenovering kalkylatorn | Data-Capture fasad | nästa: Optimera SEO för kalkylatorer
 2026-06-30 | TILLVÄXT | Byggt fasadrenovering-kalkylator | +1 verktyg för lead-capture | nästa: Optimera SEO för kalkylatorer
 2026-06-29 | DATA | Byggt Saga Index datamoat-rapport | Auktoritet/Länkar | nästa: Förbättra analys av linjeposter
