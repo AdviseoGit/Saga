@@ -27,7 +27,7 @@ const EXTRAS = {
   movingPipes: 15000, // fixed add-on
 };
 
-import LeadForm from "./components/LeadForm";
+import LeadForm from "@/components/Calculators/LeadForm";
 
 export default function BathroomCalculator() {
   const [sqm, setSqm] = useState<number>(5);

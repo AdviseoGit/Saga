@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import LeadForm from "./components/LeadForm";
+import LeadForm from "@/components/Calculators/LeadForm";
 
 // Prismodell värmepumpar 2026 (SEK, inkl. moms, efter rotavdrag)
 const PUMP_PRICES = {

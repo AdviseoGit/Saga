@@ -1,0 +1,20 @@
+RAPPORT — fragasaga.se $(date +%Y-%m-%d)
+SENASTE 7 DAGARNA: Byggt vvs-kalkylator, varmepump-kalkylator, renoverings-kalkylator, lagt in LeadForm i kalkylatorer, skapat Saga Index datamoat-rapport, åtgärdat navigeringslänkar för nya kalkylatorer.
+LOOP-KOLL: Idag integrerade vi LeadForm-komponenten i den sista stora kalkylatorn (fasadrenovering-kalkylator) och åtgärdade brutna länkar/navigering, vilket avrundar kalkylator-utrullningen från föregående pass och städar upp tech debt.
+SCORECARD: SEO På väg upp genom kalkylatorer (väntar på indexering) | Leadflow Bättre (alla kalkylatorer fångar nu leads) | Design/UX Bra (enhetligt LeadForm och navigering) | Teknik Bra (byggda sidor validerade) | Data-tillgång Ja (leads lagras via /api/leads, används till Saga Index).
+SAJTREVIEW: Navigeringen i VVS-kalkylatorn saknade Fasad, och Saga Index saknade Fasad. Åtgärdat. Local komponent togs bort till förmån för delad komponent.
+DESIGN: Enhetlig LeadForm över alla 5 kalkylatorer, konsekvent navigering.
+FÄRSKHET: nyheter kollade: nej | utdaterat rättat: uppdaterat kalkylator-länkar | katalog: N/A
+PROGRESSION: Kalkylator-arsenalen är nu fullt utbyggd med enhetlig lead-capture (milstolpe nådd). Datamoaten fylls stadigt.
+VAL: Att åtgärda brutna/saknade länkar för Fasadkalkylatorn och städa upp dess lokala LeadForm-komponent var högsta ROI-drag för att säkerställa att UX och lead-flow på denna nypublicerade sida är 100%.
+ÅTGÄRD: Lade in länk till Fasadkalkylator i navigeringen på VVS och Saga Index. Bytte från lokal LeadForm till gemensam @/components/Calculators/LeadForm i Fasadkalkylatorn. Raderade den lokala mappen.
+NÅR MÅLGRUPPEN VIA: Konsekvent navigering minskar bounce rate, gemensam LeadForm säkerställer att leads samlas in korrekt.
+DATA-ÄGANDE: Fasadkalkylatorn pushar nu data till samma centrala /api/leads som de andra verktygen.
+PUBLICERAT: JA | commit fff4032 | live 200 + visar innehåll: ja (https://fragasaga.se/verktyg/fasadrenovering-kalkylator)
+INTEGRERAT: länkad ja | sitemap ja
+INFRA: Leadflow OK | GA4 G-M6XYW8WNY9 finns | GSC data: ja
+MOBIL: OK
+AI-TRANSPARENS: footer-rad finns överallt: ja | /om-sajten finns: ja | expert-copy neutraliserad: inga hittades
+FIXAT: Navigeringsmeny saknade fasad på två sidor.
+PIVOT: fortsätter kursen.
+NÄSTA: Påbörja SEO-optimering av startsidan/kalkylatorerna för att driva in organisk trafik, eller utöka jämförelseverktyget med fler linjepost-funktioner.

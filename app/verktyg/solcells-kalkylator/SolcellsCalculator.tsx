@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import LeadForm from "../badrumsrenovering-kalkylator/components/LeadForm";
+import LeadForm from "@/components/Calculators/LeadForm";
 
 interface FormData {
   electricityUsage: number;

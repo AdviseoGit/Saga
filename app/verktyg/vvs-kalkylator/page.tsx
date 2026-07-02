@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import LeadForm from "./components/LeadForm";
+import LeadForm from "@/components/Calculators/LeadForm";
 
 export const metadata: Metadata = {
   title: "VVS Kalkylator – Räkna ut pris för rörmokare & rördragning",
@@ -51,35 +51,7 @@ export default function VVSKalkylatorPage() {
 
       <section className="px-4 pb-16 sm:px-6">
         <div className="mx-auto max-w-2xl">
-          <LeadForm
-            toolName="VVS Kalkylator"
-            questions={[
-              {
-                id: "project_type",
-                label: "Vad gäller projektet?",
-                type: "select",
-                options: ["Nyinstallation", "Byte/Renovering", "Service/Reparation", "Felsökning", "Annat"],
-              },
-              {
-                id: "scope",
-                label: "Omfattning",
-                type: "select",
-                options: ["Litet (t.ex. byta blandare, fixa läcka)", "Mellan (t.ex. dra nya rör i ett rum)", "Stort (t.ex. stambyte, komplett nyinstallation)"],
-              },
-               {
-                id: "materials_included",
-                label: "Ska material ingå i priset?",
-                type: "select",
-                options: ["Ja, rörmokaren fixar allt", "Nej, jag köper materialet själv", "Delvis"],
-              },
-              {
-                id: "rot",
-                label: "Vill du använda ROT-avdrag?",
-                type: "select",
-                options: ["Ja", "Nej"],
-              },
-            ]}
-          />
+                    <LeadForm toolName="VVS Kalkylator" />
 
           <div className="mt-12 space-y-8 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
             <h2 className="text-2xl font-bold">Så fungerar prissättning för VVS och rörmokare</h2>
