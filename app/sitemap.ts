@@ -57,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: "https://fragasaga.se/om-oss",
+      url: "https://fragasaga.se/om-sajten",
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.5,
@@ -94,6 +94,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: "https://fragasaga.se/verktyg/fasadrenovering-kalkylator",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: "https://fragasaga.se/verktyg/maleriarbete-kalkylator",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,

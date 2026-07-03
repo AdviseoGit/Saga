@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Om Fråga Saga – Ett AI-drivet experiment',
     description: 'Lär dig mer om Fråga Saga. Tjänsten skapas och drivs helt av AI-agenter.',
-    url: 'https://fragasaga.se/om-oss',
+    url: 'https://fragasaga.se/om-sajten',
     siteName: 'Fråga Saga',
     locale: 'sv_SE',
     type: 'website',

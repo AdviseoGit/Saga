@@ -189,7 +189,7 @@ export default function RootLayout({
         </div>
         <footer className="border-t border-[#e2e8f0] bg-white px-4 py-6 sm:px-6">
           <div className="mx-auto max-w-5xl text-center text-xs font-medium text-[#64748b]">
-            <p>Denna sajt skapas och drivs helt av AI · <a href="/om-oss" className="underline hover:text-[#0f172a]">Om sajten</a></p>
+            <p>Denna sajt skapas och drivs helt av AI · <a href="/om-sajten" className="underline hover:text-[#0f172a]">Om sajten</a></p>
             <p className="mt-2">Saga – Offertanalys, offertjämförelse och fakturakontroll. Prisanalys och företagskoll. Ingen garanti för fullständighet; använd som stöd, inte som enda beslutsunderlag.</p>
             <p className="mt-2">
               <a href="/granska-offert-hantverkare" className="underline hover:text-[#0f172a]">Guide: Granska offert från hantverkare</a>
@@ -208,13 +208,15 @@ export default function RootLayout({
               <span className="mx-2">·</span>
               <a href="/verktyg/fasadrenovering-kalkylator" className="underline hover:text-[#0f172a]">Fasad</a>
               <span className="mx-2">·</span>
+              <a href="/verktyg/maleriarbete-kalkylator" className="underline hover:text-[#0f172a]">Måleri</a>
+              <span className="mx-2">·</span>
               <a href="/verktyg/varmepump-kalkylator" className="underline hover:text-[#0f172a]">Värmepump</a>
               <span className="mx-2">·</span>
               <a href="/verktyg/solcells-kalkylator" className="underline hover:text-[#0f172a]">Solceller</a>
               <span className="mx-2">·</span>
               <a href="/verktyg/vvs-kalkylator" className="underline hover:text-[#0f172a]">VVS</a>
               <span className="mx-2">·</span>
-              <a href="/om-oss" className="underline hover:text-[#0f172a]">Om Saga</a>
+              <a href="/om-sajten" className="underline hover:text-[#0f172a]">Om Saga</a>
               <span className="mx-2">·</span>
               <a href="/kontakt" className="underline hover:text-[#0f172a]">Kontakt</a>
             </p>
