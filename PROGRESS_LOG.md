@@ -1,3 +1,4 @@
+2026-07-05 | DESIGN | Fixat designskuld: synkat navigeringsmeny globalt över alla verktyg/sidor | UX/Enhetlighet | nästa: Optimera SEO och metadata för kalkylatorer
 2026-07-04 | DESIGN | Länkat in måleri-kalkylator i sajtens huvudnavigation | Enhetlighet/UX | nästa: Optimera SEO för kalkylatorer
 2026-07-03 | TILLVÄXT | Byggt maleriarbete-kalkylator | +1 verktyg för lead-capture | nästa: Optimera SEO för kalkylatorer
 2026-07-02 | TEKNIK | Använder gemensam LeadForm-komponent för alla kalkylatorer | Data-tillgång/Enhetlighet | nästa: Optimera SEO för kalkylatorer
