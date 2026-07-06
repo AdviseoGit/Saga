@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: "Måleriarbete Kalkylator – Beräkna pris för målare | Fråga Saga",
   description: "Räkna ut rimligt pris för måleriarbete direkt. Vår kalkylator uppskattar kostnad för material och arbetskostnad efter ROT-avdrag för målare.",
   keywords: ["måleriarbete kalkylator", "pris målare", "kostnad måla om", "målare offert", "rotavdrag målare", "måla fasad pris", "måla inomhus pris"],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "Måleriarbete Kalkylator – Beräkna pris för målare",
     description: "Räkna ut rimligt pris för måleriarbete direkt.",

@@ -15,7 +15,17 @@ export const metadata: Metadata = {
     'plåttak kostnad',
     'papptak pris'
   ],
-  robots: 'index, follow',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: 'Takbyte Kalkylator 2026',
     description: 'Räkna ut priset för ditt takbyte direkt.',

@@ -14,7 +14,17 @@ export const metadata: Metadata = {
     'återbetalningstid solceller',
     'grön teknik avdrag'
   ],
-  robots: 'index, follow',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: 'Solcellskalkylator 2026',
     description: 'Räkna ut pris och lönsamhet för dina solceller direkt.',

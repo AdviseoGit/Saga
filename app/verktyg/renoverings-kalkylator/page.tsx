@@ -13,7 +13,17 @@ export const metadata: Metadata = {
     'totalrenovering pris',
     'renovera hus kostnad'
   ],
-  robots: 'index, follow',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: 'Renoveringskalkylator 2026',
     description: 'Räkna ut priset för din renovering direkt.',

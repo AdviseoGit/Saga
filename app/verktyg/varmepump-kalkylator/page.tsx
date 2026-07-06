@@ -12,7 +12,17 @@ export const metadata: Metadata = {
     'räkna ut pris luftvatten',
     'offert värmepump',
   ],
-  robots: 'index, follow',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: 'Värmepump Kalkylator 2026',
     description: 'Räkna ut priset för din värmepump direkt.',

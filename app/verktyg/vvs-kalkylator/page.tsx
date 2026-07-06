@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: "VVS Kalkylator – Räkna ut pris för rörmokare & rördragning",
   description:
     "Räkna ut vad ditt VVS-projekt bör kosta. Vår VVS-kalkylator ger dig en rimlighetsbedömning baserad på svenska marknadspriser för rörmokare och material.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function VVSKalkylatorPage() {
