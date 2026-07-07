@@ -3,6 +3,17 @@ import { SimpleLayout } from '../components/SimpleLayout'
 import { type Metadata } from 'next'
 
 export const metadata: Metadata = {
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   title: 'Granska Offert från Hantverkare - Är Priset Rimligt?',
   description:
     'Få hjälp att granska din offert från hantverkare. Lär dig vad som ska ingå, hur du undviker överpriser och säkerställer att allt är korrekt innan du skriver på.',

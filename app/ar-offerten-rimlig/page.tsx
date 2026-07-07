@@ -2,6 +2,17 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   title: 'Är Offerten Rimlig? Fråga Saga Granskar Din Hantverkaroffert Gratis',
   description: 'Osäker på om din hantverkaroffert är rimlig? Ladda upp och få en gratis analys av Fråga Saga. Vi hjälper dig jämföra priser och undvika överpriser.',
   openGraph: {

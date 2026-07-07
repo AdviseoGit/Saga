@@ -2,6 +2,17 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   title: 'Allt om ROT-avdrag 2026: Regler, Villkor och Ansökan | Fråga Saga',
   description: 'Maximera ditt ROT-avdrag! Vår guide för 2026 går igenom regler, vilka arbeten som godkänns, och hur du enkelt ansöker. Få koll på allt du behöver veta.',
   openGraph: {

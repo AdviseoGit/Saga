@@ -2,6 +2,17 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
     title: "Kolla Faktura från Hantverkare - Är Priset Rimligt? | Fråga Saga",
     description: "Är du osäker på din faktura från hantverkaren? Vår guide hjälper dig att kontrollera arbetskostnad, material, och ROT-avdrag. Lär dig granska fakturan som ett proffs.",
     openGraph: {

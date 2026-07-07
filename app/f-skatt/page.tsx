@@ -2,6 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   title: "F-skatt: Allt du behöver veta",
   description: "En komplett guide till F-skatt. Lär dig vad F-skatt är, varför det är viktigt att kontrollera, och hur du säkerställer att din hantverkare är registrerad.",
   alternates: {

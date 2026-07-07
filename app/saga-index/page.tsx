@@ -3,6 +3,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   title: 'Saga Index – Svenska Hantverkspriser 2026',
   description: 'Unik data från Fråga Sagas analyser: snittpriser för badrum, takbyte, VVS och solceller. Baserat på tusentals granskade offerter.',
   openGraph: {
