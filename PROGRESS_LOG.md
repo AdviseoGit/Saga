@@ -1,3 +1,4 @@
+2026-07-08 | DESIGN | Synkat global navigation och styling till badrum/renovering kalkylatorer | Enhetlighet/UX | nästa: Optimera innehåll utifrån söktermer
 2026-07-07 | SEO | Optimera robots-tagg för övriga sidor | Indexering och CTR | nästa: Fortsätt publicera nytt innehåll / Bygg lead-capture i fler kalkylatorer
 2026-07-06 | SEO | Optimera robots-tagg för kalkylator-sidor | Rankning Kalkylatorer | nästa: Optimera SEO för övriga sidor
 2026-07-05 | DESIGN | Fixat designskuld: synkat navigeringsmeny globalt över alla verktyg/sidor | UX/Enhetlighet | nästa: Optimera SEO och metadata för kalkylatorer
