@@ -17,6 +17,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: "https://fragasaga.se",
       lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1.0,
+    },
+    {
+      url: "https://fragasaga.se/verktyg/bergvarme-kalkylator",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://fragasaga.se/verktyg/franluftvarme-kalkylator",
+      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
     },

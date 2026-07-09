@@ -212,6 +212,10 @@ export default function RootLayout({
               <span className="mx-2">·</span>
               <a href="/verktyg/varmepump-kalkylator" className="underline hover:text-[#0f172a]">Värmepump</a>
               <span className="mx-2">·</span>
+              <a href="/verktyg/bergvarme-kalkylator" className="underline hover:text-[#0f172a]">Bergvärme</a>
+              <span className="mx-2">·</span>
+              <a href="/verktyg/franluftvarme-kalkylator" className="underline hover:text-[#0f172a]">Frånluftsvärme</a>
+              <span className="mx-2">·</span>
               <a href="/verktyg/solcells-kalkylator" className="underline hover:text-[#0f172a]">Solceller</a>
               <span className="mx-2">·</span>
               <a href="/verktyg/vvs-kalkylator" className="underline hover:text-[#0f172a]">VVS</a>

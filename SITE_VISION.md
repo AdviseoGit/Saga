@@ -40,11 +40,11 @@ Our long-term competitive advantage (our "moat") is the data we collect. Every a
     - [ ] Create a simple dashboard (internal) to view basic statistics from the collected data.
 
 [ ] **Milstolpe 4: AUKTORITET & RÄCKVIDD (Authority & Reach)**
-    - [ ] Publish the first data-driven report based on our collected data.
+    - [x] Publish the first data-driven report based on our collected data.
     - [ ] Begin outreach to journalists and industry blogs about our data insights.
     - [x] Systematically answer related questions from GSC (queries with impressions but no clicks) with targeted content.
 
 [ ] **Milstolpe 5: NISCH-DOMINANS (Niche Domination)**
-    - [ ] Expand toolset to include industry-specific calculators (e.g., "Badrumsrenovering Kalkylator").
+    - [x] Expand toolset to include industry-specific calculators (e.g., "Badrumsrenovering Kalkylator").
     - [ ] Become the #1 ranked site for all core and long-tail keywords.
     - [ ] The "Saga Index" is a recognized benchmark for service pricing in Sweden.
