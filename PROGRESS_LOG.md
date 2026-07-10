@@ -1,3 +1,4 @@
+2026-07-10 | DESIGN | Länkat in Saga Index i huvudmenyn + INDEXING_LOG | Enhetlighet/Trafik | nästa: Optimera Saga Index för sök
 2026-07-09 | TILLVÄXT | Byggt bergvärme & frånluftsvärme kalkylatorer | +2 leadflow verktyg för intent | nästa: Bygg Saga Index widget till startsidan
 2026-07-08 | DESIGN | Synkat global navigation och styling till badrum/renovering kalkylatorer | Enhetlighet/UX | nästa: Optimera innehåll utifrån söktermer
 2026-07-07 | SEO | Optimera robots-tagg för övriga sidor | Indexering och CTR | nästa: Fortsätt publicera nytt innehåll / Bygg lead-capture i fler kalkylatorer
