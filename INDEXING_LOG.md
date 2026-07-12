@@ -1,8 +1,2 @@
-# INDEXING_LOG.md
-
-Övervakning av sidor som Google ännu inte har indexerat.
-
-| URL | Senaste Status | Senast Kollad | Åtgärd / Kommentar |
-| :--- | :--- | :--- | :--- |
-| https://fragasaga.se/saga-index | Discovered - currently not indexed | 2026-07-11 | Upptäckt men ej crawlad. Ligger i huvudmeny och sitemap. |
-| https://fragasaga.se/verktyg/bergvarme-kalkylator | URL is unknown to Google | 2026-07-11 | Ligger i huvudmeny. Canonical åtgärdad. |
+https://fragasaga.se/verktyg/renoverings-kalkylator | URL is unknown to Google | 2026-07-12 | Länka från startsida/menyer (gjort 2026-07-08) + kanonisk URL fixad 2026-07-12.
+https://fragasaga.se/verktyg/badrumsrenovering-kalkylator | Discovered - currently not indexed | 2026-07-12 | Kanonisk URL tillagd. Länkar finns från andra kalkylatorer & menyer.
