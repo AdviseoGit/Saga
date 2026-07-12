@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     'träfasad byta pris',
     'putsa om hus kostnad'
   ],
+  alternates: {
+    canonical: 'https://fragasaga.se/verktyg/fasadrenovering-kalkylator',
+  },
   robots: {
     index: true,
     follow: true,

@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Måleriarbete Kalkylator – Beräkna pris för målare | Fråga Saga",
   description: "Räkna ut rimligt pris för måleriarbete direkt. Vår kalkylator uppskattar kostnad för material och arbetskostnad efter ROT-avdrag för målare.",
   keywords: ["måleriarbete kalkylator", "pris målare", "kostnad måla om", "målare offert", "rotavdrag målare", "måla fasad pris", "måla inomhus pris"],
+  alternates: {
+    canonical: 'https://fragasaga.se/verktyg/maleriarbete-kalkylator',
+  },
   robots: {
     index: true,
     follow: true,

@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     'räkna ut badrumspris',
     'badrumsrenovering pris',
   ],
+  alternates: {
+    canonical: 'https://fragasaga.se/verktyg/badrumsrenovering-kalkylator',
+  },
   robots: {
     index: true,
     follow: true,

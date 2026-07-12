@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     'totalrenovering pris',
     'renovera hus kostnad'
   ],
+  alternates: {
+    canonical: 'https://fragasaga.se/verktyg/renoverings-kalkylator',
+  },
   robots: {
     index: true,
     follow: true,

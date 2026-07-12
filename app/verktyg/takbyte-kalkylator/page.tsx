@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     'plåttak kostnad',
     'papptak pris'
   ],
+  alternates: {
+    canonical: 'https://fragasaga.se/verktyg/takbyte-kalkylator',
+  },
   robots: {
     index: true,
     follow: true,

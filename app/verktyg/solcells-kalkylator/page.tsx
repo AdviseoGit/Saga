@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     'återbetalningstid solceller',
     'grön teknik avdrag'
   ],
+  alternates: {
+    canonical: 'https://fragasaga.se/verktyg/solcells-kalkylator',
+  },
   robots: {
     index: true,
     follow: true,

@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     'räkna ut pris luftvatten',
     'offert värmepump',
   ],
+  alternates: {
+    canonical: 'https://fragasaga.se/verktyg/varmepump-kalkylator',
+  },
   robots: {
     index: true,
     follow: true,
