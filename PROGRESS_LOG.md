@@ -1,3 +1,4 @@
+2026-07-13 | TILLVÄXT | Byggt jordvärme kalkylator för leads | leadflow verktyg för intent | nästa: Optimera SEO / Schema för alla kalkylatorer
 2026-07-12 | SEO | Canonical-taggar på alla kalkylatorer | indexering och SEO-hygien | nästa: fixera indexeringsvarningar för badrum/renovering
 2026-07-11 | SEO | Canonical taggar tillagda via app/layout.tsx | Indexering/Själv-krock förhindrad | nästa: Bygg Saga Index widget till startsidan
 2026-07-10 | DESIGN | Länkat in Saga Index i huvudmenyn + INDEXING_LOG | Enhetlighet/Trafik | nästa: Optimera Saga Index för sök
