@@ -19,6 +19,28 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Jordvärme Kalkylator 2026",
+  "operatingSystem": "All",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "SEK"
+  },
+  "description": "Räkna ut pris och kostnad för jordvärme. Kalkylator för jordvärmepump, grävning av kollektorslang och installation. Uppdaterad för 2026."
+};
+
 export default function JordvarmeKalkylatorPage() {
-  return <JordvarmeCalculator />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <JordvarmeCalculator />
+    </>
+  );
 }

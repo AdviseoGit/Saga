@@ -19,6 +19,28 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Frånluftsvärmepump Kalkylator 2026",
+  "operatingSystem": "All",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "SEK"
+  },
+  "description": "Räkna ut pris och kostnad för frånluftsvärmepump. Kalkylator för värmepump och installation. Uppdaterad för 2026."
+};
+
 export default function FranluftvarmeKalkylatorPage() {
-  return <FranluftvarmeCalculator />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <FranluftvarmeCalculator />
+    </>
+  );
 }
