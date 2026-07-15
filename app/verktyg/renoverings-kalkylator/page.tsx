@@ -73,17 +73,15 @@ export default function RenovationCalculatorPage() {
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+            <Link href="/saga-index" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Saga Index</Link>
             <Link href="/verktyg/renoverings-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Renovering</Link>
             <Link href="/verktyg/badrumsrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Badrum</Link>
             <Link href="/verktyg/takbyte-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Tak</Link>
             <Link href="/verktyg/fasadrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Fasad</Link>
-            <Link href="/verktyg/maleriarbete-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Måleri</Link>
             <Link href="/verktyg/solcells-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Solceller</Link>
-            <Link href="/verktyg/varmepump-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Värmepump</Link>
             <Link href="/verktyg/bergvarme-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Bergvärme</Link>
             <Link href="/verktyg/franluftvarme-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Frånluftsvärme</Link>
             <Link href="/verktyg/jordvarme-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Jordvärme</Link>
-            <Link href="/verktyg/vvs-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">VVS</Link>
           </nav>
           <div className="text-right hidden sm:block">
             <div className="font-bold tabular-nums text-[#0f172a]">3 841</div>
@@ -118,16 +116,24 @@ export default function RenovationCalculatorPage() {
           <div className="mt-6 space-y-4 text-base font-medium text-slate-700 leading-relaxed">
             <p>
               Priserna i denna kalkylator bygger på verkliga offerter från hela Sverige under 2025 och 2026.
+              Att bygga upp ett hem eller fräscha upp ytskikten innebär ofta en stor investering. Här går vi igenom
+              viktiga faktorer som styr priset på din renovering.
             </p>
             <ul className="list-disc pl-5 space-y-2">
               <li>
                 <strong>Yta och Typ av rum:</strong> Våtutrymmen som badrum och kök (inkluderar rör och el) kostar betydligt mer per kvadratmeter än torra utrymmen (som sovrum och vardagsrum). En ytskiktsrenovering i vardagsrum kan ligga på 1500–3000 kr/kvm, medan ett badrum ofta ligger på 25 000–35 000 kr/kvm.
               </li>
               <li>
-                <strong>Materialstandard:</strong> Budgetval drar ner materialkostnaden väsentligt. Premiumval (t.ex. äkta sten, platsbyggt kök, mässingblandare) kan lätt dubbla prislappen.
+                <strong>Materialstandard:</strong> Budgetval drar ner materialkostnaden väsentligt. Premiumval (t.ex. äkta sten, platsbyggt kök, mässingblandare) kan lätt dubbla prislappen. Att välja slitstarka, standardmaterial är ofta det mest prisvärda och hållbara i längden.
               </li>
               <li>
-                <strong>ROT-avdrag:</strong> Du kan dra av 30 % av arbetskostnaden upp till 50 000 kr per person och år. Vid renoveringar utgör arbetet oftast 40–60 % av den totala kostnaden (i vår kalkyl schablon på 50%).
+                <strong>ROT-avdrag:</strong> Du kan dra av 30 % av arbetskostnaden upp till 50 000 kr per person och år. Vid renoveringar utgör arbetet oftast 40–60 % av den totala kostnaden (i vår kalkyl schablon på 50%). Kom ihåg att kontrollera med Skatteverket hur mycket ROT du har kvar att utnyttja i år.
+              </li>
+              <li>
+                <strong>Val av entreprenad:</strong> Om du väljer totalentreprenad där en byggfirma sköter hela processen och samordnar olika hantverkare, blir det ofta dyrare än om du agerar projektledare själv. Fördelen är att du får en kontaktperson och tydligare garantier.
+              </li>
+              <li>
+                <strong>Ålder på bostad:</strong> I äldre hus kan du stöta på oförutsedda utgifter, som att behöva byta ut gamla rör eller eldragningar för att möta dagens byggnormer. Det är bra att ha en buffert på 10-15% för detta.
               </li>
             </ul>
             <p className="mt-4 text-sm bg-blue-50 border border-blue-100 p-4 rounded-xl text-blue-900">

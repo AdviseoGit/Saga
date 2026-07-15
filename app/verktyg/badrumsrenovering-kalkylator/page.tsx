@@ -72,17 +72,15 @@ export default function BathroomCalculatorPage() {
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+            <Link href="/saga-index" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Saga Index</Link>
             <Link href="/verktyg/renoverings-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Renovering</Link>
             <Link href="/verktyg/badrumsrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Badrum</Link>
             <Link href="/verktyg/takbyte-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Tak</Link>
             <Link href="/verktyg/fasadrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Fasad</Link>
-            <Link href="/verktyg/maleriarbete-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Måleri</Link>
             <Link href="/verktyg/solcells-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Solceller</Link>
-            <Link href="/verktyg/varmepump-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Värmepump</Link>
             <Link href="/verktyg/bergvarme-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Bergvärme</Link>
             <Link href="/verktyg/franluftvarme-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Frånluftsvärme</Link>
             <Link href="/verktyg/jordvarme-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Jordvärme</Link>
-            <Link href="/verktyg/vvs-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">VVS</Link>
           </nav>
           <div className="text-right hidden sm:block">
             <div className="font-bold tabular-nums text-[#0f172a]">3 841</div>
@@ -117,12 +115,16 @@ export default function BathroomCalculatorPage() {
           <div className="mt-6 space-y-4 text-base font-medium text-slate-700 leading-relaxed">
             <p>
               Priserna i denna kalkylator bygger på verkliga offerter från hela
-              Sverige under 2025 och 2026, justerade för regionala skillnader.
+              Sverige under 2025 och 2026, justerade för regionala skillnader. Ett badrum
+              är en av de mest komplexa renoveringarna och kräver certifierade fackmän för att
+              säkerställa att tätskikt och installationer uppfyller rådande branschregler (Säker Vatten).
             </p>
             <ul className="list-disc pl-5 space-y-2">
               <li>
                 <strong>Storlek:</strong> Det mest avgörande. Fler kvadratmeter
-                kräver mer tätskikt, fler plattor och mer arbetstid.
+                kräver mer tätskikt, fler plattor och mer arbetstid. Tänk på att det inte är en helt linjär
+                kostnad — små badrum har ofta en högre kvadratmeterkostnad eftersom många fasta moment
+                (som golvbrunn och ventilation) kostar lika mycket oavsett yta.
               </li>
               <li>
                 <strong>Standard:</strong> Val av kakel, klinker, kommod och
@@ -131,8 +133,11 @@ export default function BathroomCalculatorPage() {
               </li>
               <li>
                 <strong>Region:</strong> Hantverkare i storstäder (särskilt
-                Stockholm) tar ofta ett högre timpris (600–800 kr) än på mindre
-                orter (450–600 kr).
+                Stockholm, Göteborg och Malmö) tar ofta ett högre timpris (600–800 kr) än på mindre
+                orter (450–600 kr). Dessutom är etableringskostnader, parkering och sophantering dyrare i storstad.
+              </li>
+              <li>
+                <strong>Golvvärme och Spotlights:</strong> Vill du ha komfortvärme och inbyggd belysning tillkommer kostnader för både material och elektriker. Det är dock något som många ser som en klok investering för både komfort och värdeökning.
               </li>
             </ul>
             <p className="mt-4 text-sm bg-blue-50 border border-blue-100 p-4 rounded-xl text-blue-900">

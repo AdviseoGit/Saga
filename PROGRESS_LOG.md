@@ -1,3 +1,4 @@
+2026-07-15 | SEO | Höjt unikt värde och SEO för kalkylatorer | Indexering och SEO | nästa: Optimera SEO för övriga sidor
 2026-07-14 | SEO | Skapat SoftwareApplication Schema för nya kalkylatorer | Indexering och SEO | nästa: Fler artiklar för intent
 
 2026-07-13 | TILLVÄXT | Byggt jordvärme kalkylator för leads | leadflow verktyg för intent | nästa: Optimera SEO / Schema för alla kalkylatorer
