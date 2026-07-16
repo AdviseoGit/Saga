@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: 'https://fragasaga.se/ar-offerten-rimlig',
+  },
   title: 'Är Offerten Rimlig? Fråga Saga Granskar Din Hantverkaroffert Gratis',
   description: 'Osäker på om din hantverkaroffert är rimlig? Ladda upp och få en gratis analys av Fråga Saga. Vi hjälper dig jämföra priser och undvika överpriser.',
   openGraph: {

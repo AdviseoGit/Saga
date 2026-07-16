@@ -13,11 +13,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: 'https://fragasaga.se/f-skatt',
+  },
   title: "F-skatt: Allt du behöver veta",
   description: "En komplett guide till F-skatt. Lär dig vad F-skatt är, varför det är viktigt att kontrollera, och hur du säkerställer att din hantverkare är registrerad.",
-  alternates: {
-    canonical: "/f-skatt",
-  },
 };
 
 export default function FSkattPage() {

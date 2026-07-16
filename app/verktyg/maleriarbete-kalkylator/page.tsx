@@ -30,9 +30,30 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Måleriarbete Kalkylator",
+  "url": "https://fragasaga.se/verktyg/maleriarbete-kalkylator",
+  "description": "Ett verktyg för att uppskatta kostnaden för måleriarbete i Sverige.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "inLanguage": "sv-SE",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "SEK"
+  }
+};
+
 export default function MaleriarbeteKalkylatorPage() {
   return (
     <main className="bg-slate-50 min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* HEADER */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">

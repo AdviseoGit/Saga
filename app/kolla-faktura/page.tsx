@@ -13,6 +13,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: 'https://fragasaga.se/kolla-faktura',
+  },
     title: "Kolla Faktura från Hantverkare - Är Priset Rimligt? | Fråga Saga",
     description: "Är du osäker på din faktura från hantverkaren? Vår guide hjälper dig att kontrollera arbetskostnad, material, och ROT-avdrag. Lär dig granska fakturan som ett proffs.",
     openGraph: {

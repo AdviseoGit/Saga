@@ -14,6 +14,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: 'https://fragasaga.se/granska-offert-hantverkare',
+  },
   title: 'Granska Offert från Hantverkare - Är Priset Rimligt?',
   description:
     'Få hjälp att granska din offert från hantverkare. Lär dig vad som ska ingå, hur du undviker överpriser och säkerställer att allt är korrekt innan du skriver på.',
@@ -87,9 +90,9 @@ export default function GranskaOffertHantverkare() {
                 Låt oss granska din offert – helt kostnadsfritt
             </Card.Title>
             <Card.Description>
-                Är du fortfarande osäker? Ladda upp din offert så gör vi en oberoende bedömning och ger dig feedback inom 24 timmar.
+                Är du fortfarande osäker? Ladda upp din offert så gör vår AI-assistent Saga en bedömning av priset, kollar F-skatt och ger dig förhandlingstips direkt.
             </Card.Description>
-             <Card.Cta>Ladda upp offert</Card.Cta>
+             <Card.Cta>Testa Saga kostnadsfritt här →</Card.Cta>
           </Card>
         </section>
 

@@ -72,7 +72,7 @@ export default function JordvarmeCalculator() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <main className="max-w-4xl mx-auto py-8 px-4">
       <div className="grid md:grid-cols-2 gap-12">
         {/* Formulär */}
         <div className="space-y-6">
@@ -216,6 +216,6 @@ export default function JordvarmeCalculator() {
           </ul>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
