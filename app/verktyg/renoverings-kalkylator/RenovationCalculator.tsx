@@ -28,117 +28,128 @@ export default function RenovationCalculator() {
     
     // Priser per kvm för olika rumstyper
     const roomPrices: Record<string, { min: number, max: number }> = {
-      vardagsrum: { min: 2000, max: 4000 },
-      sovrum: { min: 1500, max: 3500 },
-      kok: { min: 8000, max: 15000 },
-      hall: { min: 2500, max: 5000 },
-      kallare: { min: 4000, max: 8000 },
+      "vardagsrum": { min: 2000, max: 4000 },
+      "sovrum": { min: 1500, max: 3500 },
+      "hall": { min: 2500, max: 5000 },
+      "kok": { min: 8000, max: 15000 },
     };
 
-    const materialMultiplier: Record<string, number> = {
-      budget: 0.8,
-      standard: 1.0,
-      premium: 1.5,
+    const materialMultipliers: Record<string, number> = {
+      "budget": 0.8,
+      "standard": 1.0,
+      "premium": 1.5,
     };
-    
-    const basePrice = roomPrices[formData.roomType];
-    const multiplier = materialMultiplier[formData.material];
-    
-    const minBeforeRot = formData.area * basePrice.min * multiplier;
-    const maxBeforeRot = formData.area * basePrice.max * multiplier;
-    
-    // ROT avdrag (30% på arbetskostnaden). 
-    // Schablon för inre renovering: Arbetskostnaden är ofta runt 50%.
-    const rotDeductionMin = (minBeforeRot * 0.5) * 0.3;
-    const rotDeductionMax = (maxBeforeRot * 0.5) * 0.3;
-    
-    const minAfterRot = minBeforeRot - rotDeductionMin;
-    const maxAfterRot = maxBeforeRot - rotDeductionMax;
+
+    const baseMin = roomPrices[formData.roomType].min * formData.area * materialMultipliers[formData.material];
+    const baseMax = roomPrices[formData.roomType].max * formData.area * materialMultipliers[formData.material];
+
+    // ROT deduction assumption (30% on labor, assuming labor is roughly 40% of total)
+    const rotFactor = 0.88; // simplified 12% total deduction
 
     setResult({
-      minBeforeRot,
-      maxBeforeRot,
-      minAfterRot,
-      maxAfterRot
+      minBeforeRot: baseMin,
+      maxBeforeRot: baseMax,
+      minAfterRot: baseMin * rotFactor,
+      maxAfterRot: baseMax * rotFactor,
     });
   };
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
-      <div className="p-6 sm:p-10">
-        <form onSubmit={calculatePrice} className="space-y-6">
-          
-          <div className="space-y-4">
-            <label className="block">
-              <span className="text-sm font-bold text-slate-700">Rummets yta (m²)</span>
-              <div className="mt-1 flex items-center">
-                <input
-                  type="number"
-                  min="1"
-                  step="1"
-                  value={formData.area}
-                  onChange={(e) => setFormData({ ...formData, area: Number(e.target.value) })}
-                  className="block w-full rounded-xl border-slate-300 bg-slate-50 border py-3 px-4 text-slate-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm font-medium"
-                />
-              </div>
-            </label>
-
-            <label className="block">
-              <span className="text-sm font-bold text-slate-700">Typ av rum</span>
-              <select
-                value={formData.roomType}
-                onChange={(e) => setFormData({ ...formData, roomType: e.target.value })}
-                className="mt-1 block w-full rounded-xl border-slate-300 bg-slate-50 border py-3 px-4 text-slate-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm font-medium"
-              >
-                <option value="vardagsrum">Vardagsrum / Allrum</option>
-                <option value="sovrum">Sovrum</option>
-                <option value="kok">Kök (helrenovering)</option>
-                <option value="hall">Hall</option>
-                <option value="kallare">Källare (inredning)</option>
-              </select>
-            </label>
-
-            <label className="block">
-              <span className="text-sm font-bold text-slate-700">Materialstandard</span>
-              <select
-                value={formData.material}
-                onChange={(e) => setFormData({ ...formData, material: e.target.value })}
-                className="mt-1 block w-full rounded-xl border-slate-300 bg-slate-50 border py-3 px-4 text-slate-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm font-medium"
-              >
-                <option value="budget">Budget (Enkla material, laminat/plastmatta)</option>
-                <option value="standard">Standard (Mellanklass, parkett, målat)</option>
-                <option value="premium">Premium (Massiva golv, exklusiva ytskikt)</option>
-              </select>
-            </label>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-base font-extrabold text-white bg-[#0f172a] hover:bg-[#1e293b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0f172a] transition-all"
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+      <form onSubmit={calculatePrice} className="space-y-6">
+        <div>
+          <label className="block text-sm font-bold text-slate-700 mb-2">Vad ska du renovera?</label>
+          <select 
+            className="w-full p-3 rounded-xl border-2 border-slate-200 focus:border-[#0f766e] focus:ring-0 outline-none transition-colors"
+            value={formData.roomType}
+            onChange={(e) => setFormData({ ...formData, roomType: e.target.value })}
           >
-            Beräkna renoveringskostnad
-          </button>
-        </form>
-      </div>
+            <option value="vardagsrum">Vardagsrum / Allrum</option>
+            <option value="sovrum">Sovrum</option>
+            <option value="hall">Hall / Entré</option>
+            <option value="kok">Kök (ytskikt & montering)</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-bold text-slate-700 mb-2">
+            Yta ({formData.area} m²)
+          </label>
+          <input 
+            type="range" 
+            min="5" 
+            max="100" 
+            step="1" 
+            className="w-full accent-[#0f766e]"
+            value={formData.area}
+            onChange={(e) => setFormData({ ...formData, area: parseInt(e.target.value) })}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-bold text-slate-700 mb-2">Standard & Material</label>
+          <div className="grid grid-cols-3 gap-2">
+            <button 
+              type="button"
+              className={`p-2 text-sm font-medium rounded-lg border-2 transition-all ${
+                formData.material === 'budget' 
+                  ? 'border-[#0f766e] bg-[#0f766e]/5 text-[#0f766e]' 
+                  : 'border-slate-200 text-slate-600 hover:border-[#0f766e]/30'
+              }`}
+              onClick={() => setFormData({ ...formData, material: 'budget' })}
+            >
+              Budget
+            </button>
+            <button 
+              type="button"
+              className={`p-2 text-sm font-medium rounded-lg border-2 transition-all ${
+                formData.material === 'standard' 
+                  ? 'border-[#0f766e] bg-[#0f766e]/5 text-[#0f766e]' 
+                  : 'border-slate-200 text-slate-600 hover:border-[#0f766e]/30'
+              }`}
+              onClick={() => setFormData({ ...formData, material: 'standard' })}
+            >
+              Standard
+            </button>
+            <button 
+              type="button"
+              className={`p-2 text-sm font-medium rounded-lg border-2 transition-all ${
+                formData.material === 'premium' 
+                  ? 'border-[#0f766e] bg-[#0f766e]/5 text-[#0f766e]' 
+                  : 'border-slate-200 text-slate-600 hover:border-[#0f766e]/30'
+              }`}
+              onClick={() => setFormData({ ...formData, material: 'premium' })}
+            >
+              Premium
+            </button>
+          </div>
+        </div>
+
+        <button 
+          type="submit"
+          className="w-full bg-[#0f172a] text-white font-bold text-lg py-4 rounded-xl hover:bg-[#1e293b] transition-colors shadow-lg shadow-[#0f172a]/20 mt-4"
+        >
+          Beräkna riktpris
+        </button>
+      </form>
 
       {result && (
-        <div className="bg-slate-50 border-t border-slate-200 p-6 sm:p-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h3 className="text-xl font-black text-slate-900 mb-6 text-center">Prisuppskattning för din renovering</h3>
+        <div className="mt-8 pt-8 border-t border-slate-100 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h3 className="text-xl font-bold text-[#0f172a] mb-4 text-center">Uppskattat Prisintervall</h3>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Pris innan ROT-avdrag</p>
-              <p className="text-2xl font-black text-slate-900">
-                {Math.round(result.minBeforeRot).toLocaleString("sv-SE")} - {Math.round(result.maxBeforeRot).toLocaleString("sv-SE")} <span className="text-base font-semibold text-slate-500">kr</span>
-              </p>
-            </div>
+          <div className="bg-[#f8fafc] rounded-xl p-6 border border-slate-200 mb-6 text-center relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-2 opacity-10 text-4xl">🛠️</div>
             
-            <div className="bg-white p-5 rounded-2xl border-2 border-indigo-100 shadow-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded-bl-lg">MED ROT-AVDRAG</div>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Pris efter ROT-avdrag</p>
-              <p className="text-2xl font-black text-indigo-600">
-                {Math.round(result.minAfterRot).toLocaleString("sv-SE")} - {Math.round(result.maxAfterRot).toLocaleString("sv-SE")} <span className="text-base font-semibold text-slate-500">kr</span>
-              </p>
+            <p className="text-sm font-medium text-slate-500 uppercase tracking-widest mb-2">Efter ROT-avdrag</p>
+            <p className="text-3xl md:text-4xl font-black text-[#0f766e] tabular-nums tracking-tight">
+              {result.minAfterRot.toLocaleString('sv-SE')} – {result.maxAfterRot.toLocaleString('sv-SE')} kr
+            </p>
+            
+            <div className="mt-4 pt-4 border-t border-slate-200 flex justify-center gap-6">
+              <div>
+                <span className="block text-xs text-slate-500 font-bold mb-1">INNAN ROT:</span>
+                <span className="text-slate-700 font-medium">{result.minBeforeRot.toLocaleString('sv-SE')} – {result.maxBeforeRot.toLocaleString('sv-SE')} kr</span>
+              </div>
             </div>
           </div>
 
@@ -155,6 +166,16 @@ export default function RenovationCalculator() {
               region: "Sverige"
             }}
           />
+
+          <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <p className="text-sm font-bold text-slate-600">Har du redan fått en offert?</p>
+            <a 
+              href="/"
+              className="rounded-xl bg-white border-2 border-[#e2e8f0] px-5 py-2 text-sm font-bold text-[#0f172a] transition hover:border-[#6366f1] hover:text-[#6366f1]"
+            >
+              Granska din offert här gratis →
+            </a>
+          </div>
         </div>
       )}
     </div>
