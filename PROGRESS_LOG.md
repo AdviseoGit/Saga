@@ -1,3 +1,4 @@
+2026-07-19 | TILLVÄXT/LEADFLOW | VVS-kalkylator uppgraderad med Lead-Capture | capture (lead data point) | nästa: Bygg leads-datamängd/dashboard eller uppgradera solcells-kalkylator
 2026-07-18 | LEADFLOW | Fixat lead form API integrering för alla kalkylatorer | Leadflow | nästa: Fortsätt publicera nytt innehåll / Saga Index uppdatering
 2026-07-17 | LEADFLOW | Fixat lead-capture för renoverings/badrums-kalkylatorerna | Leads | nästa: Få in form data i Saga Index datan
 2026-07-16 | SEO | Optimera canonical och schema.org för sidor | Indexering/Själv-krock förhindrad | nästa: Fler artiklar för intent
