@@ -1,3 +1,4 @@
+https://fragasaga.se/verktyg/vvs-kalkylator | Discovered - currently not indexed | 2026-07-19 | uppdaterat innehåll, länkad
 https://fragasaga.se/verktyg/renoverings-kalkylator | Discovered - currently not indexed | 2026-07-17 | Innehåll fördjupat, LeadForm tillagt för unikt värde
 https://fragasaga.se/verktyg/badrumsrenovering-kalkylator | Unknown to Google | 2026-07-17 | Innehåll fördjupat, LeadForm tillagt för unikt värde
 https://fragasaga.se/verktyg/jordvarme-kalkylator | Discovered - currently not indexed | 2026-07-16 | Länkad/Schema fixad, väntar på indexering.
