@@ -1,4 +1,5 @@
-2026-07-20 | DATA | Nyhetssvep + publicerat Saga Index datakoppling | datamoat | nästa: Fler kalkyler eller UX polish
+2026-07-20 | LEADFLOW | Byggt riktig logik för måleriarbete kalkylatorn med lead-capture | Data-capture / Leads | nästa: Fler kalkyler eller UX polish
+2026-07-20 | DATA | Nyhetssvep + publicerat Saga Index datakoppling | datamoat | nästa: Byggt riktig kalkylator (MaleriarbeteCalculator)
 2026-07-19 | TILLVÄXT/LEADFLOW | VVS-kalkylator uppgraderad med Lead-Capture | capture (lead data point) | nästa: Bygg leads-datamängd/dashboard eller uppgradera solcells-kalkylator
 2026-07-18 | LEADFLOW | Fixat lead form API integrering för alla kalkylatorer | Leadflow | nästa: Fortsätt publicera nytt innehåll / Saga Index uppdatering
 2026-07-17 | LEADFLOW | Fixat lead-capture för renoverings/badrums-kalkylatorerna | Leads | nästa: Få in form data i Saga Index datan
