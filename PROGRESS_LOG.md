@@ -1,1 +1,2 @@
+2026-07-22 | DATA | Integrerat leads-data mot frontend för att lägga grunden till att visa Saga Index statistik och fixat trasig import i leads route | data pipeline robustness | nästa: Implementera Saga Index UI som visar datan från supabase
 2026-07-21 | TILLVÄXT/LEADFLOW | Solcellskalkylator uppgraderad med design system header och navigering + LeadForm integrationsfix | capture (lead data point) | nästa: Få in form data i Saga Index datan eller ny kalkylator

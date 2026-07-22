@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
@@ -104,21 +103,27 @@ export async function POST(request: NextRequest) {
     const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
     if (sbUrl && sbKey) {
-      const sb = createClient(sbUrl, sbKey);
-      await sb.from("leads").upsert(
-        [{
-          email: String(email).toLowerCase().trim(),
-          name: name ? String(name).trim() : null,
-          source: "result_email",
-          quote_category: quoteCategory ?? null,
-          quote_region: quoteRegion ?? null,
-          analysis_verdict: analysisVerdict ?? null,
-          analysis_summary: analysisSummary ?? null,
-          gdpr_consent: true,
-          consent_timestamp: new Date().toISOString(),
-        }],
-        { onConflict: "email" }
-      );
+      // Dynamic import to prevent build errors if module not installed or fails locally
+      try {
+        const { createClient } = await import('@supabase/supabase-js');
+        const sb = createClient(sbUrl, sbKey);
+        await sb.from("leads").upsert(
+          [{
+            email: String(email).toLowerCase().trim(),
+            name: name ? String(name).trim() : null,
+            source: "result_email",
+            quote_category: quoteCategory ?? null,
+            quote_region: quoteRegion ?? null,
+            analysis_verdict: analysisVerdict ?? null,
+            analysis_summary: analysisSummary ?? null,
+            gdpr_consent: true,
+            consent_timestamp: new Date().toISOString(),
+          }],
+          { onConflict: "email" }
+        );
+      } catch (dbErr) {
+        console.error("[leads] Database insert failed or supabase module missing:", dbErr);
+      }
     } else {
       console.log("[leads] supabase not configured —", email);
     }
