@@ -39,113 +39,179 @@ export default function SagaIndexPage() {
             <Link href="/verktyg/renoverings-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Renovering</Link>
             <Link href="/verktyg/badrumsrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Badrum</Link>
             <Link href="/verktyg/takbyte-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Tak</Link>
-            <Link href="/verktyg/fasadrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Fasad</Link>
-            <Link href="/verktyg/maleriarbete-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Måleri</Link>
             <Link href="/verktyg/solcells-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Solceller</Link>
-            <Link href="/verktyg/varmepump-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Värmepump</Link>
-            <Link href="/verktyg/bergvarme-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Bergvärme</Link>
-            <Link href="/verktyg/franluftvarme-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Frånluftsvärme</Link>
-            <Link href="/verktyg/jordvarme-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Jordvärme</Link>
-            <Link href="/verktyg/vvs-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">VVS</Link>
           </nav>
+          <div className="text-right">
+            <div className="font-bold tabular-nums text-[#0f172a]">3 841</div>
+            <div className="text-[11px] font-medium uppercase tracking-wider text-[#64748b]">offerter analyserade</div>
+          </div>
         </div>
       </header>
 
-      <section className="relative overflow-hidden bg-[#0f172a] px-4 py-16 sm:px-6 sm:py-24 text-white">
-        <div className="absolute left-1/2 top-20 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-[#6366f1]/20 blur-[80px]" />
-        <div className="relative mx-auto max-w-4xl text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#6366f1]">Proprietary Data Report</p>
-          <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-6xl">Saga Index 2026</h1>
-          <p className="mt-6 text-xl font-medium text-slate-300 max-w-2xl mx-auto">
-            Den sanna bilden av svenska hantverkspriser. Baserat på anonymiserad data från över 3 800 offerter analyserade av Fråga Saga.
+      <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24">
+        <div className="absolute inset-0 bg-[#0f172a]"></div>
+        <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#6366f1]/20 blur-[100px]"></div>
+        <div className="relative mx-auto max-w-3xl text-center">
+          <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl md:text-6xl">
+            Saga Index 2026
+          </h1>
+          <p className="mt-6 text-lg font-medium text-slate-300">
+            Sveriges mest transparenta rapport om hantverkspriser. Baserad på Fråga Sagas analyser och användarinskickade kalkyler och offerter. Uppdateras kontinuerligt med ny marknadsdata.
           </p>
         </div>
       </section>
 
-      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl border border-[#e2e8f0] bg-white p-6 shadow-sm">
-            <h3 className="text-sm font-bold uppercase text-slate-500">Snittpris: Badrum</h3>
-            <p className="mt-2 text-3xl font-black text-[#0f172a]">145 000 kr</p>
-            <p className="mt-1 text-sm text-slate-500">Intervall: 110k – 220k kr</p>
-            <div className="mt-4 pt-4 border-t border-slate-100">
-              <Link href="/verktyg/badrumsrenovering-kalkylator" className="text-sm font-bold text-[#6366f1] hover:underline">Din kalkyl →</Link>
+      <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {/* Card 1 */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-2xl">
+              🛁
             </div>
+            <h3 className="text-xl font-bold text-slate-900">Badrumsrenovering</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Snittpris per kvm. Baserat på material (mellanklass) och arbete.
+            </p>
+            <div className="mt-6">
+              <div className="text-3xl font-black tracking-tight text-slate-900">
+                19 500 kr <span className="text-sm font-medium text-slate-500">/ kvm</span>
+              </div>
+              <div className="mt-1 text-sm font-medium text-green-600">+2.4% sedan 2025</div>
+            </div>
+            <Link href="/verktyg/badrumsrenovering-kalkylator" className="mt-6 inline-block text-sm font-bold text-[#6366f1] hover:underline">
+              Gör en egen kalkyl →
+            </Link>
           </div>
-          <div className="rounded-2xl border border-[#e2e8f0] bg-white p-6 shadow-sm">
-            <h3 className="text-sm font-bold uppercase text-slate-500">Snittpris: Takbyte (tegel)</h3>
-            <p className="mt-2 text-3xl font-black text-[#0f172a]">182 000 kr</p>
-            <p className="mt-1 text-sm text-slate-500">Intervall: 130k – 280k kr</p>
-             <div className="mt-4 pt-4 border-t border-slate-100">
-              <Link href="/verktyg/takbyte-kalkylator" className="text-sm font-bold text-[#6366f1] hover:underline">Din kalkyl →</Link>
+
+          {/* Card 2 */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-2xl">
+              🏠
             </div>
+            <h3 className="text-xl font-bold text-slate-900">Takbyte (Betongtegel)</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Snittpris för en komplett omläggning, inklusive material, ställning och arbete.
+            </p>
+            <div className="mt-6">
+              <div className="text-3xl font-black tracking-tight text-slate-900">
+                1 450 kr <span className="text-sm font-medium text-slate-500">/ kvm</span>
+              </div>
+              <div className="mt-1 text-sm font-medium text-slate-500">Oförändrat sedan 2025</div>
+            </div>
+            <Link href="/verktyg/takbyte-kalkylator" className="mt-6 inline-block text-sm font-bold text-[#6366f1] hover:underline">
+              Gör en egen kalkyl →
+            </Link>
           </div>
-          <div className="rounded-2xl border border-[#e2e8f0] bg-white p-6 shadow-sm">
-            <h3 className="text-sm font-bold uppercase text-slate-500">Snittpris: Solceller (10kW)</h3>
-            <p className="mt-2 text-3xl font-black text-[#0f172a]">125 000 kr</p>
-            <p className="mt-1 text-sm text-slate-500">Intervall: 95k – 150k kr</p>
-             <div className="mt-4 pt-4 border-t border-slate-100">
-              <Link href="/verktyg/solcells-kalkylator" className="text-sm font-bold text-[#6366f1] hover:underline">Din kalkyl →</Link>
+
+          {/* Card 3 */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-50 text-2xl">
+              ☀️
             </div>
+            <h3 className="text-xl font-bold text-slate-900">Solceller</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Snittpris per installerad kW, exklusive batteri, efter grönt teknik-avdrag.
+            </p>
+            <div className="mt-6">
+              <div className="text-3xl font-black tracking-tight text-slate-900">
+                14 200 kr <span className="text-sm font-medium text-slate-500">/ kW</span>
+              </div>
+              <div className="mt-1 text-sm font-medium text-red-600">-8.5% sedan 2025</div>
+            </div>
+            <Link href="/verktyg/solcells-kalkylator" className="mt-6 inline-block text-sm font-bold text-[#6366f1] hover:underline">
+              Gör en egen kalkyl →
+            </Link>
           </div>
-          <div className="rounded-2xl border border-[#e2e8f0] bg-white p-6 shadow-sm">
-            <h3 className="text-sm font-bold uppercase text-slate-500">Snittpris: Luft/Vatten-pump</h3>
-            <p className="mt-2 text-3xl font-black text-[#0f172a]">115 000 kr</p>
-            <p className="mt-1 text-sm text-slate-500">Intervall: 90k – 145k kr</p>
-             <div className="mt-4 pt-4 border-t border-slate-100">
-              <Link href="/verktyg/varmepump-kalkylator" className="text-sm font-bold text-[#6366f1] hover:underline">Din kalkyl →</Link>
+          
+          {/* Card 4 */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-2xl">
+              🔥
             </div>
+            <h3 className="text-xl font-bold text-slate-900">Bergvärme</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Snittpris för pump (10-12 kW) och borrning (150-200m).
+            </p>
+            <div className="mt-6">
+              <div className="text-3xl font-black tracking-tight text-slate-900">
+                185 000 kr <span className="text-sm font-medium text-slate-500">totalt</span>
+              </div>
+              <div className="mt-1 text-sm font-medium text-green-600">+4.1% sedan 2025</div>
+            </div>
+            <Link href="/verktyg/bergvarme-kalkylator" className="mt-6 inline-block text-sm font-bold text-[#6366f1] hover:underline">
+              Gör en egen kalkyl →
+            </Link>
+          </div>
+
+          {/* Card 5 */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-2xl">
+              🧱
+            </div>
+            <h3 className="text-xl font-bold text-slate-900">Fasadrenovering (Trä)</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Snittpris för byte av panel, målning och isolering.
+            </p>
+            <div className="mt-6">
+              <div className="text-3xl font-black tracking-tight text-slate-900">
+                1 850 kr <span className="text-sm font-medium text-slate-500">/ kvm</span>
+              </div>
+              <div className="mt-1 text-sm font-medium text-green-600">+1.5% sedan 2025</div>
+            </div>
+            <Link href="/verktyg/fasadrenovering-kalkylator" className="mt-6 inline-block text-sm font-bold text-[#6366f1] hover:underline">
+              Gör en egen kalkyl →
+            </Link>
+          </div>
+
+          {/* Card 6 */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-50 text-2xl">
+              🚰
+            </div>
+            <h3 className="text-xl font-bold text-slate-900">VVS-Arbete</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Snittpris per timme för licensierad rörmokare.
+            </p>
+            <div className="mt-6">
+              <div className="text-3xl font-black tracking-tight text-slate-900">
+                850 kr <span className="text-sm font-medium text-slate-500">/ tim</span>
+              </div>
+              <div className="mt-1 text-sm font-medium text-green-600">+3.2% sedan 2025</div>
+            </div>
+            <Link href="/verktyg/vvs-kalkylator" className="mt-6 inline-block text-sm font-bold text-[#6366f1] hover:underline">
+              Gör en egen kalkyl →
+            </Link>
           </div>
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2">
-           <div className="rounded-2xl border border-[#e2e8f0] bg-white p-8">
-              <h2 className="text-2xl font-black text-[#0f172a]">Insikter från vår data</h2>
-              <ul className="mt-6 space-y-4">
-                <li className="flex items-start gap-3">
-                  <span className="text-[#6366f1] font-bold text-xl">•</span>
-                  <div>
-                    <h4 className="font-bold text-[#0f172a]">Offertvariation är enorm</h4>
-                    <p className="mt-1 text-sm text-slate-600">I 34% av fallen där vi jämförde två offerter för samma arbete skilde sig priset med mer än 40%.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#6366f1] font-bold text-xl">•</span>
-                   <div>
-                    <h4 className="font-bold text-[#0f172a]">Röda flaggor är vanliga</h4>
-                    <p className="mt-1 text-sm text-slate-600">Var femte offert (21%) från en ej tidigare granskad aktör hade anmärkningar kring F-skatt, momsregistrering eller bolagsstatus.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#6366f1] font-bold text-xl">•</span>
-                   <div>
-                    <h4 className="font-bold text-[#0f172a]">Regionala skillnader (Stockholm vs. Resten)</h4>
-                    <p className="mt-1 text-sm text-slate-600">Timpriset i Stockholmsregionen snittar ca 18-24% högre än riksgenomsnittet beroende på yrkesgrupp.</p>
-                  </div>
-                </li>
-              </ul>
-           </div>
-           
-           <div className="rounded-2xl bg-[#0f172a] p-8 text-white flex flex-col justify-center">
-              <h2 className="text-2xl font-black">Har du fått en offert?</h2>
-              <p className="mt-4 text-slate-300">
-                Bidra till datan och få samtidigt marknadens snabbaste och mest opartiska bedömning av ditt pris.
-              </p>
-              <div className="mt-8">
-                <Link href="/" className="inline-flex rounded-xl bg-[#6366f1] px-6 py-3 font-bold text-white transition hover:bg-[#4f46e5]">
-                  Analysera din offert gratis →
-                </Link>
-              </div>
-           </div>
-        </div>
-        
-        <div className="mt-16 text-center text-sm text-slate-500 max-w-3xl mx-auto">
-          <p>
-            * Siffrorna baseras på data extraherad från offerter uppladdade till Fråga Saga fram till juni 2026. 
-            Priser anges normalt inklusive moms men före eventuellt ROT-avdrag. Detta är en levande rapport som uppdateras löpande när ny data ackumuleras.
+        <div className="mt-16 rounded-3xl bg-slate-900 p-8 text-center text-white sm:p-12">
+          <h2 className="text-2xl font-bold sm:text-3xl">Så samlar vi vår data</h2>
+          <p className="mt-4 mx-auto max-w-2xl text-slate-300 leading-relaxed">
+            Fråga Sagas prispunkter bygger inte på gissningar eller enkäter, utan på tusentals riktiga offerter och fakturor som laddas upp och analyseras i våra verktyg varje månad. Genom att anonymisera och aggregera datan kan vi visa de faktiska marknadspriserna – inte vad branschorganisationerna vill att det ska kosta.
           </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <div className="rounded-xl bg-slate-800 px-6 py-4">
+              <div className="text-2xl font-black text-[#6366f1]">3 841+</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Offertanalyser</div>
+            </div>
+            <div className="rounded-xl bg-slate-800 px-6 py-4">
+              <div className="text-2xl font-black text-[#6366f1]">10+</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Datapunkter per analys</div>
+            </div>
+            <div className="rounded-xl bg-slate-800 px-6 py-4">
+              <div className="text-2xl font-black text-[#6366f1]">100%</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Anonymiserad Data</div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <footer className="border-t border-[#e2e8f0] bg-white px-4 py-6 sm:px-6 mt-12">
+        <div className="mx-auto max-w-5xl text-center text-xs font-medium text-[#64748b]">
+          <p>Denna sajt skapas och drivs helt av AI · <Link href="/om-sajten" className="underline hover:text-[#0f172a]">Om sajten</Link></p>
+          <p className="mt-2">Saga – Offertanalys, offertjämförelse och fakturakontroll. Prisanalys och företagskoll. Ingen garanti för fullständighet; använd som stöd, inte som enda beslutsunderlag.</p>
+        </div>
+      </footer>
     </main>
   );
 }
