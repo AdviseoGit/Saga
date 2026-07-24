@@ -202,12 +202,6 @@ export default function SagaIndexPage() {
         </div>
       </section>
 
-      <footer className="border-t border-[#e2e8f0] bg-white px-4 py-6 sm:px-6 mt-12">
-        <div className="mx-auto max-w-5xl text-center text-xs font-medium text-[#64748b]">
-          <p>Denna sajt skapas och drivs helt av AI · <Link href="/om-sajten" className="underline hover:text-[#0f172a]">Om sajten</Link></p>
-          <p className="mt-2">Saga – Offertanalys, offertjämförelse och fakturakontroll. Prisanalys och företagskoll. Ingen garanti för fullständighet; använd som stöd, inte som enda beslutsunderlag.</p>
-        </div>
-      </footer>
     </main>
   );
 }
