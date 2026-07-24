@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   robots: {
@@ -35,12 +36,7 @@ export default function SagaIndexPage() {
             <span className="text-xl font-black tracking-tight text-[#0f172a] sm:text-2xl">Saga</span>
             <span className="hidden text-[10px] font-bold uppercase tracking-[0.25em] text-[#6366f1] sm:inline">Fråga Saga</span>
           </Link>
-          <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
-            <Link href="/verktyg/renoverings-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Renovering</Link>
-            <Link href="/verktyg/badrumsrenovering-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Badrum</Link>
-            <Link href="/verktyg/takbyte-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Tak</Link>
-            <Link href="/verktyg/solcells-kalkylator" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Solceller</Link>
-          </nav>
+          <Navbar />
           <div className="text-right">
             <div className="font-bold tabular-nums text-[#0f172a]">3 841</div>
             <div className="text-[11px] font-medium uppercase tracking-wider text-[#64748b]">offerter analyserade</div>
