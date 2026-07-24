@@ -1,3 +1,4 @@
+2026-07-24 | DESIGN | Konsoliderat navigering (Navbar-komponent) och löst menybloat | UX/Design-skuld (0 HARD-fynd) | nästa: Optimera kalkylator-SEO eller bygg nytt dataverktyg
 2026-07-23 | SEO/TILLVÄXT | Länkat in alla kalkylatorer via footer + sitemap + fixade canonicals | Indexering | nästa: Bygga ny innehållssida baserat på sökfrågor
 2026-07-22 | DATA | Integrerat leads-data mot frontend för att lägga grunden till att visa Saga Index statistik och fixat trasig import i leads route | data pipeline robustness | nästa: Implementera Saga Index UI som visar datan från supabase
 2026-07-21 | TILLVÄXT/LEADFLOW | Solcellskalkylator uppgraderad med design system header och navigering + LeadForm integrationsfix | capture (lead data point) | nästa: Få in form data i Saga Index datan eller ny kalkylator
