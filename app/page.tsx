@@ -3,6 +3,7 @@
 import React, { useState, useCallback } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import OutcomeCTA from "@/components/OutcomeCTA";
 import { supabase } from "@/lib/supabase";
 import { RailwayAPIClient } from "@/lib/api-client";
 
@@ -362,7 +363,7 @@ export default function SagaLandingPage() {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 sm:pt-16">
+      <section id="ladda-upp" className="relative scroll-mt-20 overflow-hidden px-4 pb-16 pt-12 sm:px-6 sm:pt-16">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#0f172a]/98 to-[#f8fafc]" />
         <div className="absolute left-1/2 top-20 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-[#6366f1]/20 blur-[80px]" />
         <div className="relative mx-auto max-w-3xl text-center">
@@ -960,6 +961,9 @@ function ResultBlock(props: { analysis: SagaAnalysis; verification: CompanyVerif
           ))}
         </ul>
       )}
+
+      {/* Nästa steg – utfallsstyrd CTA */}
+      <OutcomeCTA analysis={a} verification={props.verification} verificationError={props.verificationError} />
 
       {/* Action buttons */}
       <div className="mt-4 space-y-2">

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { OWNER_EMAIL, escapeHtml, sek, sendMail } from "@/lib/mailer";
 
 export const runtime = "nodejs";
 
@@ -11,14 +11,6 @@ const CORS = {
 
 export async function OPTIONS() {
   return new NextResponse(null, { status: 200, headers: CORS });
-}
-
-const OWNER = process.env.LEAD_NOTIFY_EMAIL || "simon@adviseo.se";
-
-function sek(v: unknown): string {
-  const n = Number(v);
-  if (!isFinite(n) || !v) return "—";
-  return new Intl.NumberFormat("sv-SE").format(Math.round(n)) + " kr";
 }
 
 function userHtml(d: any): string {
@@ -33,13 +25,13 @@ function userHtml(d: any): string {
       <p>Tack för att du använde Fråga Saga. Här är en sammanfattning av din analys —
          spara gärna mejlet inför att du jämför offerter.</p>
       <table style="border-collapse:collapse;font-size:14px;margin:14px 0">
-        <tr><td style="padding:5px 10px;color:#64748b">Företag</td><td style="padding:5px 10px;font-weight:600">${s.company ?? "—"}</td></tr>
+        <tr><td style="padding:5px 10px;color:#64748b">Företag</td><td style="padding:5px 10px;font-weight:600">${escapeHtml(s.company)}</td></tr>
         <tr><td style="padding:5px 10px;color:#64748b">Belopp</td><td style="padding:5px 10px;font-weight:600">${sek(s.total)}</td></tr>
-        <tr><td style="padding:5px 10px;color:#64748b">Kategori</td><td style="padding:5px 10px">${d.quoteCategory ?? "—"}</td></tr>
-        <tr><td style="padding:5px 10px;color:#64748b">Region</td><td style="padding:5px 10px">${d.quoteRegion ?? "—"}</td></tr>
+        <tr><td style="padding:5px 10px;color:#64748b">Kategori</td><td style="padding:5px 10px">${escapeHtml(d.quoteCategory)}</td></tr>
+        <tr><td style="padding:5px 10px;color:#64748b">Region</td><td style="padding:5px 10px">${escapeHtml(d.quoteRegion)}</td></tr>
       </table>
       <p style="background:#f0fdfa;border:1px solid #99f6e4;border-radius:10px;padding:14px 16px">
-        <b>Sagas omdöme:</b><br>${s.verdict ?? d.analysisVerdict ?? "Analys genomförd."}</p>
+        <b>Sagas omdöme:</b><br>${escapeHtml(s.verdict ?? d.analysisVerdict ?? "Analys genomförd.")}</p>
       <p><b>Så går du vidare:</b></p>
       <ul style="color:#334155;font-size:14px;line-height:1.6">
         <li>Begär alltid en specificerad offert (material, arbete, ev. ROT).</li>
@@ -59,35 +51,19 @@ function ownerHtml(d: any): string {
   return `<div style="font-family:Segoe UI,Arial,sans-serif;color:#0f172a">
     <h3>🧾 Ny lead — Fråga Saga</h3>
     <table style="border-collapse:collapse;font-size:14px">
-      <tr><td style="padding:4px 10px;color:#64748b">E-post</td><td style="padding:4px 10px;font-weight:600">${d.email}</td></tr>
-      <tr><td style="padding:4px 10px;color:#64748b">Företag</td><td style="padding:4px 10px">${s.company ?? "—"}</td></tr>
+      <tr><td style="padding:4px 10px;color:#64748b">E-post</td><td style="padding:4px 10px;font-weight:600">${escapeHtml(d.email)}</td></tr>
+      <tr><td style="padding:4px 10px;color:#64748b">Företag</td><td style="padding:4px 10px">${escapeHtml(s.company)}</td></tr>
       <tr><td style="padding:4px 10px;color:#64748b">Belopp</td><td style="padding:4px 10px">${sek(s.total)}</td></tr>
-      <tr><td style="padding:4px 10px;color:#64748b">Kategori</td><td style="padding:4px 10px">${d.quoteCategory ?? "—"}</td></tr>
-      <tr><td style="padding:4px 10px;color:#64748b">Omdöme</td><td style="padding:4px 10px">${s.verdict ?? d.analysisVerdict ?? "—"}</td></tr>
+      <tr><td style="padding:4px 10px;color:#64748b">Kategori</td><td style="padding:4px 10px">${escapeHtml(d.quoteCategory)}</td></tr>
+      <tr><td style="padding:4px 10px;color:#64748b">Omdöme</td><td style="padding:4px 10px">${escapeHtml(s.verdict ?? d.analysisVerdict)}</td></tr>
     </table></div>`;
 }
 
 async function sendMails(d: any) {
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.log("[leads] SMTP not configured — skipping email");
-    return;
-  }
-  const transport = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp-relay.brevo.com",
-    port: Number(process.env.SMTP_PORT || 587),
-    secure: false,
-    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-  });
-  const from = `Fråga Saga <${process.env.SMTP_FROM || "noreply@adviseo.se"}>`;
-  try {
-    await transport.sendMail({ from, to: d.email, replyTo: OWNER,
-      subject: "Din offertanalys från Fråga Saga", html: userHtml(d) });
-    await transport.sendMail({ from, to: OWNER, replyTo: d.email,
-      subject: "Ny lead — Fråga Saga", html: ownerHtml(d) });
-    console.log("[leads] emails sent ->", d.email);
-  } catch (e) {
-    console.error("[leads] email send failed:", e);
-  }
+  await sendMail({ to: d.email, replyTo: OWNER_EMAIL,
+    subject: "Din offertanalys från Fråga Saga", html: userHtml(d) });
+  await sendMail({ to: OWNER_EMAIL, replyTo: d.email,
+    subject: "Ny lead — Fråga Saga", html: ownerHtml(d) });
 }
 
 export async function POST(request: NextRequest) {
