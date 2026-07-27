@@ -30,9 +30,7 @@ export default function KollaFakturaPage() {
     return (
         <div className="container mx-auto px-4 py-8">
             <article className="prose lg:prose-xl max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
-                <header>
-                    <h1 className="text-4xl font-bold mb-4">Fråga Saga: Din Guide för att Kontrollera Fakturor från Hantverkare</h1>
-                </header>
+                
                 <p className="lead">
                     Att renovera eller bygga om hemma är en spännande process, men när fakturan från hantverkaren landar i brevlådan kan det snabbt uppstå osäkerhet. Är allt korrekt? Är priset rimligt? Att kunna granska en faktura på rätt sätt är A och O för en trygg och lyckad affär. Fråga Saga guidar dig genom de viktigaste stegen för att säkerställa att du betalar rätt pris för rätt arbete.
                 </p>

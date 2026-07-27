@@ -30,19 +30,7 @@ export const metadata: Metadata = {
 export default function SagaIndexPage() {
   return (
     <main className="bg-[#f8fafc] text-[#0f172a] min-h-screen">
-      <header className="sticky top-0 z-40 border-b border-[#e2e8f0] bg-white/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link href="/" className="flex items-baseline gap-2">
-            <span className="text-xl font-black tracking-tight text-[#0f172a] sm:text-2xl">Saga</span>
-            <span className="hidden text-[10px] font-bold uppercase tracking-[0.25em] text-[#6366f1] sm:inline">Fråga Saga</span>
-          </Link>
-          <Navbar />
-          <div className="text-right">
-            <div className="font-bold tabular-nums text-[#0f172a]">3 841</div>
-            <div className="text-[11px] font-medium uppercase tracking-wider text-[#64748b]">offerter analyserade</div>
-          </div>
-        </div>
-      </header>
+      
 
       <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24">
         <div className="absolute inset-0 bg-[#0f172a]"></div>

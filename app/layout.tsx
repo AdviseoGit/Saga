@@ -1,3 +1,4 @@
+import Header from '@/components/Header';
 import type { Metadata } from "next";
 import { DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
@@ -183,6 +184,7 @@ export default function RootLayout({
         className={`${dmSans.variable} ${dmMono.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
         <div className="flex-1">
+          <Header />
           {children}
         </div>
         <Footer />

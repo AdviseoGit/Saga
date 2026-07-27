@@ -56,19 +56,7 @@ export default function MaleriarbeteKalkylatorPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* HEADER */}
-      <header className="sticky top-0 z-40 border-b border-[#e2e8f0] bg-white/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link href="/" className="flex items-baseline gap-2">
-            <span className="text-xl font-black tracking-tight text-[#0f172a] sm:text-2xl">
-              Saga
-            </span>
-            <span className="hidden text-[10px] font-bold uppercase tracking-[0.25em] text-[#6366f1] sm:inline">
-              Fråga Saga
-            </span>
-          </Link>
-          <Navbar />
-        </div>
-      </header>
+      
 
       {/* HERO */}
       <section className="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8 border-b border-slate-200">

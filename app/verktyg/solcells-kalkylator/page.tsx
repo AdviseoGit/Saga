@@ -64,15 +64,7 @@ export default function SolcellsCalculatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <header className="sticky top-0 z-40 border-b border-[#e2e8f0] bg-white/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link href="/" className="flex items-baseline gap-2">
-            <span className="text-xl font-black tracking-tight text-[#0f172a] sm:text-2xl">Saga</span>
-            <span className="hidden text-[10px] font-bold uppercase tracking-[0.25em] text-[#6366f1] sm:inline">Fråga Saga</span>
-          </Link>
-          <Navbar />
-        </div>
-      </header>
+      
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="text-center mb-10">
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#6366f1]">

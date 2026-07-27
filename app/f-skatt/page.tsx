@@ -24,18 +24,7 @@ export const metadata: Metadata = {
 export default function FSkattPage() {
   return (
     <main className="bg-white text-gray-800">
-      <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link href="/" className="flex items-baseline gap-2">
-            <span className="text-xl font-black tracking-tight text-gray-900 sm:text-2xl">Saga</span>
-            <span className="hidden text-[10px] font-bold uppercase tracking-[0.25em] text-indigo-600 sm:inline">Fråga Saga</span>
-          </Link>
-          <Navbar />
-          <Link href="/" className="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-indigo-700">
-            Testa Offertanalys
-          </Link>
-        </div>
-      </header>
+      
 
       <div className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
         <article className="prose lg:prose-lg">
