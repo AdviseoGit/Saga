@@ -61,6 +61,9 @@ export default function Navbar() {
             <Link href="/verktyg/vvs-kalkylator" className="block px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-[#0f172a]">VVS</Link>
           </div>
         </div>
+
+        <Link href="/om-sajten" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Om Saga</Link>
+        <Link href="/kontakt" className="text-sm font-bold text-slate-600 hover:text-[#0f172a] transition-colors">Kontakt</Link>
       </nav>
 
       {/* Mobile Menu Dropdown */}
@@ -86,6 +89,11 @@ export default function Navbar() {
               <Link href="/verktyg/franluftvarme-kalkylator" onClick={() => setIsOpen(false)} className="block text-sm font-medium text-slate-600 hover:text-[#0f172a]">Frånluftsvärme</Link>
               <Link href="/verktyg/jordvarme-kalkylator" onClick={() => setIsOpen(false)} className="block text-sm font-medium text-slate-600 hover:text-[#0f172a]">Jordvärme</Link>
               <Link href="/verktyg/vvs-kalkylator" onClick={() => setIsOpen(false)} className="block text-sm font-medium text-slate-600 hover:text-[#0f172a]">VVS</Link>
+            </div>
+            
+            <div className="space-y-2 border-t border-slate-100 pt-2">
+              <Link href="/om-sajten" onClick={() => setIsOpen(false)} className="block text-sm font-medium text-slate-600 hover:text-[#0f172a]">Om Saga</Link>
+              <Link href="/kontakt" onClick={() => setIsOpen(false)} className="block text-sm font-medium text-slate-600 hover:text-[#0f172a]">Kontakt</Link>
             </div>
           </div>
         </div>

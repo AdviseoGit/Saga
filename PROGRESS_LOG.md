@@ -1,3 +1,4 @@
+2026-07-28 | SEO/TILLVÄXT | Adderat "Om Saga" & "Kontakt" till navigering samt index-inspektioner | Navigation/Indexering | nästa: Implementera Saga Index UI
 2026-07-27 | KONVERTERING | Saga-fällan: tre utfallsstyrda CTA:n i resultatvyn (dyr / gynnsam / röda flaggor) + partner_leads-API och -tabell + Saga-banner på alla kalkylatorsidor | konvertering & lead-monetisering | nästa: Steg 2 – sälja in första B2B-partnern på Saga-leads
 2026-07-27 | DESIGN | Åtgärdade dubbla/hårdkodade headers till global Header-komponent | UX/Design | nästa: Optimera kalkylator-SEO eller bygg nytt dataverktyg
 2026-07-26 | DESIGN | Åtgärdade dubbel footer i rot layout | UX/Design | nästa: Optimera kalkylator-SEO eller bygg nytt dataverktyg
