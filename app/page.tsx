@@ -5,6 +5,7 @@ import React, { useState, useCallback } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import OutcomeCTA from "@/components/OutcomeCTA";
+import SagaIndexBanner from "@/components/SagaIndexBanner";
 import { supabase } from "@/lib/supabase";
 import { RailwayAPIClient } from "@/lib/api-client";
 
@@ -953,6 +954,7 @@ function ResultBlock(props: { analysis: SagaAnalysis; verification: CompanyVerif
 
       {/* Nästa steg – utfallsstyrd CTA */}
       <OutcomeCTA analysis={a} verification={props.verification} verificationError={props.verificationError} />
+      <SagaIndexBanner />
 
       {/* Action buttons */}
       <div className="mt-4 space-y-2">
