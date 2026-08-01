@@ -8,103 +8,85 @@ const CORS = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
+// Under så här många analyser i en kategori säger snittpriset ingenting — då
+// redovisar vi antalet i stället för att låtsas om en prisnivå.
+const MIN_SAMPLES = 5;
+
 export async function OPTIONS() {
   return new NextResponse(null, { status: 200, headers: CORS });
 }
 
+/* Saga Index får ENDAST innehålla siffror vi faktiskt har mätt.
+   Rutten läser `analyses` — den anonymiserade loggen över genomförda
+   offertanalyser, vilket är exakt det som Saga Index utger sig för att visa.
+   (Tidigare lästes `partner_leads`, alltså bara de som klickat på en CTA, och
+   när tabellen var tom returnerades påhittade kategorisnitt plus en påhittad
+   baslinje på 3841 analyser. Saknas data svarar vi nu med en tom lista.) */
 export async function GET() {
+  const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!sbUrl || !sbKey) {
+    console.error("[saga-index] Supabase env vars saknas");
+    return NextResponse.json(
+      { error: "Prisdata är inte tillgänglig just nu." },
+      { status: 503, headers: CORS }
+    );
+  }
+
   try {
-    const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-    if (!sbUrl || !sbKey) {
-      console.warn("[saga-index] Supabase env vars not set, returning fallback data");
-      return NextResponse.json({
-        totalAnalyzed: 3841,
-        stats: [
-          { category: "Badrumsrenovering", averagePrice: 19500, count: 452 },
-          { category: "Takbyte", averagePrice: 1450, count: 321 },
-          { category: "Solceller", averagePrice: 14200, count: 289 },
-          { category: "Bergvärme", averagePrice: 185000, count: 198 },
-          { category: "Fasadrenovering", averagePrice: 1850, count: 145 },
-          { category: "VVS-arbete", averagePrice: 850, count: 567 }
-        ]
-      }, { headers: CORS });
-    }
-
     const { createClient } = await import('@supabase/supabase-js');
     const sb = createClient(sbUrl, sbKey);
 
-    // Fetch aggregate stats from partner_leads table where total is valid.
-    // Group by category, compute average price and count.
-    
-    // As a placeholder until proper DB views/RPCs are set, we'll fetch raw leads
-    // and compute in memory. We limit to 5000 to avoid memory issues on serverless.
-    const { data: leads, error } = await sb
-      .from("partner_leads")
-      .select("quote_category, quote_total")
-      .not("quote_total", "is", null)
-      .not("quote_category", "is", null)
+    const { data: rows, error } = await sb
+      .from("analyses")
+      .select("category, total_amount")
+      .not("total_amount", "is", null)
+      .not("category", "is", null)
       .limit(5000);
 
-    if (error) {
-       throw error;
-    }
+    if (error) throw error;
 
-    // Also get the total count of analyzes from 'leads' table to represent total site usage
     const { count, error: countError } = await sb
-      .from("leads")
+      .from("analyses")
       .select("*", { count: 'exact', head: true });
-      
-    if (countError) {
-        console.error("Failed to count total leads", countError);
-    }
-    
-    const baseTotal = 3841;
-    const computedTotalAnalyzed = (count || 0) + baseTotal; // baseline + actual leads
 
-    if (!leads || leads.length === 0) {
-        // Fallback if no real DB data yet for partner_leads
-        return NextResponse.json({
-            totalAnalyzed: computedTotalAnalyzed,
-            stats: [
-              { category: "Badrumsrenovering", averagePrice: 19500, count: 452 },
-              { category: "Takbyte", averagePrice: 1450, count: 321 },
-              { category: "Solceller", averagePrice: 14200, count: 289 },
-              { category: "Bergvärme", averagePrice: 185000, count: 198 },
-              { category: "Fasadrenovering", averagePrice: 1850, count: 145 },
-              { category: "VVS-arbete", averagePrice: 850, count: 567 }
-            ]
-        }, { headers: CORS });
+    if (countError) throw countError;
+
+    const map = new Map<string, number[]>();
+    for (const row of rows ?? []) {
+      const total = Number(row.total_amount);
+      if (row.category && isFinite(total) && total > 0) {
+        const bucket = map.get(row.category) ?? [];
+        bucket.push(total);
+        map.set(row.category, bucket);
+      }
     }
 
-    // Compute aggregates
-    const map = new Map<string, { sum: number, count: number }>();
-    
-    for (const lead of leads) {
-        const cat = lead.quote_category;
-        const total = Number(lead.quote_total);
-        if (cat && isFinite(total) && total > 0) {
-            const existing = map.get(cat) || { sum: 0, count: 0 };
-            existing.sum += total;
-            existing.count += 1;
-            map.set(cat, existing);
-        }
-    }
+    const stats = Array.from(map.entries())
+      .map(([category, values]) => {
+        const sorted = [...values].sort((a, b) => a - b);
+        const mid = Math.floor(sorted.length / 2);
+        return {
+          category,
+          count: sorted.length,
+          averagePrice: Math.round(sorted.reduce((a, b) => a + b, 0) / sorted.length),
+          medianPrice: Math.round(
+            sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
+          ),
+        };
+      })
+      .sort((a, b) => b.count - a.count);
 
-    const computedStats = Array.from(map.entries()).map(([category, { sum, count }]) => ({
-        category,
-        averagePrice: Math.round(sum / count),
-        count
-    }));
-
-    return NextResponse.json({
-        totalAnalyzed: computedTotalAnalyzed,
-        stats: computedStats
-    }, { headers: CORS });
-
+    return NextResponse.json(
+      { totalAnalyzed: count ?? 0, minSamples: MIN_SAMPLES, stats },
+      { headers: CORS }
+    );
   } catch (err) {
     console.error("[saga-index route]", err);
-    return NextResponse.json({ error: "Serverfel" }, { status: 500, headers: CORS });
+    return NextResponse.json(
+      { error: "Prisdata är inte tillgänglig just nu." },
+      { status: 503, headers: CORS }
+    );
   }
 }

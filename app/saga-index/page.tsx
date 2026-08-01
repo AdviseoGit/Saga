@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     },
   },
   title: 'Saga Index – Svenska Hantverkspriser 2026',
-  description: 'Unik data från Fråga Sagas analyser: snittpriser för badrum, takbyte, VVS och solceller. Baserat på tusentals granskade offerter.',
+  description: 'Unik data från Fråga Sagas analyser: prisnivåer för badrum, takbyte, VVS och solceller, baserat på riktiga granskade offerter — med antalet analyser bakom varje prispunkt.',
   alternates: {
     canonical: 'https://fragasaga.se/saga-index',
   },

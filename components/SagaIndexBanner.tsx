@@ -12,7 +12,7 @@ export default function SagaIndexBanner() {
           <div>
             <h4 className="text-lg font-bold text-slate-900">Är du osäker på priset? Jämför mot hela Sverige</h4>
             <p className="mt-1 text-sm text-slate-600 max-w-lg">
-              Kolla in <strong>Saga Index</strong> för att se vad snittpriserna faktiskt är just nu, baserat på tusentals riktiga, granskade offerter från din region.
+              Kolla in <strong>Saga Index</strong> för att se prisnivåerna vi mätt upp — byggt på riktiga, granskade offerter, med antalet analyser redovisat för varje prispunkt.
             </p>
           </div>
         </div>
