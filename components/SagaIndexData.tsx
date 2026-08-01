@@ -33,7 +33,26 @@ const CATEGORY_CONFIG: Record<string, { icon: string; bgColor: string; unit: str
   "VVS-arbete": { icon: "🚰", bgColor: "bg-cyan-50", unit: "/ tim", link: "/verktyg/vvs-kalkylator", displayName: "VVS-arbete" },
 };
 
-const FALLBACK_CONFIG = { icon: "📊", bgColor: "bg-slate-50", unit: "kr", link: "/", displayName: "" };
+// Kategorierna lagras gemena i `analyses` ("badrumsrenovering"), så slå upp
+// skiftlägesokänsligt. Okända kategorier får en neutral kortstil och ingen
+// kalkylatorlänk — det finns ingen kalkylator att skicka läsaren till.
+const CONFIG_BY_KEY = new Map(
+  Object.entries(CATEGORY_CONFIG).map(([key, config]) => [key.toLowerCase(), config])
+);
+
+const sentenceCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+function configFor(category: string) {
+  return (
+    CONFIG_BY_KEY.get(category.toLowerCase()) ?? {
+      icon: "📊",
+      bgColor: "bg-slate-50",
+      unit: "",
+      link: "",
+      displayName: sentenceCase(category),
+    }
+  );
+}
 
 export default function SagaIndexData() {
   const [stats, setStats] = useState<StatCard[] | null>(null);
@@ -51,12 +70,7 @@ export default function SagaIndexData() {
         const data: ApiResponse = await response.json();
 
         // Bara kategorier vi faktiskt har mätt — inga utfyllda nollkort.
-        setStats(
-          data.stats.map((stat) => ({
-            ...stat,
-            ...(CATEGORY_CONFIG[stat.category] ?? { ...FALLBACK_CONFIG, displayName: stat.category }),
-          }))
-        );
+        setStats(data.stats.map((stat) => ({ ...stat, ...configFor(stat.category) })));
         setTotalAnalyzed(data.totalAnalyzed);
         setMinSamples(data.minSamples ?? 5);
       } catch (err) {
@@ -136,9 +150,11 @@ export default function SagaIndexData() {
                     </div>
                   )}
                 </div>
-                <Link href={stat.link} className="mt-6 inline-block text-sm font-bold text-[#6366f1] hover:underline">
-                  Gör en egen kalkyl →
-                </Link>
+                {stat.link && (
+                  <Link href={stat.link} className="mt-6 inline-block text-sm font-bold text-[#6366f1] hover:underline">
+                    Gör en egen kalkyl →
+                  </Link>
+                )}
               </div>
             );
           })}
