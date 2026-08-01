@@ -1,3 +1,4 @@
+2026-08-01 | DATA | Byggde server-endpoint /api/saga-index för att läsa av leads och partner_leads från Supabase och visa i Saga Index | Unik data-insikt (Site Vision Milestone 4) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-07-31 | DATA/TILLVÄXT | Byggde SagaIndexData klientkomponent för /saga-index sidan | Unik data-insikt (Site Vision Milestone 4)
 2026-07-30 | TILLVÄXT/LEADFLOW | Byggde in SagaIndexBanner i kalkylatorerna och resultatvyn | Länkkraft & Trafik till data-moaten | nästa: Implementera Saga Index UI som visar datan från supabase
 2026-07-29 | TILLVÄXT/LEADFLOW | B2B Partner Lead Capture form för kalkylatorer | Lead capture via /api/leads konverterad till /api/partner-leads med rätt partner intent | nästa: Implementera Saga Index UI som visar datan från supabase

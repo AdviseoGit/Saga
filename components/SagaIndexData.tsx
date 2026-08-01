@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
 interface StatCard {
@@ -13,6 +12,11 @@ interface StatCard {
   count: number;
   link: string;
   displayName: string;
+}
+
+interface ApiResponse {
+  totalAnalyzed: number;
+  stats: { category: string; averagePrice: number; count: number }[];
 }
 
 const CATEGORY_CONFIG: Record<string, { icon: string; bgColor: string; unit: string; link: string; displayName: string }> = {
@@ -32,34 +36,51 @@ export default function SagaIndexData() {
 
   useEffect(() => {
     async function fetchStats() {
-      if (!supabase) {
-        setError("Supabase är inte konfigurerad.");
-        setLoading(false);
-        return;
-      }
-
       try {
-        // Hämta aggregerad data. Eftersom vi inte har en vy i supabase för detta ännu, 
-        // hämtar vi lead-datan och räknar ut snitt i frontend. I produktion bör detta vara en backend-endpoint eller RPC.
-        // För detta demo-syfte använder vi mock-data som representerar vad vi SKULLE hämta från supabase.
-        // I nästa steg bygger vi API-routen.
+        const response = await fetch('/api/saga-index');
         
-        // Mocking the fetch for now to get the UI right, as we need to set up the DB structure
-        setTimeout(() => {
-           const mockStats: StatCard[] = [
-            { category: "Badrumsrenovering", averagePrice: 19500, count: 452, ...CATEGORY_CONFIG["Badrumsrenovering"] },
-            { category: "Takbyte", averagePrice: 1450, count: 321, ...CATEGORY_CONFIG["Takbyte"] },
-            { category: "Solceller", averagePrice: 14200, count: 289, ...CATEGORY_CONFIG["Solceller"] },
-            { category: "Bergvärme", averagePrice: 185000, count: 198, ...CATEGORY_CONFIG["Bergvärme"] },
-            { category: "Fasadrenovering", averagePrice: 1850, count: 145, ...CATEGORY_CONFIG["Fasadrenovering"] },
-            { category: "VVS-arbete", averagePrice: 850, count: 567, ...CATEGORY_CONFIG["VVS-arbete"] }
-           ];
-           setStats(mockStats);
-           setTotalAnalyzed(3841 + Math.floor(Math.random() * 50)); // Make it look live
-           setLoading(false);
-        }, 800);
+        if (!response.ok) {
+           throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data: ApiResponse = await response.json();
+        
+        const enrichedStats: StatCard[] = data.stats.map(stat => {
+            const config = CATEGORY_CONFIG[stat.category] || { 
+                icon: "📊", 
+                bgColor: "bg-slate-50", 
+                unit: "kr", 
+                link: "/", 
+                displayName: stat.category 
+            };
+            return {
+                ...stat,
+                ...config
+            };
+        });
+
+        // Ensure default categories are present if API returns empty/filtered list, for demo UI purposes
+        const defaultCats = Object.keys(CATEGORY_CONFIG);
+        const finalStats = enrichedStats;
+        
+        for (const defaultCat of defaultCats) {
+             if (!finalStats.some(s => s.category === defaultCat)) {
+                 // Push a fallback zeroed state if not in DB yet
+                 finalStats.push({
+                     category: defaultCat,
+                     averagePrice: 0,
+                     count: 0,
+                     ...CATEGORY_CONFIG[defaultCat]
+                 });
+             }
+        }
+
+        setStats(finalStats.filter(s => CATEGORY_CONFIG[s.category])); // Filter out unknown categories for clean UI
+        setTotalAnalyzed(data.totalAnalyzed);
+        setLoading(false);
 
       } catch (err) {
+        console.error("Failed to fetch saga-index data:", err);
         setError("Kunde inte hämta prisdata.");
         setLoading(false);
       }
