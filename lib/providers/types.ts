@@ -17,10 +17,20 @@ export interface ProviderResult {
   latencyMs: number;
 }
 
+/**
+ * Vad modellen ska göra med indatan. Offert och faktura skiljer sig bara åt
+ * i prompt, schema och instruktion — inte i anropsvägen.
+ */
+export interface AnalysisSpec {
+  systemPrompt: string;
+  schema: unknown;
+  instruction: string;
+}
+
 export interface QuoteProvider {
   readonly name: ProviderName;
   readonly model: string;
-  analyzeQuote(input: QuoteInput): Promise<ProviderResult>;
+  analyze(input: QuoteInput, spec: AnalysisSpec): Promise<ProviderResult>;
 }
 
 /** Meddelanden som visas för slutanvändaren. Aldrig leverantörens egna feltexter. */

@@ -1,7 +1,7 @@
-import { QUOTE_INSTRUCTION, QUOTE_JSON_SCHEMA, QUOTE_SYSTEM_PROMPT } from "../analysis/quote-spec.ts";
 import { toGeminiSchema, type JsonSchemaNode } from "./gemini-schema.ts";
 import {
   ProviderError,
+  type AnalysisSpec,
   USER_MESSAGE,
   parseAnalysis,
   type ProviderResult,
@@ -47,13 +47,20 @@ function mapError(status: number, body: string): ProviderError {
 
 export function createGeminiProvider(): QuoteProvider {
   const model = process.env.GEMINI_MODEL || DEFAULT_MODEL;
-  const responseSchema = toGeminiSchema(QUOTE_JSON_SCHEMA as JsonSchemaNode);
+  // Konverteringen är ren och specarna är få — cacha per schema.
+  const schemaCache = new Map<unknown, unknown>();
 
   return {
     name: "gemini",
     model,
 
-    async analyzeQuote(input: QuoteInput): Promise<ProviderResult> {
+    async analyze(input: QuoteInput, spec: AnalysisSpec): Promise<ProviderResult> {
+      let responseSchema = schemaCache.get(spec.schema);
+      if (!responseSchema) {
+        responseSchema = toGeminiSchema(spec.schema as JsonSchemaNode);
+        schemaCache.set(spec.schema, responseSchema);
+      }
+
       const apiKey = process.env.GEMINI_API_KEY;
       if (!apiKey) {
         throw new ProviderError({
@@ -65,7 +72,7 @@ export function createGeminiProvider(): QuoteProvider {
 
       const parts = input.imageBase64
         ? [
-            { text: QUOTE_INSTRUCTION },
+            { text: spec.instruction },
             {
               inlineData: {
                 mimeType: input.mediaType ?? "image/jpeg",
@@ -73,14 +80,14 @@ export function createGeminiProvider(): QuoteProvider {
               },
             },
           ]
-        : [{ text: `${QUOTE_INSTRUCTION}\n\n---\n\nInnehåll:\n\n${input.pdfText}` }];
+        : [{ text: `${spec.instruction}\n\n---\n\nInnehåll:\n\n${input.pdfText}` }];
 
       const startedAt = Date.now();
       const res = await fetch(endpoint(model), {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: QUOTE_SYSTEM_PROMPT }] },
+          systemInstruction: { parts: [{ text: spec.systemPrompt }] },
           contents: [{ role: "user", parts }],
           generationConfig: {
             temperature: 0,

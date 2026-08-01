@@ -1,6 +1,6 @@
-import { QUOTE_INSTRUCTION, QUOTE_JSON_SCHEMA, QUOTE_SYSTEM_PROMPT } from "../analysis/quote-spec.ts";
 import {
   ProviderError,
+  type AnalysisSpec,
   USER_MESSAGE,
   parseAnalysis,
   type ProviderResult,
@@ -42,7 +42,7 @@ export function createAnthropicProvider(): QuoteProvider {
     name: "anthropic",
     model,
 
-    async analyzeQuote(input: QuoteInput): Promise<ProviderResult> {
+    async analyze(input: QuoteInput, spec: AnalysisSpec): Promise<ProviderResult> {
       const apiKey = process.env.ANTHROPIC_API_KEY;
       if (!apiKey) {
         throw new ProviderError({
@@ -54,7 +54,7 @@ export function createAnthropicProvider(): QuoteProvider {
 
       const content = input.imageBase64
         ? [
-            { type: "text", text: QUOTE_INSTRUCTION },
+            { type: "text", text: spec.instruction },
             {
               type: "image",
               source: {
@@ -64,7 +64,7 @@ export function createAnthropicProvider(): QuoteProvider {
               },
             },
           ]
-        : [{ type: "text", text: `${QUOTE_INSTRUCTION}\n\n---\n\nInnehåll:\n\n${input.pdfText}` }];
+        : [{ type: "text", text: `${spec.instruction}\n\n---\n\nInnehåll:\n\n${input.pdfText}` }];
 
       const startedAt = Date.now();
       const res = await fetch(ENDPOINT, {
@@ -78,9 +78,9 @@ export function createAnthropicProvider(): QuoteProvider {
           model,
           max_tokens: 2000,
           temperature: 0,
-          system: QUOTE_SYSTEM_PROMPT,
+          system: spec.systemPrompt,
           messages: [{ role: "user", content }],
-          output_config: { format: { type: "json_schema", schema: QUOTE_JSON_SCHEMA } },
+          output_config: { format: { type: "json_schema", schema: spec.schema } },
         }),
       });
 

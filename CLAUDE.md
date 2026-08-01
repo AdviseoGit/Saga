@@ -44,7 +44,9 @@ Server-side (Railway → Variables):
 Offertanalysen går genom ett leverantörslager i `lib/providers/` så att modellbytet
 är ett miljövariabelbyte, inte en omskrivning:
 
-- `lib/analysis/quote-spec.ts` — systemprompt och JSON-schema. Enda källan till sanning.
+- `lib/analysis/quote-spec.ts` / `invoice-spec.ts` — systemprompt och JSON-schema för
+  offertanalys respektive fakturakontroll. Enda källan till sanning; `mode` i requesten
+  avgör vilken spec som används och om svaret heter `analysis` eller `invoiceAnalysis`.
 - `lib/providers/anthropic.ts` / `gemini.ts` — adaptrar mot respektive API.
 - `lib/providers/gemini-schema.ts` — översätter JSON Schema till Geminis `responseSchema`
   (versala typer, `nullable` istället för unionstyper, inget `additionalProperties`).

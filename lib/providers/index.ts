@@ -3,7 +3,7 @@ import { createGeminiProvider } from "./gemini.ts";
 import { ProviderError, type ProviderName, type QuoteProvider } from "./types.ts";
 
 export { ProviderError };
-export type { ProviderName, ProviderResult, QuoteInput, QuoteProvider } from "./types.ts";
+export type { AnalysisSpec, ProviderName, ProviderResult, QuoteInput, QuoteProvider } from "./types.ts";
 
 const FACTORIES: Record<ProviderName, () => QuoteProvider> = {
   anthropic: createAnthropicProvider,

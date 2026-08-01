@@ -2,6 +2,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { getQuoteProvider, ProviderError } from '@/lib/providers';
+import { QUOTE_SPEC } from '@/lib/analysis/quote-spec';
+import { INVOICE_SPEC } from '@/lib/analysis/invoice-spec';
 
 // Fire-and-forget: log anonymised analysis data for market baseline training
 function logAnalysis(result: Record<string, any>): void {
@@ -64,6 +66,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const body = await request.json();
+    const { imageBase64, mediaType = "image/jpeg", pdfText, mode = "quote" } = body;
+    const isInvoice = mode === "invoice";
+
     // Vald leverantör styrs av QUOTE_PROVIDER (anthropic som standard)
     const provider = getQuoteProvider();
     const keyName = provider.name === 'gemini' ? 'GEMINI_API_KEY' : 'ANTHROPIC_API_KEY';
@@ -85,6 +91,32 @@ export async function POST(request: NextRequest) {
     }
 
     // Development mode fallback - return mock analysis without API call
+    if (!apiKey && devMode && isInvoice) {
+      console.log('Development mode: returning mock invoice analysis');
+      return NextResponse.json({
+        invoiceAnalysis: {
+          company: { name: "Mock Fakturabolag AB", org_nr: "5561234567", address: "Testgatan 1, Stockholm", contact: "faktura@mock.se" },
+          invoice: {
+            invoice_number: "2026-0042", invoice_date: "2026-07-01", due_date: "2026-07-31",
+            total_amount: 12500, payment_account: "1234-5678", payment_method: "Bankgiro", ocr_reference: "20260042",
+          },
+          fraud_verdict: "SAFE",
+          verdict_text: "Fakturan innehåller samtliga obligatoriska uppgifter och avsändaren ser korrekt ut.",
+          risk_score: 12,
+          fraud_signals: [],
+          legitimate_signals: ["Fullständigt organisationsnummer", "Normal betalningstid (30 dagar)"],
+          missing_fields: [],
+          confidence: "medium",
+        },
+      }, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        }
+      });
+    }
+
     if (!apiKey && devMode) {
       console.log('Development mode: returning mock analysis');
       const mockAnalysis = {
@@ -154,10 +186,6 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Parse request body
-    const body = await request.json();
-    const { imageBase64, mediaType = "image/jpeg", pdfText, mode = "quote" } = body;
-
     const isVision = imageBase64 && typeof imageBase64 === "string";
     const isText = pdfText && typeof pdfText === "string";
 
@@ -208,12 +236,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const result = await provider.analyzeQuote({ imageBase64, mediaType, pdfText });
+    const result = await provider.analyze(
+      { imageBase64, mediaType, pdfText },
+      isInvoice ? INVOICE_SPEC : QUOTE_SPEC
+    );
 
-    // Auto-log for ML training (fire and forget — does not delay response)
-    logAnalysis(result.analysis);
+    // Marknadsdatan gäller bara offerter — fakturor har inget pris att jämföra.
+    if (!isInvoice) logAnalysis(result.analysis);
 
-    return NextResponse.json({ analysis: result.analysis, provider: result.provider, model: result.model }, {
+    const payload = isInvoice
+      ? { invoiceAnalysis: result.analysis, provider: result.provider, model: result.model }
+      : { analysis: result.analysis, provider: result.provider, model: result.model };
+
+    return NextResponse.json(payload, {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',

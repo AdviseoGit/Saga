@@ -17,6 +17,7 @@ import { extname, join } from "node:path";
 import { createAnthropicProvider } from "../lib/providers/anthropic.ts";
 import { createGeminiProvider } from "../lib/providers/gemini.ts";
 import type { ProviderResult, QuoteInput } from "../lib/providers/types.ts";
+import { QUOTE_SPEC } from "../lib/analysis/quote-spec.ts";
 
 const IMAGE_TYPES: Record<string, string> = {
   ".jpg": "image/jpeg",
@@ -121,7 +122,7 @@ async function main(): Promise<void> {
     // Sekventiellt och en i taget: ratelimits på båda sidor, och vi har inte bråttom.
     for (const [provider, slot] of [[anthropic, "a"], [gemini, "b"]] as const) {
       try {
-        row[slot] = summarise(await provider.analyzeQuote(input));
+        row[slot] = summarise(await provider.analyze(input, QUOTE_SPEC));
       } catch (e) {
         row[`${slot}Error`] = e instanceof Error ? e.message : String(e);
       }

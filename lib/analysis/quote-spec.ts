@@ -94,3 +94,10 @@ export const QUOTE_JSON_SCHEMA = {
 /** Instruktionen som följer med själva offerten i användarturen. */
 export const QUOTE_INSTRUCTION =
   "Analysera denna offert och svara med exakt den JSON-struktur som angavs. Ingen annan text.";
+
+/** Samlad spec som skickas till leverantören. */
+export const QUOTE_SPEC = {
+  systemPrompt: QUOTE_SYSTEM_PROMPT,
+  schema: QUOTE_JSON_SCHEMA,
+  instruction: QUOTE_INSTRUCTION,
+};
