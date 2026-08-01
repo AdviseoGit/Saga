@@ -1,6 +1,7 @@
 // Next.js API Route: Analys av offerter med Claude + ML hybrid approach
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { getQuoteProvider, ProviderError } from '@/lib/providers';
 
 // Fire-and-forget: log anonymised analysis data for market baseline training
 function logAnalysis(result: Record<string, any>): void {
@@ -42,91 +43,6 @@ function checkRateLimit(ip: string, max: number, windowMs: number): boolean {
   return true;
 }
 
-// Claude prompts och schemas (samma som tidigare)
-const QUOTE_SYSTEM_PROMPT = `Du är Saga, Sveriges AI för offertanalys. Analysera offerten (bild eller text) och extrahera företagsuppgifter samt prisanalys.
-
-SVENSK MARKNADSPRISDATA (riktvärden 2026):
-- Badrumsrenovering: litet 60–120 kkr, medel 90–180 kkr, stort 150–300 kkr. Rivning 8–20 kkr, rör 15–40 kkr, kakel 800–1500 kr/kvm, el 5–15 kkr, tätskikt 10–20 kkr.
-- Kök: ytskikt 30–80 kkr, komplett 80–250 kkr.
-- Målning: per rum 5–15 kkr, hel lägenhet 25–60 kkr, fasad villa 40–100 kkr, timpris 350–550 kr/tim.
-- El: timpris 450–700 kr/tim, elcentral 15–35 kkr, belysning per punkt 1,5–3,5 kkr.
-- VVS: timpris 450–750 kr/tim, blandare 2–5 kkr, värmepanna 30–80 kkr, golvvärme 500–1200 kr/kvm.
-- Golv: laminat 400–700 kr/kvm, parkett 600–1200 kr/kvm.
-- Stockholm ~1,15–1,3x, Göteborg ~1,05–1,15x, Skåne ~1,0–1,1x. ROT 2026: 30% arbetskostnad, max 50 000 kr/person/år.
-
-Svara ENDAST med ett giltigt JSON-objekt enligt den angivna schemat.`;
-
-const QUOTE_JSON_SCHEMA = {
-  type: "object",
-  properties: {
-    company: {
-      type: "object",
-      properties: {
-        name: { type: ["string", "null"] },
-        org_nr: { type: ["string", "null"] },
-        address: { type: ["string", "null"] },
-        contact: { type: ["string", "null"] },
-      },
-      required: ["name", "org_nr", "address", "contact"],
-      additionalProperties: false,
-    },
-    quote: {
-      type: "object",
-      properties: {
-        total_amount: { type: "number" },
-        includes_vat: { type: "boolean" },
-        includes_rot: { type: "boolean" },
-        rot_eligible_labor: { type: ["number", "null"] },
-        rot_deduction: { type: ["number", "null"] },
-        total_after_rot: { type: ["number", "null"] },
-        category: { type: "string" },
-        region_guess: { type: ["string", "null"] },
-        validity_days: { type: ["number", "null"] },
-        estimated_area_sqm: { type: ["number", "null"] },
-        estimated_rooms: { type: ["number", "null"] },
-        timeline_weeks: { type: ["number", "null"] },
-      },
-      required: ["total_amount", "includes_vat", "includes_rot", "category", "region_guess"],
-      additionalProperties: false,
-    },
-    verdict: { type: "string", enum: ["LOW", "FAIR", "HIGH", "VERY_HIGH"] },
-    verdict_text: { type: "string" },
-    market_range: {
-      type: "object",
-      properties: { low: { type: "number" }, high: { type: "number" } },
-      required: ["low", "high"],
-      additionalProperties: false,
-    },
-    line_items: {
-      type: "array",
-      items: {
-        type: "object",
-        properties: {
-          description: { type: "string" },
-          amount: { type: "number" },
-          is_labor: { type: "boolean" },
-          assessment: { type: "string", enum: ["LOW", "FAIR", "HIGH"] },
-          market_range: { type: "string" },
-          comment: { type: "string" },
-        },
-        required: ["description", "amount"],
-        additionalProperties: false,
-      },
-    },
-    red_flags: { type: "array", items: { type: "string" } },
-    yellow_flags: { type: "array", items: { type: "string" } },
-    green_flags: { type: "array", items: { type: "string" } },
-    negotiate_tips: { type: "array", items: { type: "string" } },
-    missing_in_quote: { type: "array", items: { type: "string" } },
-    confidence: { type: "string", enum: ["high", "medium", "low"] },
-  },
-  required: [
-    "company", "quote", "verdict", "verdict_text", "market_range",
-    "line_items", "red_flags", "yellow_flags", "green_flags",
-    "negotiate_tips", "missing_in_quote", "confidence",
-  ],
-  additionalProperties: false,
-};
 
 export async function POST(request: NextRequest) {
   try {
@@ -148,13 +64,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check API key
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    // Vald leverantör styrs av QUOTE_PROVIDER (anthropic som standard)
+    const provider = getQuoteProvider();
+    const keyName = provider.name === 'gemini' ? 'GEMINI_API_KEY' : 'ANTHROPIC_API_KEY';
+    const apiKey = process.env[keyName];
     const devMode = process.env.NODE_ENV !== 'production';
 
     if (!apiKey && !devMode) {
       return NextResponse.json(
-        { error: "ANTHROPIC_API_KEY not configured" },
+        { error: `${keyName} not configured` },
         {
           status: 500,
           headers: {
@@ -290,64 +208,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare Claude request
-    const instructionText = "Analysera denna offert och svara med exakt den JSON-struktur som angavs. Ingen annan text.";
+    const result = await provider.analyzeQuote({ imageBase64, mediaType, pdfText });
 
-    const userContent = isVision
-      ? [
-          { type: "text" as const, text: instructionText },
-          { type: "image" as const, source: { type: "base64" as const, media_type: mediaType, data: imageBase64 } },
-        ]
-      : [{ type: "text" as const, text: `${instructionText}\n\n---\n\nInnehåll:\n\n${pdfText}` }];
+    // Auto-log for ML training (fire and forget — does not delay response)
+    logAnalysis(result.analysis);
 
-    // Call Claude API
-    const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
+    return NextResponse.json({ analysis: result.analysis, provider: result.provider, model: result.model }, {
       headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey!,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-haiku-4-5",
-        max_tokens: 2000,
-        temperature: 0,
-        system: QUOTE_SYSTEM_PROMPT,
-        messages: [{ role: "user", content: userContent }],
-        output_config: {
-          format: {
-            type: "json_schema",
-            schema: QUOTE_JSON_SCHEMA,
-          },
-        },
-      }),
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
     });
 
-    if (!anthropicRes.ok) {
-      const errText = await anthropicRes.text();
-      console.error('Claude API error:', errText);
-
-      // Map known API errors to user-friendly Swedish messages
-      let userMessage = "Analysservicen är tillfälligt otillgänglig. Försök igen om en stund.";
-      try {
-        const errJson = JSON.parse(errText);
-        const msg = errJson?.error?.message ?? "";
-        if (msg.includes("credit balance") || msg.includes("billing")) {
-          // Credit issue — log for ops, hide from user
-          console.error("BILLING ALERT: Anthropic credits exhausted");
-          userMessage = "Analysservicen är tillfälligt otillgänglig. Försök igen om en stund.";
-        } else if (msg.includes("overloaded") || msg.includes("rate_limit")) {
-          userMessage = "Saga är just nu överbelastad. Vänta 30 sekunder och försök igen.";
-        } else if (msg.includes("invalid_api_key")) {
-          console.error("ALERT: Invalid Anthropic API key");
-          userMessage = "Konfigurationsfel. Kontakta support.";
-        }
-      } catch { /* keep generic message */ }
-
+  } catch (error) {
+    // Leverantörsfel: den riktiga orsaken loggas, användaren får en neutral text.
+    if (error instanceof ProviderError) {
+      console.error(error.message);
       return NextResponse.json(
-        { error: userMessage },
+        { error: error.userMessage },
         {
-          status: 503,
+          status: error.status,
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -357,22 +238,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const data = await anthropicRes.json();
-    const textBlock = data.content?.find((b: { type: string }) => b.type === "text");
-    const result = JSON.parse(textBlock?.text ?? "{}");
-
-    // Auto-log for ML training (fire and forget — does not delay response)
-    logAnalysis(result);
-
-    return NextResponse.json({ analysis: result }, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      }
-    });
-
-  } catch (error) {
     console.error('Analysis error:', error);
     const message = error instanceof Error ? error.message : String(error);
     return NextResponse.json(

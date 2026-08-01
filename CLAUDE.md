@@ -8,6 +8,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev      # Start development server (http://localhost:3000)
 npm run build    # Production build
 npm run lint     # Run ESLint
+
+# Skuggtest: kör samma offerter genom Claude och Gemini och jämför utfallet
+ANTHROPIC_API_KEY=... GEMINI_API_KEY=... npm run compare:providers -- ./testdata
 ```
 
 There are no tests configured.
@@ -26,9 +29,32 @@ NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 ```
 
-Supabase Edge Function secrets (set via Supabase dashboard → Project Settings → Edge Functions → Secrets):
-- `ANTHROPIC_API_KEY` — used by `analyze-quote`
-- `ROARING_CLIENT_ID` + `ROARING_CLIENT_SECRET` — used by `verify-company`
+Server-side (Railway → Variables):
+- `ANTHROPIC_API_KEY` — offertanalysen (standard-leverantören)
+- `GEMINI_API_KEY` — krävs bara om `QUOTE_PROVIDER=gemini`
+- `QUOTE_PROVIDER` — `anthropic` (standard) eller `gemini`
+- `ANTHROPIC_MODEL` / `GEMINI_MODEL` — valfria; överskriver `claude-haiku-4-5` respektive `gemini-2.5-flash`
+- `SUPABASE_SERVICE_ROLE_KEY` — leads, analyser och partnerleads
+- `ADMIN_TOKEN` — krävs för `/admin/leads`; saknas den är vyn avstängd
+- `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` / `SMTP_FROM` / `LEAD_NOTIFY_EMAIL` — utgående mejl
+- `ROARING_CLIENT_ID` + `ROARING_CLIENT_SECRET` — används av `verify-company`
+
+### Modell-leverantörer
+
+Offertanalysen går genom ett leverantörslager i `lib/providers/` så att modellbytet
+är ett miljövariabelbyte, inte en omskrivning:
+
+- `lib/analysis/quote-spec.ts` — systemprompt och JSON-schema. Enda källan till sanning.
+- `lib/providers/anthropic.ts` / `gemini.ts` — adaptrar mot respektive API.
+- `lib/providers/gemini-schema.ts` — översätter JSON Schema till Geminis `responseSchema`
+  (versala typer, `nullable` istället för unionstyper, inget `additionalProperties`).
+- `lib/providers/index.ts` — `getQuoteProvider()`; okänt värde i `QUOTE_PROVIDER`
+  loggas och faller tillbaka på Anthropic.
+
+Byt aldrig leverantör i produktion utan att först köra `npm run compare:providers`
+mot ett tiotal riktiga offerter. Både CTA-logiken (`lib/outcomes.ts`) och
+partnerleadsen bygger på `verdict` och avvikelsen mot marknadssnittet — glider de
+isär mellan modellerna säljs fel leads vidare, och det syns inte i någon logg.
 
 ## Architecture
 
