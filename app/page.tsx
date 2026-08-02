@@ -451,6 +451,11 @@ export default function SagaLandingPage() {
         </div>
       </section>
 
+      <section className="border-t border-[#e2e8f0] bg-white px-4 py-8 sm:px-6">
+        <div className="mx-auto max-w-5xl">
+          <SagaIndexBanner />
+        </div>
+      </section>
 
       {/* Hur det fungerar */}
       <section className="border-t border-[#e2e8f0] bg-[#f8fafc] px-4 py-14 sm:px-6">
