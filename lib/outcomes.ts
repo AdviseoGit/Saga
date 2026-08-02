@@ -6,7 +6,7 @@ import type { SagaAnalysis, CompanyVerification } from "../app/page";
  * resultatvyn och (framtida) e-postutskick kan använda samma bedömning.
  */
 
-export type OutcomeId = "COMPANY_RISK" | "EXPENSIVE" | "FAVORABLE";
+export type OutcomeId = "COMPANY_RISK" | "EXPENSIVE" | "UNASSESSED" | "FAVORABLE";
 
 export type LeadIntent =
   | "match_cheaper"    // Utfall A – matcha mot bolag som lägger sig under priset
@@ -156,6 +156,24 @@ export function resolveOutcome(
         consentText: MATCH_CONSENT,
       },
       secondary: null,
+    };
+  }
+
+  // Saknar Saga prisunderlag för kategorin får utfallet inte påstå att priset
+  // ser bra ut — vi vet inte. Samma CTA:n som FAVORABLE, ärlig rubrik.
+  if (analysis.verdict === "UNKNOWN" || !analysis.market_range) {
+    return {
+      id: "UNASSESSED",
+      tone: "amber",
+      eyebrow: "Nästa steg",
+      headline: `Saga kan inte prisbedöma ${category}`,
+      body:
+        "Vi har inget marknadsunderlag för den här typen av arbete, så vi säger varken att " +
+        "priset är bra eller dåligt. Vill du ändå att någon går igenom avtalsvillkoren innan " +
+        "du signerar?",
+      reasons: [],
+      primary: CONTRACT_REVIEW,
+      secondary: FINANCING,
     };
   }
 

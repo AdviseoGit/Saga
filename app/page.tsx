@@ -25,9 +25,9 @@ export interface SagaAnalysis {
     region_guess: string | null;
     validity_days?: number | null;
   };
-  verdict: "LOW" | "FAIR" | "HIGH" | "VERY_HIGH";
+  verdict: "LOW" | "FAIR" | "HIGH" | "VERY_HIGH" | "UNKNOWN";
   verdict_text: string;
-  market_range: { low: number; high: number };
+  market_range: { low: number; high: number } | null;
   line_items: Array<{
     description: string;
     amount: number;
@@ -683,6 +683,9 @@ const VERDICT_CONFIG: Record<string, { label: string; color: string; bg: string;
   FAIR:     { label: "Rimligt pris", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/30", dotColor: "#34d399" },
   HIGH:     { label: "I överkant",   color: "text-amber-400",   bg: "bg-amber-500/10",   border: "border-amber-500/30",   dotColor: "#fbbf24" },
   VERY_HIGH:{ label: "Högt pris",    color: "text-red-400",     bg: "bg-red-500/10",     border: "border-red-500/30",     dotColor: "#f87171" },
+  // Saknas prisunderlag för kategorin ska vi inte falla tillbaka på FAIR
+  // ("Rimligt pris") — då påstår vi något vi inte vet.
+  UNKNOWN:  { label: "Kan ej prisbedömas", color: "text-slate-300", bg: "bg-slate-500/10", border: "border-slate-500/30", dotColor: "#94a3b8" },
 };
 
 

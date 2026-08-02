@@ -26,6 +26,8 @@ interface ApiResponse {
 
 const CATEGORY_CONFIG: Record<string, { icon: string; bgColor: string; unit: string; link: string; displayName: string }> = {
   "Badrumsrenovering": { icon: "🛁", bgColor: "bg-blue-50", unit: "/ kvm", link: "/verktyg/badrumsrenovering-kalkylator", displayName: "Badrumsrenovering" },
+  // ingen kökskalkylator ännu — tom link döljer kalkylatorknappen
+  "Köksrenovering": { icon: "🍳", bgColor: "bg-emerald-50", unit: "totalt", link: "", displayName: "Köksrenovering" },
   "Takbyte": { icon: "🏠", bgColor: "bg-orange-50", unit: "/ kvm", link: "/verktyg/takbyte-kalkylator", displayName: "Takbyte" },
   "Solceller": { icon: "☀️", bgColor: "bg-yellow-50", unit: "/ kW", link: "/verktyg/solcells-kalkylator", displayName: "Solceller" },
   "Bergvärme": { icon: "🔥", bgColor: "bg-red-50", unit: "totalt", link: "/verktyg/bergvarme-kalkylator", displayName: "Bergvärme" },

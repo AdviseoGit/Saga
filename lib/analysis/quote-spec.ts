@@ -6,14 +6,48 @@
  * innebär två versioner av prompten som glider isär.
  */
 
+/**
+ * Kontrollerad vokabulär för `quote.category`.
+ *
+ * Fältet var fritext utan vägledning, vilket gav värden som "Kök",
+ * "Inredning", "maskiner/utrustning" och "unknown" i `analyses` — omöjligt att
+ * gruppera i Saga Index. Värdena är gemena och matchar CATEGORY_CONFIG i
+ * SagaIndexData (som slår upp skiftlägesokänsligt).
+ *
+ * Kategorin styr dessutom vilket marknadsintervall offerten jämförs mot, så fel
+ * kategori ger fel prisdom.
+ */
+export const QUOTE_CATEGORIES = [
+  "badrumsrenovering",
+  "köksrenovering",
+  "målning",
+  "el",
+  "vvs-arbete",
+  "golv",
+  "takbyte",
+  "fasadrenovering",
+  "solceller",
+  "bergvärme",
+  "värmepump",
+  "fönster/dörrar",
+  "markarbete",
+  "övrigt",
+] as const;
+
 export const QUOTE_SYSTEM_PROMPT = `Du är Saga, Sveriges AI för offertanalys. Analysera offerten (bild eller text) och extrahera företagsuppgifter samt prisanalys.
 
-SVENSK MARKNADSPRISDATA (riktvärden 2026):
+KATEGORISERING — gör detta först:
+1. Avgör vad offerten huvudsakligen avser och sätt quote.category till exakt ett av schemats tillåtna värden. Väg artikel- och arbetsraderna tyngst — inte företagsnamn, sidhuvud eller enstaka lösryckta ord.
+2. Exempel: köksstommar, luckor, bänkskiva, vitvaror, köksmontage, köksinredning => "köksrenovering". Kakel, tätskikt, golvbrunn, dusch, wc => "badrumsrenovering". Blanda aldrig ihop dem.
+3. Jämför ENDAST mot marknadsdatan för den kategori du valt. Låna aldrig ett prisintervall från en annan kategori.
+4. Saknas marknadsdata nedan för den valda kategorin: sätt market_range till null, verdict till "UNKNOWN", confidence till "low" och förklara i verdict_text att Saga saknar prisunderlag för just den här typen av arbete. Hitta aldrig på ett intervall.
+
+SVENSK MARKNADSPRISDATA (riktvärden 2026) — finns endast för kategorierna nedan:
 - Badrumsrenovering: litet 60–120 kkr, medel 90–180 kkr, stort 150–300 kkr. Rivning 8–20 kkr, rör 15–40 kkr, kakel 800–1500 kr/kvm, el 5–15 kkr, tätskikt 10–20 kkr.
-- Kök: ytskikt 30–80 kkr, komplett 80–250 kkr.
+- Köksrenovering: ytskikt 30–80 kkr, komplett 80–250 kkr.
 - Målning: per rum 5–15 kkr, hel lägenhet 25–60 kkr, fasad villa 40–100 kkr, timpris 350–550 kr/tim.
 - El: timpris 450–700 kr/tim, elcentral 15–35 kkr, belysning per punkt 1,5–3,5 kkr.
-- VVS: timpris 450–750 kr/tim, blandare 2–5 kkr, värmepanna 30–80 kkr, golvvärme 500–1200 kr/kvm.
+- VVS-arbete: timpris 450–750 kr/tim, blandare 2–5 kkr, värmepanna 30–80 kkr, golvvärme 500–1200 kr/kvm.
 - Golv: laminat 400–700 kr/kvm, parkett 600–1200 kr/kvm.
 - Stockholm ~1,15–1,3x, Göteborg ~1,05–1,15x, Skåne ~1,0–1,1x. ROT 2026: 30% arbetskostnad, max 50 000 kr/person/år.
 
@@ -42,7 +76,7 @@ export const QUOTE_JSON_SCHEMA = {
         rot_eligible_labor: { type: ["number", "null"] },
         rot_deduction: { type: ["number", "null"] },
         total_after_rot: { type: ["number", "null"] },
-        category: { type: "string" },
+        category: { type: "string", enum: [...QUOTE_CATEGORIES] },
         region_guess: { type: ["string", "null"] },
         validity_days: { type: ["number", "null"] },
         estimated_area_sqm: { type: ["number", "null"] },
@@ -52,10 +86,14 @@ export const QUOTE_JSON_SCHEMA = {
       required: ["total_amount", "includes_vat", "includes_rot", "category", "region_guess"],
       additionalProperties: false,
     },
-    verdict: { type: "string", enum: ["LOW", "FAIR", "HIGH", "VERY_HIGH"] },
+    verdict: { type: "string", enum: ["LOW", "FAIR", "HIGH", "VERY_HIGH", "UNKNOWN"] },
     verdict_text: { type: "string" },
+    // Nullbar: utan den möjligheten tvingas modellen uppfinna ett intervall när
+    // kategorin saknar underlag. I test hittade den på 120–220, 130–210 och
+    // 140–180 kkr för samma köksoffert — inget av dem är riktvärdet ovan.
+    // toGeminiSchema översätter unionen till OBJECT + nullable: true.
     market_range: {
-      type: "object",
+      type: ["object", "null"],
       properties: { low: { type: "number" }, high: { type: "number" } },
       required: ["low", "high"],
       additionalProperties: false,
