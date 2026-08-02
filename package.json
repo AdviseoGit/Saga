@@ -14,7 +14,8 @@
     "railway:health": "curl -f http://localhost:3000/api/health || exit 1",
     "railway:deploy": "railway up",
     "railway:logs": "railway logs",
-    "postbuild": "echo 'Build completed for Railway deployment'"
+    "postbuild": "echo 'Build completed for Railway deployment'",
+    "compare:providers": "node --experimental-strip-types scripts/compare-providers.mts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.47.0",

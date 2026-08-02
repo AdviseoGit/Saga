@@ -4,6 +4,9 @@
 2026-07-30 | TILLVÄXT/LEADFLOW | Byggde in SagaIndexBanner i kalkylatorerna och resultatvyn | Länkkraft & Trafik till data-moaten | nästa: Implementera Saga Index UI som visar datan från supabase
 2026-07-29 | TILLVÄXT/LEADFLOW | B2B Partner Lead Capture form för kalkylatorer | Lead capture via /api/leads konverterad till /api/partner-leads med rätt partner intent | nästa: Implementera Saga Index UI som visar datan från supabase
 2026-07-28 | SEO/TILLVÄXT | Adderat "Om Saga" & "Kontakt" till navigering samt index-inspektioner | Navigation/Indexering | nästa: Implementera Saga Index UI
+2026-07-27 | FIX | Fakturaläget fungerar igen: /api/analyze-quote läser mode och kör INVOICE_SPEC, svarar med invoiceAnalysis | trasig funktion sedan Railway-migreringen | nästa: kör migration 003 och sätt ADMIN_TOKEN i Railway
+2026-07-27 | ARKITEKTUR | Leverantörslager för offertanalysen (Claude/Gemini bakom QUOTE_PROVIDER) + skuggtestskript som jämför verdict och marknadsavvikelse | valfrihet inför ev. leverantörsbyte | nästa: kör compare:providers mot 20 riktiga offerter innan beslut
+2026-07-27 | B2B/LEADFÖRSÄLJNING | Admin-vy för partnerleads (/admin/leads, tokenskyddad) med genererade mejl- och telefonskript per lead + statusflöde ny/kontaktad/såld | monetisering av Saga-leads | nästa: sälja in första fasta partnern per region
 2026-07-27 | KONVERTERING | Saga-fällan: tre utfallsstyrda CTA:n i resultatvyn (dyr / gynnsam / röda flaggor) + partner_leads-API och -tabell + Saga-banner på alla kalkylatorsidor | konvertering & lead-monetisering | nästa: Steg 2 – sälja in första B2B-partnern på Saga-leads
 2026-07-27 | DESIGN | Åtgärdade dubbla/hårdkodade headers till global Header-komponent | UX/Design | nästa: Optimera kalkylator-SEO eller bygg nytt dataverktyg
 2026-07-26 | DESIGN | Åtgärdade dubbel footer i rot layout | UX/Design | nästa: Optimera kalkylator-SEO eller bygg nytt dataverktyg
