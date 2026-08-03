@@ -1,0 +1,11 @@
+# Fråga Saga
+
+Denna webbplats är ett AI-drivet verktyg för att granska offerter och fakturor från hantverkare, samt utföra prisjämförelser. Den drivs helt av AI och har inga mänskliga experter bakom sig. Verktygen baseras på insamlade prisdata för den svenska marknaden. All information bör användas som vägledning, inte rådgivning.
+
+## Viktiga Sidor
+- Startsida: https://fragasaga.se/
+- Saga Index (Vår prisdata): https://fragasaga.se/saga-index
+- ROT-avdrag: https://fragasaga.se/rot-avdrag
+- F-skatt: https://fragasaga.se/f-skatt
+- Granska Offert Hantverkare: https://fragasaga.se/granska-offert-hantverkare
+- Kolla Faktura: https://fragasaga.se/kolla-faktura

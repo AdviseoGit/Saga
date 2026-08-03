@@ -22,19 +22,45 @@ export const metadata: Metadata = {
     'Få hjälp att granska din offert från hantverkare. Lär dig vad som ska ingå, hur du undviker överpriser och säkerställer att allt är korrekt innan du skriver på.',
 }
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Granska Offert från Hantverkare - Är Priset Rimligt?",
+  "description": "Få hjälp att granska din offert från hantverkare. Lär dig vad som ska ingå, hur du undviker överpriser och säkerställer att allt är korrekt innan du skriver på.",
+  "author": {
+    "@type": "Organization",
+    "name": "Fråga Saga"
+  },
+  "datePublished": "2024-01-01",
+  "dateModified": "2026-08-03",
+};
+
 export default function GranskaOffertHantverkare() {
   return (
-    <SimpleLayout
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <SimpleLayout
       title="Är offerten från din hantverkare rimlig?"
       intro="Att anlita hantverkare är ett stort steg. Men hur vet du att offerten du fått är skälig? Vi hjälper dig att granska din offert, förstå vad som ska ingå och undvika de vanligaste fallgroparna."
     >
       <div className="space-y-12">
         <section>
+          <p className="text-xl font-medium text-gray-900 border-l-4 border-blue-500 pl-4 py-2 bg-blue-50/50">
+            <strong>Sammanfattning:</strong> En normal timpenning för hantverkare (snickare, målare, VVS) i Sverige 2026 ligger på mellan 600 kr och 850 kr i timmen inklusive moms, innan ROT-avdraget på 30% är draget. Att företaget har F-skatt är ett absolut krav för att du ska få göra ROT-avdrag.
+            <br/><br/>
+            <span className="text-sm text-gray-500">Uppdaterad: 2026-08-03</span>
+          </p>
+        </section>
+        <section>
           <h2 className="text-2xl font-bold text-gray-800">
-            Steg 1: Kontrollera Företaget
+            Steg 1: Kontrollera Företaget (F-skatt är kritiskt)
           </h2>
           <p className="mt-4 text-lg text-gray-600">
-            Innan du ens tittar på siffrorna, säkerställ att företaget är seriöst.
+            Innan du ens tittar på siffrorna, säkerställ att företaget är seriöst. 
+            Det kan du göra genom att kolla upp företaget hos <a href="https://skatteverket.se" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Skatteverket</a> eller via tjänster som Allabolag.
           </p>
           <ul className="mt-4 list-disc space-y-2 pl-6 text-lg text-gray-600">
             <li>
@@ -98,5 +124,6 @@ export default function GranskaOffertHantverkare() {
 
       </div>
     </SimpleLayout>
+    </>
   )
 }

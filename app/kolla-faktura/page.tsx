@@ -27,13 +27,37 @@ export const metadata: Metadata = {
 };
 
 export default function KollaFakturaPage() {
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Kolla Faktura från Hantverkare - Är Priset Rimligt?",
+      "description": "Är du osäker på din faktura från hantverkaren? Vår guide hjälper dig att kontrollera arbetskostnad, material, och ROT-avdrag. Lär dig granska fakturan som ett proffs.",
+      "author": {
+        "@type": "Organization",
+        "name": "Fråga Saga"
+      },
+      "datePublished": "2024-01-01",
+      "dateModified": "2026-08-03",
+    };
+
     return (
         <div className="container mx-auto px-4 py-8">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <article className="prose lg:prose-xl max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
                 
                 <p className="lead">
                     Att renovera eller bygga om hemma är en spännande process, men när fakturan från hantverkaren landar i brevlådan kan det snabbt uppstå osäkerhet. Är allt korrekt? Är priset rimligt? Att kunna granska en faktura på rätt sätt är A och O för en trygg och lyckad affär. Fråga Saga guidar dig genom de viktigaste stegen för att säkerställa att du betalar rätt pris för rätt arbete.
                 </p>
+
+                <div className="my-8 border-l-4 border-blue-500 pl-4 py-2 bg-blue-50/50">
+                    <p className="text-xl font-medium text-gray-900 m-0">
+                        <strong>Sammanfattning:</strong> För att kunna nyttja ROT-avdraget på 30 % av arbetskostnaden krävs att hantverkaren har en godkänd F-skatt och att arbetskostnaden är tydligt separerad från material på din faktura. Betala aldrig hantverkare kontant; elektronisk betalning är ett krav från <a href="https://skatteverket.se" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-normal">Skatteverket</a>.
+                    </p>
+                    <p className="text-sm text-gray-500 mt-2 m-0">Uppdaterad: 2026-08-03</p>
+                </div>
 
                 <section>
                     <h2 className="text-2xl font-semibold mt-6 mb-2">1. Jämför Fakturan med Offerten</h2>
