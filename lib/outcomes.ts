@@ -56,21 +56,32 @@ export function marketPosition(analysis: SagaAnalysis): MarketPosition {
   return { mid, pct, overMarketAmount: total > mid ? Math.round(total - mid) : null };
 }
 
-/** Röda flaggor som kommer från myndighetskollen, inte från offerten. */
+/** Röda flaggor som kommer från myndighetskollen, inte från offerten.
+ *
+ *  Bara === false räknas. null betyder "inte kontrollerat" och får aldrig bli en
+ *  anklagelse — sedan Roaring blev valfritt är F-skatt och bolagsstatus ofta
+ *  okända, eftersom de inte går att hämta från något avgiftsfritt öppet API.
+ *
+ *  Ett organisationsnummer som inte gick att slå upp är INTE en röd flagga:
+ *  numret läses av automatiskt från en uppladdad bild och felläsning är långt
+ *  troligare än ett påhittat bolag. Det hanteras som ett läsfel i UI:t istället.
+ */
 export function companyRiskReasons(
   verification: CompanyVerification | null,
-  verificationError: string | null
+  _verificationError: string | null
 ): string[] {
   const reasons: string[] = [];
-  if (verification) {
-    if (verification.preliminaryTaxReg === false) reasons.push("Företaget saknar F-skattsedel");
-    if (verification.statusTextHigh && INACTIVE_STATUS.test(verification.statusTextHigh)) {
-      reasons.push(`Bolagsstatus hos Bolagsverket: ${verification.statusTextHigh}`);
-    }
-    if (verification.vatReg === false) reasons.push("Företaget är inte momsregistrerat");
-  } else if (verificationError && /hittades inte/i.test(verificationError)) {
-    reasons.push("Företaget hittades inte i myndighetsregistren");
+  if (!verification) return reasons;
+
+  if (verification.preliminaryTaxReg === false) reasons.push("Företaget saknar F-skattsedel");
+  if (verification.statusTextHigh && INACTIVE_STATUS.test(verification.statusTextHigh)) {
+    reasons.push(`Bolagsstatus hos Bolagsverket: ${verification.statusTextHigh}`);
   }
+  if (verification.vatReg === false) reasons.push("Företaget är inte momsregistrerat");
+  // nameMatchesQuote är MEDVETET ingen riskflagga. Kedjor, lokalkontor och
+  // bifirmor skriver sig legitimt i annat namn än den registrerade juridiska
+  // personen, så en avvikelse räcker inte för att peka ut någon. Uppgiften
+  // visas i företagskollen och får användaren avgöra.
   return reasons;
 }
 

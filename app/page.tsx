@@ -86,6 +86,12 @@ export interface CompanyVerification {
   topDirectorFunction: string | null;
   commune: string | null;
   county: string | null;
+  /** Vilka register som svarade ("vies", "roaring"). */
+  sources?: string[];
+  /** Gick org.nr att slå upp? false = troligen felläst från bilden, inte fejkbolag. */
+  orgNrValid?: boolean | null;
+  /** Stämmer namnet på offerten med det registrerade? */
+  nameMatchesQuote?: boolean | null;
 }
 
 type CompareResult = {
@@ -164,17 +170,24 @@ async function prepareFileBody(file: File): Promise<{ imageBase64?: string; medi
   return { imageBase64: data, mediaType };
 }
 
-async function verifyCompany(orgNr: string): Promise<{ verification: CompanyVerification | null; verificationError: string | null }> {
+async function verifyCompany(
+  orgNr: string,
+  quotedName?: string | null
+): Promise<{ verification: CompanyVerification | null; verificationError: string | null }> {
   try {
-    const { data, error, details } = await RailwayAPIClient.verifyCompany({ org_nr: orgNr });
-    if (error) {
-      let msg = error;
-      if (error === "company_not_found") msg = "Företaget hittades inte i registret.";
-      return { verification: null, verificationError: msg };
-    }
+    const { data, error } = await RailwayAPIClient.verifyCompany({
+      org_nr: orgNr,
+      company_name: quotedName ?? null,
+    });
+    if (error) return { verification: null, verificationError: error };
+
     const p = data as { verification?: CompanyVerification; error?: string; message?: string };
-    if (!p.verification) return { verification: null, verificationError: p.message ?? p.error ?? "Verifiering misslyckades." };
-    return { verification: p.verification, verificationError: null };
+    if (!p.verification) {
+      return { verification: null, verificationError: p.message ?? p.error ?? "Verifiering misslyckades." };
+    }
+    // Org.nr gick inte att slå upp: visa uppmaningen att kontrollera siffrorna,
+    // men behåll det vi faktiskt vet istället för att kasta hela svaret.
+    return { verification: p.verification, verificationError: p.message ?? null };
   } catch {
     return { verification: null, verificationError: "Kunde inte verifiera företaget." };
   }
@@ -264,7 +277,7 @@ export default function SagaLandingPage() {
           setStep("verifying");
           const orgNr = payload.invoiceAnalysis.company?.org_nr;
           if (orgNr) {
-            const { verification: v, verificationError: ve } = await verifyCompany(orgNr);
+            const { verification: v, verificationError: ve } = await verifyCompany(orgNr, payload.invoiceAnalysis.company?.name);
             setInvoiceVerification(v);
             setInvoiceVerificationError(ve);
           } else {
@@ -284,7 +297,7 @@ export default function SagaLandingPage() {
           setStep("verifying");
           const orgNr = payload.analysis.company?.org_nr;
           if (orgNr) {
-            const { verification: v, verificationError: ve } = await verifyCompany(orgNr);
+            const { verification: v, verificationError: ve } = await verifyCompany(orgNr, payload.analysis.company?.name);
             setVerification(v);
             setVerificationError(ve);
           } else {
@@ -324,8 +337,8 @@ export default function SagaLandingPage() {
 
       setStep("verifying");
       const [vA, vB] = await Promise.all([
-        pA.analysis.company?.org_nr ? verifyCompany(pA.analysis.company.org_nr) : Promise.resolve({ verification: null, verificationError: "Org.nr saknas." }),
-        pB.analysis.company?.org_nr ? verifyCompany(pB.analysis.company.org_nr) : Promise.resolve({ verification: null, verificationError: "Org.nr saknas." }),
+        pA.analysis.company?.org_nr ? verifyCompany(pA.analysis.company.org_nr, pA.analysis.company?.name) : Promise.resolve({ verification: null, verificationError: "Org.nr saknas." }),
+        pB.analysis.company?.org_nr ? verifyCompany(pB.analysis.company.org_nr, pB.analysis.company?.name) : Promise.resolve({ verification: null, verificationError: "Org.nr saknas." }),
       ]);
       setCompareA({ analysis: pA.analysis, verification: vA.verification, verificationError: vA.verificationError });
       setCompareB({ analysis: pB.analysis, verification: vB.verification, verificationError: vB.verificationError });
@@ -744,10 +757,21 @@ function CompanyBlock(props: { verification: CompanyVerification | null; verific
   return (
     <div className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
       <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Företagskoll</p>
-      {props.verificationError ? (
+      {/* Meddelandet och uppgifterna utesluter inte varandra: när org.nr inte
+          gick att slå upp vill vi både be användaren kontrollera siffrorna och
+          visa det lilla vi hunnit bekräfta. */}
+      {props.verificationError && (
         <p className="mt-2 text-sm text-amber-400">{props.verificationError}</p>
-      ) : v ? (
+      )}
+      {v ? (
         <div className="mt-3 space-y-2">
+          {v.companyName && <VerificationRow icon="🏷️" label="Registrerat namn" value={v.companyName} />}
+          {v.nameMatchesQuote === false && (
+            <p className="rounded-xl bg-amber-500/10 px-4 py-2.5 text-[11px] leading-relaxed text-amber-300">
+              Namnet på offerten skiljer sig från det registrerade. Det är vanligt för
+              kedjor och lokalkontor, men kontrollera att du betalar till rätt mottagare.
+            </p>
+          )}
           <VerificationRow icon="🏛️" label="F-skatt" value={v.preliminaryTaxReg} trueText="Registrerad" falseText="Ej registrerad" />
           <VerificationRow icon="🏢" label="Bolagsverket" value={v.statusTextHigh} />
           <VerificationRow icon="📋" label="Momsregistrerad" value={v.vatReg} trueText="Ja" falseText="Nej" />
@@ -756,10 +780,17 @@ function CompanyBlock(props: { verification: CompanyVerification | null; verific
           <VerificationRow icon="🔧" label="Bransch" value={v.industryText} />
           {v.topDirectorName && <VerificationRow icon="👤" label="VD / Ansvarig" value={v.topDirectorName} />}
           {v.town && v.address && <VerificationRow icon="📍" label="Adress" value={`${v.address}, ${v.zipCode ?? ""} ${v.town}`} />}
+          {v.preliminaryTaxReg === null && (
+            <p className="px-1 pt-1 text-[11px] leading-relaxed text-slate-500">
+              F-skatt och bolagsstatus kräver ett avtal med Skatteverket respektive Bolagsverket
+              och kontrolleras inte automatiskt. &quot;Uppgift saknas&quot; betyder att vi inte vet —
+              inte att uppgiften är negativ.
+            </p>
+          )}
         </div>
-      ) : (
+      ) : !props.verificationError ? (
         <p className="mt-2 text-sm text-slate-500">Verifiering pågår...</p>
-      )}
+      ) : null}
     </div>
   );
 }

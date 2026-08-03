@@ -14,6 +14,8 @@ interface AnalyzeRequestBody {
 
 interface VerifyRequestBody {
   org_nr: string;
+  /** Namnet som står på offerten — jämförs mot det registrerade namnet. */
+  company_name?: string | null;
 }
 
 export class RailwayAPIClient {
