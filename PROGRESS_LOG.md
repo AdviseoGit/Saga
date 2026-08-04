@@ -1,3 +1,4 @@
+2026-08-04 | GEO | GEO-optimering av frånluftsvärmepump-kalkylator | GEO-poäng 50 -> 100 | nästa: GEO-optimera startsidan och granska-offert
 2026-08-03 | GEO | AI-citerbarhet för guiderna + llms.txt | GEO snittpoäng (granska-offert, kolla-faktura) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-08-02 | TILLVÄXT/LEADFLOW | Lade till Saga Index banner på startsidan | Internlänkning till datan & leadflow | nästa: GEO-optimera startsidan och lägg till /llms.txt
 2026-08-01 | DATA | Byggde server-endpoint /api/saga-index för att läsa av leads och partner_leads från Supabase och visa i Saga Index | Unik data-insikt (Site Vision Milestone 4) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik

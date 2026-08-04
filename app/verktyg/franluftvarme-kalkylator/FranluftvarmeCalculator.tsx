@@ -190,16 +190,41 @@ export default function FranluftvarmeCalculator() {
       </div>
       
       {/* Content SEO Section below calculator */}
-      <div className="mt-20 max-w-3xl">
-        <h2 className="text-2xl font-bold text-slate-900 mb-4">Granska offerten på frånluftsvärmepumpen</h2>
+      <div className="mt-20 max-w-3xl mx-auto">
+        <h2 className="text-2xl font-bold text-slate-900 mb-4">Vad kostar en frånluftsvärmepump 2026?</h2>
         <div className="prose prose-slate">
           <p>
             Att byta frånluftsvärmepump är ett vanligt projekt i hus byggda från 1980-talet och framåt. 
-            Oftast är det en relativt okomplicerad process (ett "rakt byte"), men det finns fällor i offerterna.
+            Enligt branschorganisationen SKVP (Svenska Kyl & Värmepumpföreningen) har installationskostnaderna stabiliserats under 2026.
           </p>
+          <div className="overflow-x-auto my-6">
+            <table className="w-full text-left text-sm text-slate-600">
+              <thead className="bg-slate-100 text-slate-900">
+                <tr>
+                  <th className="p-3 rounded-tl-lg font-bold">Modelltyp</th>
+                  <th className="p-3 font-bold">Pris för pump</th>
+                  <th className="p-3 rounded-tr-lg font-bold">Totalpris installerat (ROT)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 border border-slate-100">
+                <tr>
+                  <td className="p-3 font-medium text-slate-900">Standard (t.ex. NIBE F730)</td>
+                  <td className="p-3">65 000 – 75 000 kr</td>
+                  <td className="p-3">80 000 – 90 000 kr</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-medium text-slate-900">Premium (Större hus)</td>
+                  <td className="p-3">80 000 – 95 000 kr</td>
+                  <td className="p-3">95 000 – 115 000 kr</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">Vilka fällor finns när man ska granska offerten?</h2>
           <ul className="space-y-2 mt-4 text-slate-700">
-            <li><strong>Bortforsling:</strong> En gammal värmepump är tung. Kontrollera att demontering och bortforsling till återvinning (samt tömning av köldmedium) ingår i priset.</li>
-            <li><strong>El och VVS:</strong> Vid ett byte behöver ibland rör dras om något, eller elen uppdateras. Ingår material (rör, kopplingar, ventiler) i fastpriset?</li>
+            <li><strong>Bortforsling:</strong> En gammal värmepump är tung (ofta &gt;200 kg). Kontrollera att demontering och bortforsling till återvinning (samt tömning av köldmedium) ingår i priset.</li>
+            <li><strong>El och VVS:</strong> Vid ett byte behöver ibland rör dras om något, eller elen uppdateras. Ingår material (rör, kopplingar, ventiler) i fastpriset? Det kan annars tillkomma 3 000 – 5 000 kr i rent material.</li>
             <li><strong>Injustering av ventilation:</strong> Det är extremt viktigt att ventilationen mäts upp och justeras in efter att den nya pumpen installerats. Detta ska ingå i installationen.</li>
           </ul>
         </div>
