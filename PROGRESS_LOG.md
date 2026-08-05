@@ -1,3 +1,4 @@
+2026-08-05 | GEO | GEO-optimering av startsidan och granska-offert | GEO snittpoäng 66->72, UX-signal åtgärdad (design av hero) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-08-05 | GEO | GEO-optimering av startsidan och granska-offert | GEO snittpoäng (startsidan, granska-offert) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-08-04 | GEO | GEO-optimering av frånluftsvärmepump-kalkylator | GEO-poäng 50 -> 100 | nästa: GEO-optimera startsidan och granska-offert
 2026-08-03 | GEO | AI-citerbarhet för guiderna + llms.txt | GEO snittpoäng (granska-offert, kolla-faktura) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
