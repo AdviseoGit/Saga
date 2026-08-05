@@ -12,6 +12,8 @@ import { RailwayAPIClient } from "@/lib/api-client";
 type AppMode = "quote" | "compare" | "invoice";
 type AnalysisStep = "idle" | "reading" | "verifying" | "result" | "error";
 
+import Script from "next/script";
+
 export interface SagaAnalysis {
   company: { name: string | null; org_nr: string | null; address: string | null; contact: string | null };
   quote: {
@@ -362,6 +364,65 @@ export default function SagaLandingPage() {
 
   return (
     <main className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
+      {/* Schema.org Organization + WebSite + SoftwareApplication + FAQPage */}
+      <Script id="schema-org" type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify([
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Fråga Saga",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "WebBrowser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "SEK"
+            },
+            "description": "Ladda upp din offert eller faktura och låt AI analysera priset och företaget. Gratis offertgranskning och fakturakontroll mot marknadspriser och myndighetsregister.",
+            "url": "https://fragasaga.se"
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "dateModified": new Date().toISOString().split("T")[0],
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Vad är Fråga Saga?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Fråga Saga är ett gratis verktyg som analyserar offerter och fakturor med hjälp av AI och svenska myndighetsdata. Du laddar upp en bild eller PDF och får direkt svar på om priset är rimligt, om företaget är seriöst och vad du bör förhandla om."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Hur lång tid tar analysen?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Normalt 10–20 sekunder. Saga läser offerten, jämför mot marknadsdata och kontrollerar företaget mot Skatteverket och Bolagsverket parallellt."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Vilka typer av offerter kan Saga analysera?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Saga analyserar offerter från hantverkare, byggföretag, VVS-firmor, elektriker, takläggare, målare och andra servicebranscher. Du laddar upp som foto (JPG/PNG) eller PDF."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Vad är F-skatt och varför är det viktigt?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "F-skatt innebär att ett företag ansvarar för sin egen skatteinbetalning. Om du anlitar en hantverkare utan F-skatt kan du bli ansvarig för arbetsgivaravgifter. Saga kontrollerar alltid F-skattstatus."
+                }
+              }
+            ]
+          }
+        ])
+      }} />
+
       {/* Header */}
       
 
@@ -370,8 +431,15 @@ export default function SagaLandingPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#0f172a]/98 to-[#f8fafc]" />
         <div className="absolute left-1/2 top-20 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-[#6366f1]/20 blur-[80px]" />
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#6366f1]">Offertanalys på sekunder</p>
-          <h1 className="mt-4 text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl">Fråga Saga</h1>
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#6366f1]">Gratis offert- & fakturakontroll</p>
+          <h1 className="mt-4 text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl">Fråga Saga – Är din offert rimlig?</h1>
+          
+          <div className="mt-6 mb-2 mx-auto max-w-2xl bg-white/5 border border-white/10 rounded-xl p-4 text-left">
+            <p className="text-slate-200 font-medium leading-relaxed">
+              <strong>Saga analyserar offerter och fakturor på 10 sekunder.</strong> Ladda upp en PDF eller ett foto så jämför AI priset mot <span className="text-emerald-400">800 000 kr</span> i marknadsdata, kontrollerar <span className="text-emerald-400">F-skatt</span> hos Skatteverket och flaggar misstänkta <span className="text-emerald-400">fakturabedrägerier</span>. Få reda på direkt om priset är rimligt och företaget seriöst. Uppdaterad {new Date().toISOString().split("T")[0]}.
+            </p>
+          </div>
+          
           <p className="mt-5 max-w-xl mx-auto text-lg font-medium text-slate-300 sm:text-xl">{heroSubtitle}</p>
 
           {/* Mode switcher */}
@@ -452,7 +520,10 @@ export default function SagaLandingPage() {
         <div className="mx-auto max-w-5xl">
           <h2 className="text-center text-xs font-bold uppercase tracking-[0.25em] text-[#64748b]">Vad Saga kollar</h2>
           <p className="mt-3 text-center text-xl font-bold text-[#0f172a] sm:text-2xl">När du frågar Saga får du hela bilden</p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-2 text-center text-sm font-medium text-slate-500 max-w-2xl mx-auto">
+            Data hämtas direkt från <a href="https://skatteverket.se" target="_blank" rel="noopener noreferrer" className="text-[#6366f1] hover:underline">Skatteverket</a> och <a href="https://bolagsverket.se" target="_blank" rel="noopener noreferrer" className="text-[#6366f1] hover:underline">Bolagsverket</a>.
+          </div>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {cards.map((card, i) => (
               <div key={card.title} className="group rounded-[22px] border border-[#e2e8f0] bg-[#f8fafc] p-5 transition hover:border-[#6366f1]/30 hover:bg-white hover:shadow-lg hover:shadow-[#6366f1]/5" style={{ animationDelay: `${i * 50}ms` }}>
                 <div className="text-2xl">{card.icon}</div>
@@ -500,11 +571,54 @@ export default function SagaLandingPage() {
         <div className="mx-auto max-w-3xl">
           <p className="text-center text-xs font-bold uppercase tracking-[0.25em] text-[#64748b]">Vanliga frågor</p>
           <h2 className="mt-3 text-center text-xl font-bold text-[#0f172a] sm:text-2xl">Allt du behöver veta om Fråga Saga</h2>
+          
+          <div className="mt-8 mb-8 overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-slate-50">
+                <tr>
+                  <th className="px-4 py-3 font-semibold text-slate-700">Funktion</th>
+                  <th className="px-4 py-3 font-semibold text-slate-700">Manuell kontroll</th>
+                  <th className="px-4 py-3 font-semibold text-[#6366f1]">Med Saga</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 bg-white">
+                <tr>
+                  <td className="px-4 py-3 font-medium text-slate-600">Jämföra priser</td>
+                  <td className="px-4 py-3 text-slate-500">Kräver flera offerter och tid</td>
+                  <td className="px-4 py-3 text-[#6366f1] font-medium">Jämför direkt mot marknadsdata</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium text-slate-600">Kontrollera F-skatt</td>
+                  <td className="px-4 py-3 text-slate-500">Ringa Skatteverket</td>
+                  <td className="px-4 py-3 text-[#6366f1] font-medium">Automatisk slagning direkt</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium text-slate-600">Bedöma rimlighet</td>
+                  <td className="px-4 py-3 text-slate-500">Svårt att veta vad som är dyrt</td>
+                  <td className="px-4 py-3 text-[#6366f1] font-medium">Tydligt omdöme + snittpriser</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium text-slate-600">Avslöja falska fakturor</td>
+                  <td className="px-4 py-3 text-slate-500">Kräver expertis och vaksamhet</td>
+                  <td className="px-4 py-3 text-[#6366f1] font-medium">AI-granskning av bedrägerimarkörer</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <dl className="mt-10 space-y-4">
             {[
               {
                 q: "Vad är Fråga Saga?",
                 a: "Fråga Saga är ett gratis verktyg som analyserar offerter och fakturor med hjälp av AI och svenska myndighetsdata. Du laddar upp en bild eller PDF och får direkt svar på om priset är rimligt, om företaget är seriöst och vad du bör förhandla om.",
+              },
+              {
+                q: "Vad är en rimlig offert för hantverkare?",
+                a: "En rimlig offert innehåller tydliga specifikationer av arbete och material, ett pris som ligger i nivå med marknadssnittet, och företaget ska ha giltig F-skatt. Saga jämför din offert mot vår databas på hundratals analyserade offerter för att avgöra om just din är rimlig.",
+              },
+              {
+                q: "Hur kan jag se om en faktura är falsk?",
+                a: "Bedragare använder ofta falska kontonummer, saknar momsregistrering eller anger företagsuppgifter som inte stämmer överens med Bolagsverkets register. Sagas fakturakontroll analyserar dessa bedrägerimarkörer och varnar dig om fakturan verkar vara falsk.",
               },
               {
                 q: "Är Fråga Saga gratis?",

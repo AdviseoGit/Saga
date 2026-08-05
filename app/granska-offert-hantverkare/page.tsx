@@ -32,7 +32,7 @@ const jsonLd = {
     "name": "Fråga Saga"
   },
   "datePublished": "2024-01-01",
-  "dateModified": "2026-08-03",
+  "dateModified": new Date().toISOString().split("T")[0],
 };
 
 export default function GranskaOffertHantverkare() {
@@ -49,14 +49,55 @@ export default function GranskaOffertHantverkare() {
       <div className="space-y-12">
         <section>
           <p className="text-xl font-medium text-gray-900 border-l-4 border-blue-500 pl-4 py-2 bg-blue-50/50">
-            <strong>Sammanfattning:</strong> En normal timpenning för hantverkare (snickare, målare, VVS) i Sverige 2026 ligger på mellan 600 kr och 850 kr i timmen inklusive moms, innan ROT-avdraget på 30% är draget. Att företaget har F-skatt är ett absolut krav för att du ska få göra ROT-avdrag.
+            <strong>Snabbt svar:</strong> En rimlig offert är tydligt uppdelad i arbete och material, har ett totalpris som inkluderar moms, och kommer från ett företag med godkänd F-skatt (ett absolut krav för att få göra 30% ROT-avdrag). En normal timpenning för en hantverkare ligger mellan 600 kr och 850 kr i timmen.
             <br/><br/>
-            <span className="text-sm text-gray-500">Uppdaterad: 2026-08-03</span>
+            <span className="text-sm text-gray-500">Uppdaterad: {new Date().toISOString().split("T")[0]}</span>
           </p>
         </section>
         <section>
           <h2 className="text-2xl font-bold text-gray-800">
-            Steg 1: Kontrollera Företaget (F-skatt är kritiskt)
+            Hur mycket kostar en hantverkare i timmen?
+          </h2>
+          <p className="mt-4 text-lg text-gray-600">
+            En normal timpenning för hantverkare (snickare, målare, VVS) i Sverige ligger i snitt på <strong>600 kr – 850 kr</strong> i timmen inklusive moms, innan ROT-avdraget på 30% är draget. Att företaget har F-skatt är ett absolut krav för att du ska få göra ROT-avdrag.
+          </p>
+          <div className="mt-8 mb-8 overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-slate-50">
+                <tr>
+                  <th className="px-4 py-3 font-semibold text-slate-700">Hantverkare</th>
+                  <th className="px-4 py-3 font-semibold text-slate-700">Snittpris per timme (inkl. moms)</th>
+                  <th className="px-4 py-3 font-semibold text-slate-700">Kostnad efter 30% ROT</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 bg-white">
+                <tr>
+                  <td className="px-4 py-3 font-medium text-slate-600">Snickare</td>
+                  <td className="px-4 py-3 text-slate-500">550 – 750 kr</td>
+                  <td className="px-4 py-3 text-[#6366f1] font-medium">385 – 525 kr</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium text-slate-600">Målare</td>
+                  <td className="px-4 py-3 text-slate-500">500 – 650 kr</td>
+                  <td className="px-4 py-3 text-[#6366f1] font-medium">350 – 455 kr</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium text-slate-600">Elektriker</td>
+                  <td className="px-4 py-3 text-slate-500">700 – 950 kr</td>
+                  <td className="px-4 py-3 text-[#6366f1] font-medium">490 – 665 kr</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium text-slate-600">VVS-montör / Rörmokare</td>
+                  <td className="px-4 py-3 text-slate-500">750 – 1 000 kr</td>
+                  <td className="px-4 py-3 text-[#6366f1] font-medium">525 – 700 kr</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-800">
+            Hur kontrollerar man företaget bakom offerten?
           </h2>
           <p className="mt-4 text-lg text-gray-600">
             Innan du ens tittar på siffrorna, säkerställ att företaget är seriöst. 
@@ -77,7 +118,7 @@ export default function GranskaOffertHantverkare() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-800">
-            Steg 2: Granska Offertens Innehåll
+            Vad ska en komplett offert innehålla?
           </h2>
           <p className="mt-4 text-lg text-gray-600">
             En bra offert är detaljerad och tydlig. Se upp för luddiga formuleringar.
@@ -100,7 +141,7 @@ export default function GranskaOffertHantverkare() {
 
         <section>
           <h2 className="text-2xl font-bold text-gray-800">
-            Steg 3: Jämför och Förhandla
+            Hur förhandlar man priset på en offert?
           </h2>
           <p className="mt-4 text-lg text-gray-600">
             Ta alltid in offerter från flera (minst tre) olika företag. Det ger dig ett förhandlingsläge och en känsla for vad som är ett rimligt pris.
