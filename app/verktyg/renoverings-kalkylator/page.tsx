@@ -57,11 +57,18 @@ const jsonLd = {
 };
 
 export default function RenovationCalculatorPage() {
+  const lastModified = "2026-08-06";
+  
+  const updatedJsonLd = {
+    ...jsonLd,
+    dateModified: lastModified,
+  };
+
   return (
     <main className="min-h-screen bg-[#f8fafc] text-[#0f172a] pb-20">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(updatedJsonLd) }}
       />
       
 
@@ -73,6 +80,12 @@ export default function RenovationCalculatorPage() {
           <h1 className="mt-4 text-3xl font-black tracking-tight text-[#0f172a] sm:text-5xl">
             Renoveringspris 2026
           </h1>
+          <p className="mt-2 text-sm text-slate-500 font-medium">Uppdaterad {lastModified}</p>
+          
+          <p className="mt-6 text-lg font-bold text-slate-800 leading-relaxed max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            En renovering i Sverige kostar i snitt mellan 1 500 kr och 35 000 kr per kvadratmeter beroende på rumstyp. Våtutrymmen som badrum är dyrast (25 000–35 000 kr/kvm), medan ytskikt i torra rum kostar betydligt mindre (1 500–3 000 kr/kvm).
+          </p>
+          
           <p className="mt-5 max-w-2xl mx-auto text-lg font-medium text-slate-600">
             Funderar du på vad din renovering kommer kosta? Vår kalkylator baseras på
             Sagas insamlade marknadsdata och aktuella snittpriser. Få en realistisk
@@ -84,7 +97,7 @@ export default function RenovationCalculatorPage() {
 
         <div className="mt-16 rounded-[22px] border border-[#e2e8f0] bg-white p-8 shadow-sm">
           <h2 className="text-2xl font-bold text-[#0f172a]">
-            Så bygger vår prisdata för renoveringar
+            Vad påverkar priset på en renovering?
           </h2>
           <div className="mt-6 space-y-4 text-base font-medium text-slate-700 leading-relaxed">
             <p>
@@ -100,7 +113,7 @@ export default function RenovationCalculatorPage() {
                 <strong>Materialstandard:</strong> Budgetval drar ner materialkostnaden väsentligt. Premiumval (t.ex. äkta sten, platsbyggt kök, mässingblandare) kan lätt dubbla prislappen. Att välja slitstarka, standardmaterial är ofta det mest prisvärda och hållbara i längden.
               </li>
               <li>
-                <strong>ROT-avdrag:</strong> Du kan dra av 30 % av arbetskostnaden upp till 50 000 kr per person och år. Vid renoveringar utgör arbetet oftast 40–60 % av den totala kostnaden (i vår kalkyl schablon på 50%). Kom ihåg att kontrollera med Skatteverket hur mycket ROT du har kvar att utnyttja i år.
+                <strong>ROT-avdrag:</strong> Du kan dra av 30 % av arbetskostnaden upp till 50 000 kr per person och år (enligt <a href="https://www.skatteverket.se/privat/fastigheterochbostad/rotavdrag.4.2e56d4ba1202f95012080002966.html" target="_blank" rel="noopener noreferrer" className="text-[#0f766e] underline">Skatteverket</a>). Vid renoveringar utgör arbetet oftast 40–60 % av den totala kostnaden (i vår kalkyl schablon på 50%). Kom ihåg att kontrollera med Skatteverket hur mycket ROT du har kvar att utnyttja i år.
               </li>
               <li>
                 <strong>Val av entreprenad:</strong> Om du väljer totalentreprenad där en byggfirma sköter hela processen och samordnar olika hantverkare, blir det ofta dyrare än om du agerar projektledare själv. Fördelen är att du får en kontaktperson och tydligare garantier.
@@ -109,7 +122,45 @@ export default function RenovationCalculatorPage() {
                 <strong>Ålder på bostad:</strong> I äldre hus kan du stöta på oförutsedda utgifter, som att behöva byta ut gamla rör eller eldragningar för att möta dagens byggnormer. Det är bra att ha en buffert på 10-15% för detta.
               </li>
             </ul>
-            <p className="mt-4 text-sm bg-blue-50 border border-blue-100 p-4 rounded-xl text-blue-900">
+            
+            <h2 className="text-2xl font-bold text-[#0f172a] mt-10 mb-6">
+              Jämförelsetabell: Renoveringskostnad per rumstyp
+            </h2>
+            <div className="overflow-x-auto my-6">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-100 border-b-2 border-slate-200">
+                    <th className="p-4 font-bold text-slate-800">Rumstyp / Arbete</th>
+                    <th className="p-4 font-bold text-slate-800">Pris per kvadratmeter (inkl. moms)</th>
+                    <th className="p-4 font-bold text-slate-800">Kommentar</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200">
+                  <tr>
+                    <td className="p-4 text-slate-700 font-medium">Ytskikt torra rum (målning/golv)</td>
+                    <td className="p-4 text-slate-700">1 500 – 3 000 kr/kvm</td>
+                    <td className="p-4 text-slate-600 text-sm">Vardagsrum, sovrum, hall. Lägst komplexitet.</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-slate-700 font-medium">Kök (standard till premium)</td>
+                    <td className="p-4 text-slate-700">10 000 – 20 000 kr/kvm</td>
+                    <td className="p-4 text-slate-600 text-sm">Inkluderar vitvaror, VVS och eldragning.</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-slate-700 font-medium">Badrum & Våtrum</td>
+                    <td className="p-4 text-slate-700">25 000 – 35 000 kr/kvm</td>
+                    <td className="p-4 text-slate-600 text-sm">Tätskikt, VVS, klinker/kakel drar upp priset. Krav på behörighet.</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-slate-700 font-medium">Totalrenovering (blandat)</td>
+                    <td className="p-4 text-slate-700">8 000 – 15 000 kr/kvm</td>
+                    <td className="p-4 text-slate-600 text-sm">Snitt över en hel bostad med både våt- och torrutrymmen.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p className="mt-8 text-sm bg-blue-50 border border-blue-100 p-4 rounded-xl text-blue-900">
               <strong>Ett tips:</strong> När du får in dina renoveringsofferter — ladda upp dem på vår startsida! Fråga Saga
               analyserar dem kostnadsfritt rad för rad, jämför priser mot vår databas, och kollar dessutom upp att
               byggfirman har F-skatt och ordnad ekonomi. Trygga din renovering.

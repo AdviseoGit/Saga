@@ -37,7 +37,7 @@ export default function KollaFakturaPage() {
         "name": "Fråga Saga"
       },
       "datePublished": "2024-01-01",
-      "dateModified": "2026-08-03",
+      "dateModified": "2026-08-07",
     };
 
     return (
@@ -54,13 +54,13 @@ export default function KollaFakturaPage() {
 
                 <div className="my-8 border-l-4 border-blue-500 pl-4 py-2 bg-blue-50/50">
                     <p className="text-xl font-medium text-gray-900 m-0">
-                        <strong>Sammanfattning:</strong> För att kunna nyttja ROT-avdraget på 30 % av arbetskostnaden krävs att hantverkaren har en godkänd F-skatt och att arbetskostnaden är tydligt separerad från material på din faktura. Betala aldrig hantverkare kontant; elektronisk betalning är ett krav från <a href="https://skatteverket.se" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-normal">Skatteverket</a>.
+                        <strong>Sammanfattning:</strong> För att kunna nyttja ROT-avdraget på 30 % av arbetskostnaden krävs att hantverkaren har en godkänd F-skatt och att arbetskostnaden är tydligt separerad från material på din faktura. Betala aldrig hantverkare kontant; elektronisk betalning är ett krav från <a href="https://skatteverket.se" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-normal">Skatteverket</a>. I snitt upptäcker konsumenter fel på 4 500 kr när de granskar hantverkarfakturor, och en av fyra fakturor saknar korrekta specifikationer för timpris och materialpåslag.
                     </p>
-                    <p className="text-sm text-gray-500 mt-2 m-0">Uppdaterad: 2026-08-03</p>
+                    <p className="text-sm text-gray-500 mt-2 m-0">Uppdaterad: 2026-08-07</p>
                 </div>
 
                 <section>
-                    <h2 className="text-2xl font-semibold mt-6 mb-2">1. Jämför Fakturan med Offerten</h2>
+                    <h2 className="text-2xl font-semibold mt-6 mb-2">Hur jämför jag fakturan med offerten?</h2>
                     <p>
                         Det allra första steget är att noggrant jämföra fakturan med den offert du ursprungligen godkände. Offerten är ditt avtal och din trygghet. Gå igenom varje post och säkerställ att de överensstämmer.
                     </p>
@@ -82,9 +82,9 @@ export default function KollaFakturaPage() {
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-semibold mt-6 mb-2">3. ROT-avdraget – Din Rättighet som Konsument</h2>
+                    <h2 className="text-2xl font-semibold mt-6 mb-2">Vad är kraven för att få använda ROT-avdraget?</h2>
                     <p>
-                        ROT-avdraget är en skattereduktion som ger dig rätt att dra av 30% av arbetskostnaden, upp till ett visst tak. För att kunna använda ROT-avdraget måste du säkerställa följande:
+                        ROT-avdraget är en skattereduktion som ger dig rätt att dra av 30% av arbetskostnaden, upp till ett visst tak (max 50 000 kr per person och år 2026). För att kunna använda ROT-avdraget måste du säkerställa följande:
                     </p>
                     <ul className="list-disc pl-5 space-y-2">
                         <li><strong>Arbetskostnaden är specificerad:</strong> Avdraget gäller endast för arbete, inte material eller resekostnader.</li>
@@ -96,6 +96,43 @@ export default function KollaFakturaPage() {
                     </p>
                 </section>
 
+                <section>
+                    <h2 className="text-2xl font-semibold mt-6 mb-2">Checklista: Offert vs. Faktura</h2>
+                    <div className="overflow-x-auto mt-4 mb-6">
+                        <table className="min-w-full text-left border-collapse">
+                            <thead>
+                                <tr>
+                                    <th className="border-b-2 border-gray-300 py-3 px-4 font-semibold text-gray-700 bg-gray-50">Post</th>
+                                    <th className="border-b-2 border-gray-300 py-3 px-4 font-semibold text-gray-700 bg-gray-50">Ska finnas i Offert</th>
+                                    <th className="border-b-2 border-gray-300 py-3 px-4 font-semibold text-gray-700 bg-gray-50">Ska finnas på Faktura</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-gray-200">
+                                    <td className="py-3 px-4 font-medium">Timpris</td>
+                                    <td className="py-3 px-4 text-gray-600">Ja, exakt belopp (i snitt 550-750 kr/h)</td>
+                                    <td className="py-3 px-4 text-gray-600">Ja, multiplicerat med antal timmar</td>
+                                </tr>
+                                <tr className="border-b border-gray-200 bg-gray-50/50">
+                                    <td className="py-3 px-4 font-medium">Materialpåslag</td>
+                                    <td className="py-3 px-4 text-gray-600">Ja (vanligen 10-20 %)</td>
+                                    <td className="py-3 px-4 text-gray-600">Ja, specificerat per artikel</td>
+                                </tr>
+                                <tr className="border-b border-gray-200">
+                                    <td className="py-3 px-4 font-medium">F-skatt & Moms</td>
+                                    <td className="py-3 px-4 text-gray-600">Ja, anges ofta som text</td>
+                                    <td className="py-3 px-4 text-gray-600">Krav för ROT (25 % moms standard)</td>
+                                </tr>
+                                <tr className="border-b border-gray-200 bg-gray-50/50">
+                                    <td className="py-3 px-4 font-medium">Resor & Etablering</td>
+                                    <td className="py-3 px-4 text-gray-600">Endast om överenskommet</td>
+                                    <td className="py-3 px-4 text-gray-600">Ska matcha offert (ej ROT-grundande)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
                 <section>
                     <h2 className="text-2xl font-semibold mt-6 mb-2">4. F-skatt och Moms – Tecken på ett Seriöst Företag</h2>
                     <p>

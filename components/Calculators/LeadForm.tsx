@@ -2,6 +2,12 @@
 
 import React, { useState } from 'react';
 
+/** GA4-event för mätning av konverteringar */
+function track(event: string, params: Record<string, unknown>) {
+  const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+  if (typeof gtag === "function") gtag("event", event, params);
+}
+
 export default function LeadForm({ resultData, toolName, calculationData }: { resultData?: any, toolName?: string, calculationData?: any }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -53,6 +59,11 @@ export default function LeadForm({ resultData, toolName, calculationData }: { re
         if (!res.ok) {
             throw new Error("Kunde inte skicka rapporten");
         }
+        track("generate_lead", {
+            category: category,
+            type: "standard_kalkyl",
+            value: lowValue
+        });
       } else {
         const payload = {
             intent: "match_verified",
@@ -81,6 +92,11 @@ export default function LeadForm({ resultData, toolName, calculationData }: { re
         if (!res.ok) {
             throw new Error("Kunde inte skicka förfrågan");
         }
+        track("generate_lead", {
+            category: category,
+            type: "partner_match",
+            value: lowValue
+        });
       }
       setSubmitted(true);
     } catch (err) {

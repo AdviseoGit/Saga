@@ -51,6 +51,7 @@ export default function OutcomeCTA(props: {
     setErrorMsg(null);
     setConsent(false);
     track("saga_cta_click", { outcome: outcome.id, intent: next.intent, verdict: analysis.verdict });
+    track("generate_lead", { outcome: outcome.id, intent: next.intent, verdict: analysis.verdict }); // Lägg till konverteringshändelse för formuläröppning/engagemang
   }
 
   async function submit() {
@@ -91,6 +92,12 @@ export default function OutcomeCTA(props: {
       });
       if (!r.ok) throw new Error("request failed");
       track("saga_lead_submit", {
+        outcome: outcome.id,
+        intent: action.intent,
+        category: analysis.quote?.category,
+        value: analysis.quote?.total_amount,
+      });
+      track("generate_lead", { // Explicit event for GA4 conversions
         outcome: outcome.id,
         intent: action.intent,
         category: analysis.quote?.category,
