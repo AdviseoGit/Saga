@@ -1,3 +1,4 @@
+2026-08-08 | GEO | GEO-optimering av bergvarme-kalkylator | GEO-poäng bergvarme-kalkylator 62 -> 100 | nästa: Fortsätt GEO-optimering (rot-avdrag / takbyte-kalkylator)
 2026-08-07 | LEADFLOW/GEO | GA4 events för formulär (LeadForm/OutcomeCTA) + GEO på kolla-faktura | mobil-skalning, key events, AI-svar | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-08-05 | GEO | GEO-optimering av startsidan och granska-offert | GEO snittpoäng 66->72, UX-signal åtgärdad (design av hero) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-08-05 | GEO | GEO-optimering av startsidan och granska-offert | GEO snittpoäng (startsidan, granska-offert) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
