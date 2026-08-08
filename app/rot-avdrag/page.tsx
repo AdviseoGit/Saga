@@ -25,27 +25,81 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ROT-avdraget 2026: En Komplett Guide",
+  "dateModified": "2026-08-08T08:00:00+00:00",
+  "author": {
+    "@type": "Organization",
+    "name": "Fråga Saga"
+  }
+};
+
 export default function RotAvdragPage() {
   return (
     <div className="prose lg:prose-xl mx-auto px-4 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <h1>ROT-avdraget 2026: En Komplett Guide</h1>
-      <p className="lead">
-        ROT-avdraget är en fantastisk möjlighet för dig som privatperson att få skattereduktion för arbetskostnaden när du anlitar en hantverkare för reparation, underhåll, eller om- och tillbyggnad. Men reglerna kan kännas krångliga. Vi reder ut allt du behöver veta för att maximera ditt avdrag och undvika vanliga misstag.
+      <p className="lead font-medium text-slate-700">
+        ROT-avdraget 2026 ger dig rätt att dra av 30 % av arbetskostnaden upp till maximalt 50 000 kr per person och år för reparation, ombyggnad och tillbyggnad. Tillsammans med RUT-avdraget får skattereduktionen uppgå till högst 75 000 kr per år.
       </p>
 
-      <h2>Vad är ROT-avdrag?</h2>
+      <h2>Hur stort är ROT-avdraget 2026?</h2>
       <p>
-        ROT står för <strong>R</strong>eparation, <strong>O</strong>mbyggnad och <strong>T</strong>illbyggnad. Avdraget är en form av skattesubvention som låter dig dra av 30% av arbetskostnaden, upp till ett visst tak, direkt på fakturan. Det är ett sätt att göra det billigare att anlita seriösa hantverkare med F-skatt och samtidigt motverka svartarbete.
+        Taket för ROT-avdraget under 2026 är <strong>50 000 kr</strong> per person, och subventionen är <strong>30 %</strong> av den fakturerade arbetskostnaden. Det betyder att du måste ha arbetskostnader på cirka <strong>166 667 kr</strong> under året för att maxa avdraget. Om ni är två ägare till bostaden kan ni tillsammans dra av upp till <strong>100 000 kr</strong> (2 x 50 000 kr).
       </p>
+
+      <h2>Vad är skillnaden på ROT- och RUT-avdrag?</h2>
+      <p>
+        Både ROT och RUT är skattereduktioner för hushållsnära tjänster, men de gäller olika typer av arbeten. De delar dock på samma gemensamma maxtak.
+      </p>
+      
+      <div className="overflow-x-auto my-8">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="bg-slate-100 border-b-2 border-slate-200">
+              <th className="p-4 font-bold text-slate-900">Egenskap</th>
+              <th className="p-4 font-bold text-slate-900">ROT-avdrag</th>
+              <th className="p-4 font-bold text-slate-900">RUT-avdrag</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            <tr className="border-b border-slate-100">
+              <td className="p-4">Avdragsnivå</td>
+              <td className="p-4">30 % av arbetskostnaden</td>
+              <td className="p-4">50 % av arbetskostnaden</td>
+            </tr>
+            <tr className="border-b border-slate-100">
+              <td className="p-4">Maxbelopp per person</td>
+              <td className="p-4">50 000 kr</td>
+              <td className="p-4">75 000 kr (totalt för ROT + RUT)</td>
+            </tr>
+            <tr className="border-b border-slate-100">
+              <td className="p-4">Typ av arbete</td>
+              <td className="p-4">Renovering, bygg, VVS, el, tak, målning</td>
+              <td className="p-4">Städning, trädgård, barnpassning, flytt</td>
+            </tr>
+            <tr className="border-b border-slate-100">
+              <td className="p-4">Krav på bostaden</td>
+              <td className="p-4">Du måste äga och helt eller delvis bo i den</td>
+              <td className="p-4">Räcker med att du bor där (ex. hyresrätt ok)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <h2>Vem kan använda ROT-avdraget?</h2>
-      <p>För att ha rätt till ROT-avdrag måste du uppfylla några grundläggande krav:</p>
+      <p>För att ha rätt till ROT-avdrag måste du uppfylla några grundläggande krav enligt <a href="https://skatteverket.se/privat/fastigheterochbostad/rotochrutarbete" target="_blank" rel="noopener noreferrer" className="underline text-[#0f766e]">Skatteverket</a>:</p>
       <ul>
-        <li>Du måste ha fyllt 18 år.</li>
-        <li>Du måste äga bostaden (småhus, bostadsrätt eller ägarlägenhet) där arbetet utförs.</li>
+        <li>Du måste ha fyllt 18 år vid årets slut.</li>
+        <li>Du måste äga bostaden (småhus, bostadsrätt eller ägarlägenhet) där arbetet utförs under perioden arbetet sker.</li>
         <li>Bostaden måste finnas i Sverige eller inom EU/EES-området.</li>
-        <li>Du måste ha betalat tillräckligt med skatt under året för att kunna göra avdraget.</li>
-        <li>Arbetet måste vara sådant som ger rätt till ROT-avdrag (se lista nedan).</li>
+        <li>Du måste betala tillräckligt med skatt under året för att avdraget ska kunna göras (skattereduktionen kan aldrig bli större än skatten du ska betala).</li>
+        <li>Arbetet måste vara sådant som ger rätt till ROT-avdrag.</li>
       </ul>
 
       <h2>Vilka arbeten ger rätt till ROT-avdrag?</h2>
@@ -55,67 +109,42 @@ export default function RotAvdragPage() {
       <ul>
         <li><strong>Bygg:</strong> Måla om, tapetsera, byta golv, byta tak, renovera kök och badrum.</li>
         <li><strong>VVS:</strong> Dra nya vatten- och avloppsledningar, installera värmepump, byta blandare.</li>
-        <li><strong>El:</strong> Dra ny el, installera jordfelsbrytare, installera laddbox till elbil.</li>
+        <li><strong>El:</strong> Dra ny el, installera jordfelsbrytare, installera laddbox till elbil (ger dock Grön Teknik-avdrag instället vilket ofta är fördelaktigare, 50%).</li>
         <li><strong>Markarbeten:</strong> Dränering av husgrund, bygga altan eller uteplats som är hopbyggd med huset.</li>
         <li><strong>Städning:</strong> Grovstädning i samband med byggarbeten.</li>
       </ul>
       <p>
-        Viktigt att notera är att du inte kan få avdrag för materialkostnader, resekostnader, eller för att bygga ett helt nytt hus.
+        Viktigt att notera är att du <strong>aldrig kan få avdrag för materialkostnader</strong>, maskinhyra eller resekostnader.
       </p>
 
       <h2>Hur fungerar det i praktiken?</h2>
       <p>
-        Processen är designad för att vara enkel för dig som kund. Hantverkaren gör avdraget direkt på din faktura.
+        Processen är designad för att vara enkel för dig som kund (fakturamodellen):
       </p>
       <ol>
-        <li>Du anlitar en hantverkare med svensk F-skattsedel.</li>
-        <li>Ni kommer överens om arbetet och priset. Var noga med att specificera arbetskostnad och materialkostnad i offerten.</li>
-        <li>När arbetet är klart skickar hantverkaren en faktura där 30% av arbetskostnaden är avdragen.</li>
+        <li>Du anlitar en hantverkare med svensk F-skatt (ett absolut krav).</li>
+        <li>Hantverkaren gör avdraget direkt på din faktura. Arbetskostnad och materialkostnad måste specificeras tydligt.</li>
         <li>Du betalar din del av fakturan.</li>
-        <li>Hantverkaren ansöker om resten av betalningen från Skatteverket.</li>
+        <li>Hantverkaren ansöker om resterande 30 % från Skatteverket.</li>
+        <li>Skatteverket skickar ett meddelande till dig när avdraget är beviljat, och beloppet är förtryckt i din nästa deklaration.</li>
       </ol>
-      <p>
-        Du behöver alltså inte själv skicka in någon ansökan. Allt kommer förtryckt i din inkomstdeklaration.
-      </p>
 
-      <h2>Taket för ROT-avdrag 2026</h2>
+      <h2>Får man ROT-avdrag för att bygga ett nytt hus?</h2>
       <p>
-        För perioden 1 juli–31 december 2024 höjdes taket tillfälligt till 75 000 kronor för rotavdrag, men från och med 2025 (och framåt till 2026) gäller de permanenta reglerna igen om inget annat beslutas. 
-      </p>
-      <p>
-        Detta innebär att ROT-avdraget är max <strong>50 000 kronor</strong> per person och år. Detta är det totala beloppet du kan få i skattereduktion för rotarbete. Det innebär att du kan få avdrag för arbetskostnader upp till cirka 167 000 kronor (eftersom 30 % av 167 000 är cirka 50 000 kr).
-      </p>
-      <p>
-        Kom ihåg att ROT- och RUT-avdraget räknas ihop. Det totala avdraget för båda får inte överstiga <strong>75 000 kronor</strong> per person och år.
+        Nej, ROT-avdraget gäller <strong>inte</strong> för nybyggnation. Ett småhus anses vara nybyggt de första fem åren (baserat på värdeåret). Du kan inte få avdrag för om- eller tillbyggnad på ett hus som är yngre än fem år.
       </p>
 
       <h2>Vad gäller för fristående garage och tillbyggnader?</h2>
       <p>
-        Du kan få ROT-avdrag för att bygga om, bygga till eller reparera ett <strong>vidbyggt garage</strong> (ett garage som är hopbyggt med bostadshuset). För ett <strong>fristående garage</strong> får du däremot <strong>inte</strong> ROT-avdrag för nybyggnation, men du kan få avdrag för reparation och underhåll av ett befintligt fristående garage (förutsatt att det tillhör ett småhus du äger). Samma princip gäller andra fristående komplementbyggnader på tomten.
-      </p>
-
-      <h2>Hur gammalt måste huset vara?</h2>
-      <p>
-        För att få ROT-avdrag för <strong>om- och tillbyggnad</strong> måste småhuset vara äldre än fem år. Skatteverket räknar från det år huset byggdes (värdeåret). För <strong>reparation och underhåll</strong> (till exempel målning eller byte av tak) finns det ingen åldersgräns, utan du kan få avdrag oavsett husets ålder så länge det inte handlar om att återställa huset till nyskick i direkt anslutning till byggnationen.
-      </p>
-
-      <h2>Kan man få ROT-avdrag för kamin och grävarbeten?</h2>
-      <p>
-        Ja, du kan få ROT-avdrag för arbetskostnaden att installera en <strong>kamin</strong>, kassett eller kakelugn i befintligt småhus. Du får inte avdrag för själva kaminen eller skorstenen (materialet). <strong>Grävarbeten</strong> ger ofta rätt till ROT-avdrag om det handlar om till exempel dränering kring husgrunden, nedgrävning av ledningar för vatten och avlopp till huset, eller för att installera bergvärme.
+        Du kan få ROT-avdrag för att bygga om, bygga till eller reparera ett <strong>vidbyggt garage</strong> (ett garage som är hopbyggt med bostadshuset). För ett <strong>fristående garage</strong> får du däremot <strong>inte</strong> ROT-avdrag för nybyggnation, men du kan få avdrag för reparation och underhåll av ett befintligt fristående garage (förutsatt att det tillhör ett småhus du äger).
       </p>
 
       <h2>Vad är en ROT-klausul i offerten?</h2>
       <p>
-        När du anlitar en hantverkare är det viktigt att det finns en så kallad <strong>ROT-klausul</strong> i avtalet eller offerten. Det är ett villkor som reglerar vad som händer om Skatteverket av någon anledning avslår hantverkarens begäran om utbetalning av ROT-avdraget (till exempel om du redan utnyttjat ditt maxbelopp för året). ROT-klausulen skyddar hantverkaren och innebär oftast att du som beställare då blir betalningsskyldig för den resterande delen av arbetskostnaden. Det är därför viktigt att du själv har koll på hur mycket avdrag du har kvar innan du anlitar någon.
+        När du anlitar en hantverkare finns det ofta en så kallad <strong>ROT-klausul</strong> i avtalet. Det är ett villkor som säger att om Skatteverket nekar utbetalningen (till exempel för att du tjänat för lite eller redan utnyttjat dina 50 000 kr) så är du som kund skyldig att betala den resterande summan direkt till hantverkaren. Det är ditt ansvar att veta hur mycket ROT du har kvar, inte hantverkarens.
       </p>
-
-      <h2>Vanliga frågor och svar</h2>
-      <h3>Kan jag få ROT-avdrag för arbete i sommarstugan?</h3>
-      <p>Ja, så länge du äger den och den klassas som småhus.</p>
-      <h3>Vad händer om jag inte har betalat tillräckligt med skatt?</h3>
-      <p>Om du har gjort ett för stort avdrag kommer du att bli återbetalningsskyldig för den del du inte hade rätt till. Detta syns i ditt skattebesked.</p>
-      <h3>Kan två personer som äger en bostad tillsammans dela på avdraget?</h3>
-      <p>Absolut. Om ni äger 50% var kan ni båda göra avdrag på upp till 50 000 kronor vardera för arbeten på den gemensamma bostaden.</p>
+      
+      <p className="text-xs text-slate-500 mt-12 border-t pt-4">Fakta kontrollerad mot Skatteverket. Uppdaterad: 2026-08-08.</p>
     </div>
   );
 }
