@@ -1,3 +1,4 @@
+2026-08-08 | GEO | GEO-optimering av takbyte-kalkylator (tabell, H2-frågor, självbärande svar) | GEO-poäng takbyte 68 -> 100 | nästa: Fortsätt GEO-optimering (startsidan / H1)
 2026-08-08 | GEO | GEO-optimering av rot-avdrag (siffror, schema, tabell) | GEO-poäng rot-avdrag 64 -> 100 | nästa: Fortsätt GEO-optimering (takbyte-kalkylator)
 2026-08-08 | GEO | GEO-optimering av bergvarme-kalkylator | GEO-poäng bergvarme-kalkylator 62 -> 100 | nästa: Fortsätt GEO-optimering (rot-avdrag / takbyte-kalkylator)
 2026-08-07 | LEADFLOW/GEO | GA4 events för formulär (LeadForm/OutcomeCTA) + GEO på kolla-faktura | mobil-skalning, key events, AI-svar | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
