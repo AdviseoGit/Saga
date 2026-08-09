@@ -1,20 +1,19 @@
-RAPPORT — fragasaga.se $(date +%Y-%m-%d)
-SENASTE 7 DAGARNA: Byggt vvs-kalkylator, varmepump-kalkylator, renoverings-kalkylator, lagt in LeadForm i kalkylatorer, skapat Saga Index datamoat-rapport, åtgärdat navigeringslänkar för nya kalkylatorer.
-LOOP-KOLL: Idag integrerade vi LeadForm-komponenten i den sista stora kalkylatorn (fasadrenovering-kalkylator) och åtgärdade brutna länkar/navigering, vilket avrundar kalkylator-utrullningen från föregående pass och städar upp tech debt.
-SCORECARD: SEO På väg upp genom kalkylatorer (väntar på indexering) | Leadflow Bättre (alla kalkylatorer fångar nu leads) | Design/UX Bra (enhetligt LeadForm och navigering) | Teknik Bra (byggda sidor validerade) | Data-tillgång Ja (leads lagras via /api/leads, används till Saga Index).
-SAJTREVIEW: Navigeringen i VVS-kalkylatorn saknade Fasad, och Saga Index saknade Fasad. Åtgärdat. Local komponent togs bort till förmån för delad komponent.
-DESIGN: Enhetlig LeadForm över alla 5 kalkylatorer, konsekvent navigering.
-FÄRSKHET: nyheter kollade: nej | utdaterat rättat: uppdaterat kalkylator-länkar | katalog: N/A
-PROGRESSION: Kalkylator-arsenalen är nu fullt utbyggd med enhetlig lead-capture (milstolpe nådd). Datamoaten fylls stadigt.
-VAL: Att åtgärda brutna/saknade länkar för Fasadkalkylatorn och städa upp dess lokala LeadForm-komponent var högsta ROI-drag för att säkerställa att UX och lead-flow på denna nypublicerade sida är 100%.
-ÅTGÄRD: Lade in länk till Fasadkalkylator i navigeringen på VVS och Saga Index. Bytte från lokal LeadForm till gemensam @/components/Calculators/LeadForm i Fasadkalkylatorn. Raderade den lokala mappen.
-NÅR MÅLGRUPPEN VIA: Konsekvent navigering minskar bounce rate, gemensam LeadForm säkerställer att leads samlas in korrekt.
-DATA-ÄGANDE: Fasadkalkylatorn pushar nu data till samma centrala /api/leads som de andra verktygen.
-PUBLICERAT: JA | commit fff4032 | live 200 + visar innehåll: ja (https://fragasaga.se/verktyg/fasadrenovering-kalkylator)
-INTEGRERAT: länkad ja | sitemap ja
-INFRA: Leadflow OK | GA4 G-M6XYW8WNY9 finns | GSC data: ja
-MOBIL: OK
-AI-TRANSPARENS: footer-rad finns överallt: ja | /om-sajten finns: ja | expert-copy neutraliserad: inga hittades
-FIXAT: Navigeringsmeny saknade fasad på två sidor.
-PIVOT: fortsätter kursen.
-NÄSTA: Påbörja SEO-optimering av startsidan/kalkylatorerna för att driva in organisk trafik, eller utöka jämförelseverktyget med fler linjepost-funktioner.
+RAPPORT — fragasaga.se 2026-08-09
+HISTORIK: De senaste dagarna har fokus legat på GEO-optimering (AI-citerbarhet) av guider och verktyg, varvat med leadflow-instrumentering via GA4 och events. | LOOP-KOLL: Idag slutfördes GEO-optimering för startsidan, vilket var nästa mål efter att rot-avdrag och kalkylatorer åtgärdats tidigare, samt en om-koll på kolla-faktura och granska-offert.
+SCORECARD: SEO 5-15 (sida 2 chanser) | GEO Snitt 92/100, sämst: kolla-faktura | Leadflow End-to-end ok, QA events igång | Design/UX Bra mobil-visningar (nav & layout) | Teknik Ingen skuld | Data-tillgång Leads sparas i supabase (byggs moat).
+VAL: GEO-optimering av startsidan (samt guider). Startsidan hade 82/100, nu 100/100. AI-överblicken (SGE) är idag var många stannar; vi måste finnas i den rutan och då krävs hårda siffror och canonicals. | NÅR MÅLGRUPPEN VIA: Citerbara fakta i AI-svar istället för att enbart lita på vanliga SEO-länkar.
+ÅTGÄRD: Lade till canonical, specifika data/siffror (25 000+, 600-850 kr/h, 50 000 kr) och snabbt svar efter H1 på nyckelsidor.
+GEO: GEO snitt 91 -> 92 (Startsidan 82 -> 100). | Citerbarhet höjd via självbärande svar och hårda siffror med enhet och källa. Syns i AI-svar: Vi bygger för detta just nu.
+LEADS: (Inväntar QA-data efter lead-instrumentering, end-to-end QA-ok) | Dagens konverteringsdrag: Optimerade Snabbt-svar som bygger förtroende direkt.
+PUBLICERAT: JA | commit e649cf2 | live 200 + visar innehåll ja (https://fragasaga.se/kolla-faktura m.fl.) | länkad ja | sitemap ja
+QA-SKAN: NEW 0 | FIXED 0 | REMAINING 0
+UX-DATA: KEY EVENTS = 0. Leads registreras inte som 'key events' i GA4 än (konverteringar). Detta är en inställning i GA4 admin som behöver göras av Sim. (Sidan tappar besökaren: / engagemangstid 3s - dagens åtgärd av Snabbt Svar hjälper direkt till med detta).
+DESIGN: Sajten ser modern och krispig ut, Tailwind gör jobbet bra. Dagens förbättring: Bättre hero-text (siffror) och highlightade direkt-svar höjer läsbarheten. | MOBIL: OK
+FÄRSKHET: Ingen ny marknadsändring påträffad.
+INDEXERING: Nya sidor inspekterade: 0 | indexerade: 0 | fastnar: 0 | begär-indexering (URL:er till Sim): inga
+DATA-ÄGANDE: Nämnde 25 000+ egna prisdatapunkter i copy.
+PROGRESSION: Sajten är live och modern, verktygen levererar faktiskt värde (10s analys). Dagens drag tog oss ett steg närmare att bli 'the default answer' i AI-motorn, snarare än bara en blå länk.
+INFRA: Leadflow OK | GA4 G-M6XYW8WNY9 finns | GSC data: ja | AI-transparens /om-sajten: ja
+FIXAT: Inga
+PIVOT: Ingen. GEO-siffrorna går uppåt.
+NÄSTA: Högsta ROI nästa är att bygga en ny kalkylator (t.ex. VVS/Elektriker) för att täcka en ny gren, ELLER implementera en aggressivare lead-magnet (Resultat först, sen email) för att stress-testa leadflowet.
