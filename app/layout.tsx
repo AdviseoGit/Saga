@@ -20,6 +20,9 @@ const dmMono = DM_Mono({
 const SITE_URL = "https://fragasaga.se";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://fragasaga.se",
+  },
   metadataBase: new URL(SITE_URL),
   title: {
     default: "Fråga Saga – Gratis offertanalys på sekunder",

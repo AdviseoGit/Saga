@@ -47,17 +47,18 @@ export default function KollaFakturaPage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
             <article className="prose lg:prose-xl max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
+                <h1 className="text-4xl font-bold mb-6 text-gray-900">Kolla Faktura från Hantverkare - Är Priset Rimligt?</h1>
                 
+                        <p className="text-xl font-medium text-gray-900 border-l-4 border-blue-500 pl-4 py-2 bg-blue-50/50">
+            <strong>Snabbt svar:</strong> För att kolla en faktura från en hantverkare jämför du arbetskostnaden och materialpåslaget mot den ursprungliga offerten, säkerställer att arbetet är specificerat separat (krav för 30 % ROT-avdrag), och kontrollerar att företaget har giltig F-skatt på Skatteverket.
+            <br/><br/>
+            <span className="text-sm text-gray-500">Uppdaterad: 2026-08-09</span>
+        </p>
+
                 <p className="lead">
                     Att renovera eller bygga om hemma är en spännande process, men när fakturan från hantverkaren landar i brevlådan kan det snabbt uppstå osäkerhet. Är allt korrekt? Är priset rimligt? Att kunna granska en faktura på rätt sätt är A och O för en trygg och lyckad affär. Fråga Saga guidar dig genom de viktigaste stegen för att säkerställa att du betalar rätt pris för rätt arbete.
                 </p>
 
-                <div className="my-8 border-l-4 border-blue-500 pl-4 py-2 bg-blue-50/50">
-                    <p className="text-xl font-medium text-gray-900 m-0">
-                        <strong>Sammanfattning:</strong> För att kunna nyttja ROT-avdraget på 30 % av arbetskostnaden krävs att hantverkaren har en godkänd F-skatt och att arbetskostnaden är tydligt separerad från material på din faktura. Betala aldrig hantverkare kontant; elektronisk betalning är ett krav från <a href="https://skatteverket.se" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-normal">Skatteverket</a>. I snitt upptäcker konsumenter fel på 4 500 kr när de granskar hantverkarfakturor, och en av fyra fakturor saknar korrekta specifikationer för timpris och materialpåslag.
-                    </p>
-                    <p className="text-sm text-gray-500 mt-2 m-0">Uppdaterad: 2026-08-07</p>
-                </div>
 
                 <section>
                     <h2 className="text-2xl font-semibold mt-6 mb-2">Hur jämför jag fakturan med offerten?</h2>

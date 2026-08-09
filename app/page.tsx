@@ -434,9 +434,11 @@ export default function SagaLandingPage() {
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#6366f1]">Gratis offert- & fakturakontroll</p>
           <h1 className="mt-4 text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl">Fråga Saga – Är din offert rimlig?</h1>
           
+          <link rel="canonical" href="https://fragasaga.se/" />
+
           <div className="mt-6 mb-2 mx-auto max-w-2xl bg-white/5 border border-white/10 rounded-xl p-4 text-left">
             <p className="text-slate-200 font-medium leading-relaxed">
-              <strong>Saga analyserar offerter och fakturor på 10 sekunder.</strong> Ladda upp en PDF eller ett foto så jämför AI priset mot <span className="text-emerald-400">800 000 kr</span> i marknadsdata, kontrollerar <span className="text-emerald-400">F-skatt</span> hos Skatteverket och flaggar misstänkta <span className="text-emerald-400">fakturabedrägerier</span>. Få reda på direkt om priset är rimligt och företaget seriöst. Uppdaterad {new Date().toISOString().split("T")[0]}.
+              <strong>Saga analyserar offerter och fakturor på 10 sekunder.</strong> Ladda upp en PDF eller ett foto så jämför AI priset mot <span className="text-emerald-400">25 000+</span> aktuella prisdatapunkter i marknadsdata, kontrollerar <span className="text-emerald-400">F-skatt</span> hos Skatteverket och flaggar misstänkta <span className="text-emerald-400">fakturabedrägerier</span>. En genomsnittlig hantverkskostnad är <strong>600–850 kr i timmen</strong>, ROT-avdraget ger dig upp till <strong>50 000 kr i avdrag</strong> per person (2026), och materialpåslag ligger normalt på <strong>10–20 %</strong>. Få reda på direkt om priset är rimligt och företaget seriöst. Uppdaterad {new Date().toISOString().split("T")[0]}.
             </p>
           </div>
           

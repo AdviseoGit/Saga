@@ -1,3 +1,4 @@
+2026-08-09 | GEO | GEO-optimering av startsidan, granska-offert, kolla-faktura | Citerbarhet för AI-svar | nästa: Fortsätt GEO-optimering eller bygg nya verktyg
 2026-08-08 | GEO | GEO-optimering av takbyte-kalkylator (tabell, H2-frågor, självbärande svar) | GEO-poäng takbyte 68 -> 100 | nästa: Fortsätt GEO-optimering (startsidan / H1)
 2026-08-08 | GEO | GEO-optimering av rot-avdrag (siffror, schema, tabell) | GEO-poäng rot-avdrag 64 -> 100 | nästa: Fortsätt GEO-optimering (takbyte-kalkylator)
 2026-08-08 | GEO | GEO-optimering av bergvarme-kalkylator | GEO-poäng bergvarme-kalkylator 62 -> 100 | nästa: Fortsätt GEO-optimering (rot-avdrag / takbyte-kalkylator)

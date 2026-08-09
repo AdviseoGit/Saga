@@ -44,7 +44,7 @@ export default function GranskaOffertHantverkare() {
       />
       <SimpleLayout
       title="Är offerten från din hantverkare rimlig?"
-      intro="Att anlita hantverkare är ett stort steg. Men hur vet du att offerten du fått är skälig? Vi hjälper dig att granska din offert, förstå vad som ska ingå och undvika de vanligaste fallgroparna."
+      intro="För att granska en hantverkaroffert ska du kontrollera tre saker: att företaget har giltig F-skatt, att priset ligger mellan 600–850 kr i timmen inklusive moms (innan ROT), och att arbetskostnad och materialkostnad är tydligt separerade."
     >
       <div className="space-y-12">
         <section>
