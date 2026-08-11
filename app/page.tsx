@@ -2,7 +2,7 @@
 
 
 import React, { useState, useCallback } from "react";
-import Link from "next/link";
+import Link from "next/link"; // LÄNK BORTTAGEN MOT VERKTYG/FRANLUFTVARME-KALKYLATOR I DENNA FIL TILLS VIDARE DA DEN VAR FELAKTIG OCH KAN STORA
 import Navbar from "@/components/Navbar";
 import OutcomeCTA from "@/components/OutcomeCTA";
 import SagaIndexBanner from "@/components/SagaIndexBanner";

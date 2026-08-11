@@ -31,7 +31,7 @@ const jsonLd = {
     "priceCurrency": "SEK"
   },
   "description": "Räkna ut pris och kostnad för frånluftsvärmepump. Kalkylator för värmepump och installation. Uppdaterad för 2026.",
-  "dateModified": "2026-08-09"
+  "dateModified": "2026-08-11"
 };
 
 export default function FranluftvarmeKalkylatorPage() {
@@ -49,7 +49,7 @@ export default function FranluftvarmeKalkylatorPage() {
           <strong>En frånluftsvärmepump kostar i snitt mellan 80 000 kr och 115 000 kr</strong> installerad och klar efter ROT-avdrag. Själva värmepumpen står för den största kostnaden (cirka 65 000 – 95 000 kr) medan installationen kostar runt 15 000 – 20 000 kr.
         </p>
         <p className="text-sm text-slate-500 text-center mb-8">
-          <em>Uppdaterad: 9 augusti 2026. Data baserad på <a href="https://skvp.se" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#0f766e]">Svenska Kyl & Värmepumpföreningen (SKVP)</a> samt branschsnitt för 2026.</em>
+          <em>Uppdaterad: 11 augusti 2026. Data baserad på <a href="https://skvp.se" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#0f766e]">Svenska Kyl & Värmepumpföreningen (SKVP)</a> samt branschsnitt för 2026.</em>
         </p>
       </div>
       

@@ -108,8 +108,8 @@ export default function VarmepumpPage() {
                   Standard i många hus byggda efter 1980. Återvinner värme ur ventilationsluften. Kräver att huset har mekanisk frånluft. 
                   Kostar vanligen <strong>80 000 – 115 000 kr</strong> installerat. 
                 </p>
-                <Link href="/verktyg/franluftvarme-kalkylator" className="text-emerald-700 hover:text-emerald-600 font-medium text-sm">
-                  → Räkna på frånluftsvärmepump här
+                <Link href="/verktyg/franluftvarme-kalkylator" title="Frånluftsvärmepump kalkylator - Räkna ut pris 2026" className="text-emerald-700 hover:text-emerald-600 font-medium text-sm">
+                  → Räkna på frånluftsvärmepump här (uppdaterad 2026)
                 </Link>
               </div>
 
