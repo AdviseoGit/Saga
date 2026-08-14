@@ -1,3 +1,4 @@
+2026-08-14 | INNEHÅLL | Intilliggande intent: utökat värmepump-kalkylator | klick frånluftsvärme 0 -> >5 | nästa: Fortsätt utöka med fler kalkylatorer/intilliggande intents (t.ex. jordvärme/luft-vatten)
 2026-08-14 | TILLVÄXT/INNEHÅLL | Implementerade riktig värmepump-kalkylator (intilliggande intent) | klick frånluftsvärme 0 -> >5 | nästa: Bygg ut fler intilliggande kalkylatorer eller optimera konvertering
 2026-08-11 | MÄTNING | Byggde endpoint /api/stats/leads för mätning av konverteringar | Synliggöra leads | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-08-09 | INNEHÅLL | SEO-fördjupning av frånluftsvärme (djupt intent) | klick frånluftsvärme 0 -> >5 | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
