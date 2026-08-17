@@ -79,6 +79,19 @@ export default function FranluftvarmeKalkylatorPage() {
           <li><strong>Komplexitet vid installation:</strong> Om rör behöver dras om, golvbrunnar saknas, eller om ventilationskanaler behöver rengöras eller justeras (OVK) ökar arbetskostnaden. Att enbart "byta rakt av" där den gamla pumpen stod är billigast.</li>
         </ol>
 
+        <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-6">Livslängd och utbyte av frånluftsvärmepump</h2>
+        <p className="mb-4">
+          En normal frånluftsvärmepump har en livslängd på cirka <strong>10 till 15 år</strong>, ibland upp emot 20 år om den är välskött och kompressorn håller. När det är dags att byta ut den är det vanligaste tecknet att elräkningen plötsligt skjuter i höjden under vintern. Detta beror på att kompressorn har gett upp, och pumpen istället drivs helt av den inbyggda elpatronen. 
+        </p>
+        <p className="mb-4">
+          Att byta ut en befintlig värmepump är ofta 10 000 - 15 000 kr billigare än en nyinstallation eftersom ventilation och rördragning redan är på plats.
+        </p>
+        
+        <h3 className="text-xl font-semibold text-slate-800 mt-8 mb-4">Elförbrukning och besparing</h3>
+        <p className="mb-4">
+          Moderna frånluftsvärmepumpar, särskilt inverterstyrda modeller, är otroligt effektiva. Medan en äldre pump från tidigt 2000-tal kanske hade ett SCOP-värde (årsvärmefaktor) på runt 2.5, kan en modern pump leverera närmare 4-5 kWh värme för varje kWh el den förbrukar. I en normalstor villa (130-150 kvm) innebär bytet från en 15 år gammal pump till en ny ofta en besparing på <strong>4 000 - 6 000 kWh per år</strong>.
+        </p>
+
         <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-6"> ROT-avdrag för frånluftsvärmepump</h2>
         <p className="mb-4">
           Du har rätt att använda ROT-avdraget för arbetskostnaden när du installerar en frånluftsvärmepump. För värmepumpar tillämpas ofta en schablon från Skatteverket där arbetskostnaden räknas som 30% av totalkostnaden. Du får dra av 30% av denna arbetskostnad (vilket motsvarar 9% av totalkostnaden). Detta är inbyggt i vår kalkylator.
@@ -90,6 +103,17 @@ export default function FranluftvarmeKalkylatorPage() {
             När du tar in offerter på frånluftsvärmepumpar, se till att jämföra "äpplen med äpplen". Ingår bortforsling av din gamla pump? Ingår injustering av ventilationssystemet i priset? Ingår eventuella elarbeten om nya säkringar krävs? Detta är vanliga dolda kostnader som oseriösa aktörer lämnar utanför sitt grundpris.
           </p>
         </div>
+
+        <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-6">Jämför med andra värmesystem</h2>
+        <p className="mb-4">
+          Är du osäker på om frånluftsvärme är rätt för dig, eller funderar du på andra alternativ? Jämför kostnader och teknik med våra andra kalkylatorer:
+        </p>
+        <ul className="list-disc pl-6 mb-6 space-y-2">
+          <li><a href="/verktyg/varmepump-kalkylator" className="text-emerald-700 hover:text-emerald-600 underline">Värmepump Kalkylator (Översikt)</a></li>
+          <li><a href="/verktyg/bergvarme-kalkylator" className="text-emerald-700 hover:text-emerald-600 underline">Bergvärme Kalkylator</a></li>
+          <li><a href="/verktyg/jordvarme-kalkylator" className="text-emerald-700 hover:text-emerald-600 underline">Jordvärme Kalkylator</a></li>
+        </ul>
+
       </article>
     </>
   );

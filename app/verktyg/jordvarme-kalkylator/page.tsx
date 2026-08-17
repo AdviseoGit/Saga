@@ -83,6 +83,17 @@ export default function JordvarmeKalkylatorPage() {
 
         <JordvarmeCalculator />
 
+        <div className="mt-16 bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">Jämför med andra värmesystem</h2>
+          <p className="mb-4 text-slate-700">
+            Funderar du på om jordvärme är rätt val, eller vill du jämföra med alternativen? Kika på våra andra kalkylatorer:
+          </p>
+          <ul className="list-disc pl-6 mb-6 space-y-2 text-slate-700">
+            <li><Link href="/verktyg/varmepump-kalkylator" className="text-emerald-700 hover:text-emerald-600 underline">Värmepump Kalkylator (Översikt)</Link></li>
+            <li><Link href="/verktyg/bergvarme-kalkylator" className="text-emerald-700 hover:text-emerald-600 underline">Bergvärme Kalkylator</Link></li>
+            <li><Link href="/verktyg/franluftvarme-kalkylator" className="text-emerald-700 hover:text-emerald-600 underline">Frånluftsvärmepump Kalkylator</Link></li>
+          </ul>
+        </div>
       </div>
     </div>
   );

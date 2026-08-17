@@ -86,6 +86,16 @@ export default function BergvarmeKalkylatorPage() {
         <h2>Hur djupt måste man borra för bergvärme?</h2>
         <p>Normalt borrar man mellan 120 och 250 meter beroende på husets värmebehov och var i Sverige du bor (berget är kallare i norr). Enligt data från branschorganisationen SKPT är snittdjupet ca 180 meter. Om energibehovet är mycket stort kan det krävas två kortare hål istället för ett djupt.</p>
         
+        <h2>Jämför med andra värmesystem</h2>
+        <p>
+          Är du osäker på om bergvärme är det bästa valet? Jämför kostnader och alternativ med våra andra kalkylatorer:
+        </p>
+        <ul className="list-disc pl-6 mb-6">
+          <li><a href="/verktyg/varmepump-kalkylator" className="text-emerald-700 hover:text-emerald-600 underline">Värmepump Kalkylator (Översikt)</a></li>
+          <li><a href="/verktyg/jordvarme-kalkylator" className="text-emerald-700 hover:text-emerald-600 underline">Jordvärme Kalkylator</a></li>
+          <li><a href="/verktyg/franluftvarme-kalkylator" className="text-emerald-700 hover:text-emerald-600 underline">Frånluftsvärmepump Kalkylator</a></li>
+        </ul>
+
         <p className="text-xs text-slate-500 mt-8 border-t pt-4">Källa priser och djup: <a href="https://skpt.se" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-800">Svenskt Geoenergicentrum / SKPT</a> samt granskade offerter 2025-2026. Uppdaterad 2026-08-08.</p>
       </div>
     </div>
