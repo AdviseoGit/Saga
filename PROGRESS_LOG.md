@@ -1,3 +1,4 @@
+2026-08-22 | INNEHÅLL | Fortsatt GEO-optimering (auktoritetslänkar frånluft & värmepump) | frånluftsvärme-kalkylator (klick 0->2, pos 18->under 10) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna
 2026-08-17 | INNEHÅLL | Fördjupat innehåll och korslänkat frånluftsvärme-kalkylator (del 2) | klick frånluftsvärme 0 -> >5 | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-08-14 | INNEHÅLL | Intilliggande intent: utökat värmepump-kalkylator | klick frånluftsvärme 0 -> >5 | nästa: Fortsätt utöka med fler kalkylatorer/intilliggande intents (t.ex. jordvärme/luft-vatten)
 2026-08-14 | TILLVÄXT/INNEHÅLL | Implementerade riktig värmepump-kalkylator (intilliggande intent) | klick frånluftsvärme 0 -> >5 | nästa: Bygg ut fler intilliggande kalkylatorer eller optimera konvertering
