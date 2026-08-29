@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
     }
 
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (sbUrl && sbKey) {
       // Dynamic import to prevent build errors if module not installed or fails locally
