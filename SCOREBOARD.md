@@ -38,8 +38,8 @@ ligga på position 3. Detta — inte GEO-poäng — avgör vilken sida som är v
 |---|---|---|---|---|
 | fragasaga.se/verktyg/bergvarme-kalkylator | 69 | 81.6 | 0 | ~8 |
 | fragasaga.se/verktyg/franluftvarme-kalkylator | 66 | 13.8 | 0 | ~6 |
-| fragasaga.se/verktyg/varmepump-kalkylator | 37 | 63.1 | 0 | ~4 |
 | fragasaga.se/verktyg/fasadrenovering-kalkylator | 37 | 65.9 | 0 | ~4 |
+| fragasaga.se/verktyg/varmepump-kalkylator | 37 | 63.1 | 0 | ~4 |
 | fragasaga.se/rot-avdrag | 25 | 16.7 | 0 | ~2 |
 | fragasaga.se/verktyg/takbyte-kalkylator | 13 | 76.6 | 0 | ~1 |
 | fragasaga.se | 11 | 13.5 | 1 | ~1 |
