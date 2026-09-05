@@ -2,7 +2,7 @@
 
 
 import React, { useState, useCallback } from "react";
-import Link from "next/link"; // LÄNK BORTTAGEN MOT VERKTYG/FRANLUFTVARME-KALKYLATOR I DENNA FIL TILLS VIDARE DA DEN VAR FELAKTIG OCH KAN STORA
+import Link from "next/link"; // Länk fixad
 import Navbar from "@/components/Navbar";
 import OutcomeCTA from "@/components/OutcomeCTA";
 import SagaIndexBanner from "@/components/SagaIndexBanner";
@@ -526,6 +526,11 @@ export default function SagaLandingPage() {
             Data hämtas direkt från <a href="https://skatteverket.se" target="_blank" rel="noopener noreferrer" className="text-[#6366f1] hover:underline">Skatteverket</a> och <a href="https://bolagsverket.se" target="_blank" rel="noopener noreferrer" className="text-[#6366f1] hover:underline">Bolagsverket</a>.
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 mb-4">
+            <p className="text-center text-sm font-medium text-slate-500 max-w-2xl mx-auto">
+              Ska du investera i värmepump eller bergvärme? Se till att räkna på kostnaden först med vår populära <a href="/verktyg/bergvarme-kalkylator" className="text-[#6366f1] hover:underline font-bold">Bergvärme Kalkylator</a>.
+            </p>
+          </div>
             {cards.map((card, i) => (
               <div key={card.title} className="group rounded-[22px] border border-[#e2e8f0] bg-[#f8fafc] p-5 transition hover:border-[#6366f1]/30 hover:bg-white hover:shadow-lg hover:shadow-[#6366f1]/5" style={{ animationDelay: `${i * 50}ms` }}>
                 <div className="text-2xl">{card.icon}</div>
