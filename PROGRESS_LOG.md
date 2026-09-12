@@ -1,3 +1,4 @@
+2026-09-12 | INNEHÅLL | Fördjupat innehåll på bergvärme & värmepump-kalkylator | Klick värmepump 0 -> 2, visningar bergvärme 176 -> 200 | nästa: Driv in internlänkar till Värmepump och frånluftsvärme
 2026-09-05 | TILLVÄXT/INNEHÅLL | Länkat Bergvärme från startsidan | Klick Bergvärme 2 -> >10 | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-08-29 | LEADFLOW | Lagat databasskrivning for api/leads pga saknad API-nyckel | leads totalt 0 -> >0 | nasta: Optimera leadsformular och CTA-knappar pa verktygssidorna
 2026-08-22 | INNEHÅLL | Fortsatt GEO-optimering (auktoritetslänkar frånluft & värmepump) | frånluftsvärme-kalkylator (klick 0->2, pos 18->under 10) | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna
