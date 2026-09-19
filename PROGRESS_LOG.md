@@ -1,3 +1,4 @@
+2026-09-19 | GEO/INNEHÅLL | GEO-optimering f-skatt & bergvärme (snabbsvar) | klick bergvärme 2 -> >10 | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-09-12 | INNEHÅLL | Fördjupat innehåll på bergvärme & värmepump-kalkylator | Klick värmepump 0 -> 2, visningar bergvärme 176 -> 200 | nästa: Driv in internlänkar till Värmepump och frånluftsvärme
 2026-09-05 | TILLVÄXT/INNEHÅLL | Länkat Bergvärme från startsidan | Klick Bergvärme 2 -> >10 | nästa: Optimera leadsformulär och CTA-knappar på verktygssidorna för att konvertera mer trafik
 2026-08-29 | LEADFLOW | Lagat databasskrivning for api/leads pga saknad API-nyckel | leads totalt 0 -> >0 | nasta: Optimera leadsformular och CTA-knappar pa verktygssidorna
