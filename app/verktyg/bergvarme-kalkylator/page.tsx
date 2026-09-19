@@ -107,7 +107,11 @@ export default function BergvarmeKalkylatorPage() {
             </p>
           </div>
 
+          
+          <p className="mt-4 text-sm text-slate-600">Läs mer om värmepumpar hos <a href="https://www.energimyndigheten.se/husguide/uppvarmning/varmepump/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">Energimyndigheten</a>.</p>
+
           <h2>Hur djupt måste man borra för bergvärme?</h2>
+
           <p>
             Tumregeln är att varje meter borrhål ger cirka 30-40 watt i utvunnen energi (kallas <em>aktivt borrdjup</em>). 
             Ett normalstort hus behöver ofta ett hål som är mellan 150 och 200 meter djupt.

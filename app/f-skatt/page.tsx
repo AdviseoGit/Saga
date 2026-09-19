@@ -28,9 +28,12 @@ export default function FSkattPage() {
 
       <div className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
         <article className="prose lg:prose-lg">
-          <h1 className="text-3xl font-black tracking-tight text-gray-900 sm:text-4xl">
-            Vad är F-skatt och varför måste du ha koll?
+          <h1 className="text-3xl font-black tracking-tight text-gray-900 sm:text-4xl mb-4">
+            Vad är F-skatt? (Kontrollera företaget)
           </h1>
+          <p className="text-lg font-medium text-slate-800 bg-slate-50 p-4 rounded-lg border border-slate-200 mb-8">
+            <strong>Kort svar:</strong> F-skatt (företagsskatt) innebär att företaget självt betalar in sina skatter och arbetsgivaravgifter. Anlitar du ett företag <em>utan</em> F-skatt blir du som privatperson betalningsansvarig för deras skatt och sociala avgifter (cirka 31,42%), och du förlorar rätten till ROT-avdrag.
+          </p>
           <p className="lead">
             När du anlitar en hantverkare eller annan företagare är F-skatt ett av de viktigaste begreppen att ha koll på. Det kan verka som en teknisk detalj, men att anlita någon utan F-skatt kan leda till allvarliga ekonomiska konsekvenser för dig som kund.
           </p>
@@ -39,18 +42,23 @@ export default function FSkattPage() {
             Den här guiden förklarar allt du behöver veta om F-skatt: vad det är, varför det är så viktigt, och hur du enkelt kontrollerar att företaget du anlitar har sin registrering i ordning.
           </p>
 
-          <h2>Vad innebär F-skatt?</h2>
+          <h2>Vad innebär F-skatt rent praktiskt?</h2>
           <p>
-            F-skatt, eller företagsskatt, är en typ av skatteregistrering i Sverige som visar att en näringsidkare (ett företag eller en enskild firma) själv ansvarar för att betala in sina skatter och sociala avgifter. När ett företag är godkänt för F-skatt, ska du som kund inte dra av någon skatt eller betala några arbetsgivaravgifter när du betalar för ett utfört arbete.
+            F-skatt står för företagsskatt och är ett bevis på att Skatteverket litar på att företaget sköter sina betalningar. När en företagare har F-skatt ska du som kund <strong>inte</strong> dra av 30 % i skatt eller betala arbetsgivaravgifter på 31,42 %.
           </p>
           <p>
-            Skatteverket uttrycker det så här: Godkännandet för F-skatt är en signal om att företaget är seriöst och sköter sina åtaganden. Det är en trygghet för dig som uppdragsgivare.
+            Läs mer hos <a href="https://skatteverket.se/privat/skatter/arbeteochinkomst/fskatt.4.18e1b10334ebe8bc80006240.html" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">Skatteverket om F-skatt</a>.
           </p>
           
-          <h2>Varför är det viktigt för dig som kund?</h2>
+          <h2>Vad händer om företaget saknar F-skatt?</h2>
           <p>
-            Om du betalar ut ersättning för arbete till ett företag som <strong>inte</strong> är godkänt för F-skatt, jämställs du med en arbetsgivare. Det innebär att du är skyldig att dra av 30% i skatt på arbetskostnaden och betala arbetsgivaravgifter på hela beloppet.
+            Om du anlitar en hantverkare som inte är godkänd för F-skatt blir du enligt svensk lag att betrakta som arbetsgivare. Detta innebär:
           </p>
+          <ul className="list-disc pl-6 mb-6">
+            <li>Du måste dra av <strong>30 % i skatt</strong> på arbetskostnaden och betala in till Skatteverket.</li>
+            <li>Du måste betala <strong>31,42 % i arbetsgivaravgifter</strong> ovanpå lönen (om ersättningen överstiger 1 000 kr under ett år).</li>
+            <li>Du förlorar möjligheten att göra <strong>ROT-avdrag på upp till 50 000 kr</strong> (2026).</li>
+          </ul>
           <blockquote>
             <strong>Exempel:</strong> Du anlitar en målare för ett jobb som kostar 20 000 kr. Målaren har ingen F-skattsedel. Då måste du betala 14 000 kr till målaren och 6 000 kr (30%) direkt till Skatteverket. Utöver det måste du betala arbetsgivaravgifter (ytterligare ca 6 280 kr) till Skatteverket. Den totala kostnaden för dig blir alltså betydligt högre än offerten.
           </blockquote>
