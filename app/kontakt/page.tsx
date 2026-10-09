@@ -41,10 +41,10 @@ export default function ContactPage() {
             För allmänna frågor, förslag eller feedback, vänligen maila oss på:
           </p>
           <a
-            href="mailto:simon@adviseo.se"
+            href="mailto:info@fragasaga.se"
             className="mt-4 inline-block text-lg font-bold text-[#6366f1] hover:underline"
           >
-            simon@adviseo.se
+            info@fragasaga.se
           </a>
         </div>
 
@@ -57,10 +57,10 @@ export default function ContactPage() {
             Kontakta oss via mail:
           </p>
           <a
-            href="mailto:simon@adviseo.se"
+            href="mailto:info@fragasaga.se"
             className="mt-4 inline-block text-lg font-bold text-[#6366f1] hover:underline"
           >
-            simon@adviseo.se
+            info@fragasaga.se
           </a>
         </div>
       </div>

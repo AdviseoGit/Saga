@@ -23,3 +23,6 @@ Gratis AI-tjänst: ladda upp offert/faktura → Saga analyserar priset mot svens
 - Ge inte juridisk rådgivning — informera.
 - Ändra inte kärnflödet eller den visuella profilen utan manuellt godkännande.
 - Pusha ALDRIG om `npm run build` misslyckas.
+
+## Kontaktadress
+- Publik kontaktadress på sajten är **info@fragasaga.se** (vidarebefordras till ägaren via Cloudflare Email Routing). Skriv aldrig ut simon@adviseo.se på sidor som besökare ser; den används bara för interna notiser (t.ex. LEAD_NOTIFY_EMAIL).
